@@ -16,6 +16,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let hkStore = HKHealthStore()
     var workouts = [HKWorkout]()
     
+    let refreshControl = UIRefreshControl()
+    
     lazy var dateFormatter:NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
@@ -26,6 +28,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
         
         let readTypes = Set([
             HKObjectType.workoutType()
@@ -99,6 +105,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var hours = (ti / 3600)
         
         return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+    }
+    
+    func refresh(refreshControl: UIRefreshControl) {
+        self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
+            println("Made It \(results.count)")
+            if let workouts = results as? [HKWorkout] {
+                self.workouts = workouts
+                self.tableView.reloadData()
+            }
+            
+            self.refreshControl.endRefreshing()
+        })
     }
 }
 
