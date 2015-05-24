@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9644A0331B124A5E00569F32 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */; };
 		96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C51B108DB80056ECDA /* AppDelegate.swift */; };
 		96A6D9C91B108DB80056ECDA /* HealthLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */; };
 		96A6D9CB1B108DB80056ECDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9CA1B108DB80056ECDA /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		96A6D9C01B108DB80056ECDA /* HealthLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A6D9C41B108DB80056ECDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96A6D9C51B108DB80056ECDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				96A6D9C31B108DB80056ECDA /* Supporting Files */,
 				96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */,
 				96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */,
+				9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */,
 			);
 			path = HealthLink;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */,
 				96A6D9C91B108DB80056ECDA /* HealthLink.xcdatamodeld in Sources */,
 				96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */,
+				9644A0331B124A5E00569F32 /* WorkoutDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +445,7 @@
 				96A6D9E41B108DB80056ECDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96A6D9E51B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLinkTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +454,7 @@
 				96A6D9E71B108DB80056ECDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

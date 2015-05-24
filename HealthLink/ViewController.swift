@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let hkStore = HKHealthStore()
     var workouts = [HKWorkout]()
+    var selectedWorkout: HKWorkout?
     
     let refreshControl = UIRefreshControl()
     
@@ -69,6 +70,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let workoutDetail = segue.destinationViewController as? WorkoutDetailViewController {
+            if let selection = selectedWorkout {
+                workoutDetail.workout = selection
+            }
+        }
+        
+        super.prepareForSegue(segue, sender: sender)
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if let selection = selectedWorkout {
+            return true
+        }
+        return false
+    }
 
     func readWorkOuts(completion: (([AnyObject]!, NSError!) -> Void)!) {
 
@@ -104,6 +122,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.selectedWorkout = self.workouts[indexPath.row]
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier("workoutDetail", sender: self)
     }

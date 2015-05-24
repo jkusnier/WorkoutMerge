@@ -88,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="1257" y="314"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Workout Detail View Controller-->
         <scene sceneID="GTR-hT-fGh">
             <objects>
-                <tableViewController id="olr-Mi-ZKl" sceneMemberID="viewController">
+                <tableViewController id="olr-Mi-ZKl" customClass="WorkoutDetailViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qq3-8a-rn1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
