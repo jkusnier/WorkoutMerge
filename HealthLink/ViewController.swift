@@ -103,7 +103,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {}
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.performSegueWithIdentifier("workoutDetail", sender: self)
+    }
     
     func stringFromTimeInterval(interval:NSTimeInterval) -> String {
         
