@@ -1,0 +1,469 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C51B108DB80056ECDA /* AppDelegate.swift */; };
+		96A6D9C91B108DB80056ECDA /* HealthLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */; };
+		96A6D9CB1B108DB80056ECDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9CA1B108DB80056ECDA /* ViewController.swift */; };
+		96A6D9CE1B108DB80056ECDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96A6D9CC1B108DB80056ECDA /* Main.storyboard */; };
+		96A6D9D01B108DB80056ECDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A6D9CF1B108DB80056ECDA /* Images.xcassets */; };
+		96A6D9D31B108DB80056ECDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */; };
+		96A6D9DF1B108DB80056ECDA /* HealthLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9DE1B108DB80056ECDA /* HealthLinkTests.swift */; };
+		96A6D9E91B108DDD0056ECDA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A6D9E81B108DDD0056ECDA /* HealthKit.framework */; };
+		96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */; };
+		96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		96A6D9D91B108DB80056ECDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96A6D9B81B108DB80056ECDA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96A6D9BF1B108DB80056ECDA;
+			remoteInfo = HealthLink;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		96A6D9C01B108DB80056ECDA /* HealthLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A6D9C41B108DB80056ECDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96A6D9C51B108DB80056ECDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		96A6D9C81B108DB80056ECDA /* HealthLink.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthLink.xcdatamodel; sourceTree = "<group>"; };
+		96A6D9CA1B108DB80056ECDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		96A6D9CD1B108DB80056ECDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		96A6D9CF1B108DB80056ECDA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		96A6D9D21B108DB80056ECDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		96A6D9D81B108DB80056ECDA /* HealthLinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthLinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A6D9DD1B108DB80056ECDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96A6D9DE1B108DB80056ECDA /* HealthLinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthLinkTests.swift; sourceTree = "<group>"; };
+		96A6D9E81B108DDD0056ECDA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		96A6D9EA1B108DDD0056ECDA /* HealthLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HealthLink.entitlements; sourceTree = "<group>"; };
+		96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseModalSegue.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96A6D9BD1B108DB80056ECDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96A6D9E91B108DDD0056ECDA /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96A6D9D51B108DB80056ECDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		96A6D9B71B108DB80056ECDA = {
+			isa = PBXGroup;
+			children = (
+				96A6D9E81B108DDD0056ECDA /* HealthKit.framework */,
+				96A6D9C21B108DB80056ECDA /* HealthLink */,
+				96A6D9DB1B108DB80056ECDA /* HealthLinkTests */,
+				96A6D9C11B108DB80056ECDA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		96A6D9C11B108DB80056ECDA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96A6D9C01B108DB80056ECDA /* HealthLink.app */,
+				96A6D9D81B108DB80056ECDA /* HealthLinkTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		96A6D9C21B108DB80056ECDA /* HealthLink */ = {
+			isa = PBXGroup;
+			children = (
+				96A6D9EA1B108DDD0056ECDA /* HealthLink.entitlements */,
+				96A6D9C51B108DB80056ECDA /* AppDelegate.swift */,
+				96A6D9CA1B108DB80056ECDA /* ViewController.swift */,
+				96A6D9CC1B108DB80056ECDA /* Main.storyboard */,
+				96A6D9CF1B108DB80056ECDA /* Images.xcassets */,
+				96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */,
+				96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */,
+				96A6D9C31B108DB80056ECDA /* Supporting Files */,
+				96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */,
+				96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */,
+			);
+			path = HealthLink;
+			sourceTree = "<group>";
+		};
+		96A6D9C31B108DB80056ECDA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				96A6D9C41B108DB80056ECDA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		96A6D9DB1B108DB80056ECDA /* HealthLinkTests */ = {
+			isa = PBXGroup;
+			children = (
+				96A6D9DE1B108DB80056ECDA /* HealthLinkTests.swift */,
+				96A6D9DC1B108DB80056ECDA /* Supporting Files */,
+			);
+			path = HealthLinkTests;
+			sourceTree = "<group>";
+		};
+		96A6D9DC1B108DB80056ECDA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				96A6D9DD1B108DB80056ECDA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96A6D9BF1B108DB80056ECDA /* HealthLink */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96A6D9E21B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLink" */;
+			buildPhases = (
+				96A6D9BC1B108DB80056ECDA /* Sources */,
+				96A6D9BD1B108DB80056ECDA /* Frameworks */,
+				96A6D9BE1B108DB80056ECDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HealthLink;
+			productName = HealthLink;
+			productReference = 96A6D9C01B108DB80056ECDA /* HealthLink.app */;
+			productType = "com.apple.product-type.application";
+		};
+		96A6D9D71B108DB80056ECDA /* HealthLinkTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96A6D9E51B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLinkTests" */;
+			buildPhases = (
+				96A6D9D41B108DB80056ECDA /* Sources */,
+				96A6D9D51B108DB80056ECDA /* Frameworks */,
+				96A6D9D61B108DB80056ECDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96A6D9DA1B108DB80056ECDA /* PBXTargetDependency */,
+			);
+			name = HealthLinkTests;
+			productName = HealthLinkTests;
+			productReference = 96A6D9D81B108DB80056ECDA /* HealthLinkTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96A6D9B81B108DB80056ECDA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Jason Kusnier";
+				TargetAttributes = {
+					96A6D9BF1B108DB80056ECDA = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = W5X24H3PJV;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
+					};
+					96A6D9D71B108DB80056ECDA = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 96A6D9BF1B108DB80056ECDA;
+					};
+				};
+			};
+			buildConfigurationList = 96A6D9BB1B108DB80056ECDA /* Build configuration list for PBXProject "HealthLink" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 96A6D9B71B108DB80056ECDA;
+			productRefGroup = 96A6D9C11B108DB80056ECDA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96A6D9BF1B108DB80056ECDA /* HealthLink */,
+				96A6D9D71B108DB80056ECDA /* HealthLinkTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96A6D9BE1B108DB80056ECDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96A6D9CE1B108DB80056ECDA /* Main.storyboard in Resources */,
+				96A6D9D31B108DB80056ECDA /* LaunchScreen.xib in Resources */,
+				96A6D9D01B108DB80056ECDA /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96A6D9D61B108DB80056ECDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96A6D9BC1B108DB80056ECDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96A6D9CB1B108DB80056ECDA /* ViewController.swift in Sources */,
+				96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */,
+				96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */,
+				96A6D9C91B108DB80056ECDA /* HealthLink.xcdatamodeld in Sources */,
+				96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96A6D9D41B108DB80056ECDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96A6D9DF1B108DB80056ECDA /* HealthLinkTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		96A6D9DA1B108DB80056ECDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96A6D9BF1B108DB80056ECDA /* HealthLink */;
+			targetProxy = 96A6D9D91B108DB80056ECDA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		96A6D9CC1B108DB80056ECDA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96A6D9CD1B108DB80056ECDA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96A6D9D21B108DB80056ECDA /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		96A6D9E01B108DB80056ECDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		96A6D9E11B108DB80056ECDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		96A6D9E31B108DB80056ECDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthLink/HealthLink.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = HealthLink/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		96A6D9E41B108DB80056ECDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HealthLink/HealthLink.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = HealthLink/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		96A6D9E61B108DB80056ECDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HealthLinkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthLink.app/HealthLink";
+			};
+			name = Debug;
+		};
+		96A6D9E71B108DB80056ECDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = HealthLinkTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthLink.app/HealthLink";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96A6D9BB1B108DB80056ECDA /* Build configuration list for PBXProject "HealthLink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96A6D9E01B108DB80056ECDA /* Debug */,
+				96A6D9E11B108DB80056ECDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96A6D9E21B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLink" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96A6D9E31B108DB80056ECDA /* Debug */,
+				96A6D9E41B108DB80056ECDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		96A6D9E51B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLinkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96A6D9E61B108DB80056ECDA /* Debug */,
+				96A6D9E71B108DB80056ECDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96A6D9C81B108DB80056ECDA /* HealthLink.xcdatamodel */,
+			);
+			currentVersion = 96A6D9C81B108DB80056ECDA /* HealthLink.xcdatamodel */;
+			path = HealthLink.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 96A6D9B81B108DB80056ECDA /* Project object */;
+}
