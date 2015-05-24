@@ -11,7 +11,20 @@ import HealthKit
 
 class WorkoutDetailViewController: UITableViewController {
 
-    var workout:HKWorkout?
+    var workout:HKWorkout? {
+        didSet {
+            if let workout = workout {
+                self.title = dateFormatter.stringFromDate(workout.startDate)
+            }
+        }
+    }
+    
+    lazy var dateFormatter:NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        formatter.dateStyle = .ShortStyle
+        return formatter;
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,68 +39,56 @@ class WorkoutDetailViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return 6
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
 
-        // Configure the cell...
+        if let workout = workout {
+            switch indexPath.row {
+            case 0:
+                cell.textLabel?.text = "Workout Type"
+                cell.detailTextLabel?.text = "\(workout.workoutActivityType)"
+            case 1:
+                cell.textLabel?.text = "Duration"
+                cell.detailTextLabel?.text = stringFromTimeInterval(workout.duration)
+            case 2:
+                cell.textLabel?.text = "Calories Burned"
+                cell.detailTextLabel?.text = workout.totalEnergyBurned.description
+            case 3:
+                cell.textLabel?.text = "Distance"
+                cell.detailTextLabel?.text = workout.totalDistance.description
+            case 4:
+                cell.textLabel?.text = "Date"
+                cell.detailTextLabel?.text = dateFormatter.stringFromDate(workout.startDate)
+            case 5:
+                cell.textLabel?.text = "Source"
+                cell.detailTextLabel?.text = workout.source.description
+            default:
+                cell.textLabel?.text = ""
+                cell.detailTextLabel?.text = ""
+            }
+        }
 
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    func stringFromTimeInterval(interval:NSTimeInterval) -> String {
+        
+        var ti = NSInteger(interval)
+        
+        var seconds = ti % 60
+        var minutes = (ti / 60) % 60
+        var hours = (ti / 3600)
+        
+        return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
