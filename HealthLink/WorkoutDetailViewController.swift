@@ -39,45 +39,79 @@ class WorkoutDetailViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 6
+        switch section {
+        case 0:
+            return 6
+        case 1:
+            return 1
+        default:
+            return 0
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell: UITableViewCell
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
 
-        if let workout = workout {
-            switch indexPath.row {
-            case 0:
-                cell.textLabel?.text = "Workout Type"
-                cell.detailTextLabel?.text = "\(workout.workoutActivityType)"
-            case 1:
-                cell.textLabel?.text = "Duration"
-                cell.detailTextLabel?.text = stringFromTimeInterval(workout.duration)
-            case 2:
-                cell.textLabel?.text = "Calories Burned"
-                cell.detailTextLabel?.text = workout.totalEnergyBurned.description
-            case 3:
-                cell.textLabel?.text = "Distance"
-                cell.detailTextLabel?.text = workout.totalDistance.description
-            case 4:
-                cell.textLabel?.text = "Date"
-                cell.detailTextLabel?.text = dateFormatter.stringFromDate(workout.startDate)
-            case 5:
-                cell.textLabel?.text = "Source"
-                cell.detailTextLabel?.text = workout.source.description
-            default:
-                cell.textLabel?.text = ""
-                cell.detailTextLabel?.text = ""
+            if let workout = workout {
+                switch indexPath.row {
+                case 0:
+                    cell.textLabel?.text = "Workout Type"
+                    cell.detailTextLabel?.text = "\(workout.workoutActivityType)"
+                case 1:
+                    cell.textLabel?.text = "Duration"
+                    cell.detailTextLabel?.text = stringFromTimeInterval(workout.duration)
+                case 2:
+                    cell.textLabel?.text = "Calories Burned"
+                    cell.detailTextLabel?.text = workout.totalEnergyBurned.description
+                case 3:
+                    cell.textLabel?.text = "Distance"
+                    cell.detailTextLabel?.text = workout.totalDistance.description
+                case 4:
+                    cell.textLabel?.text = "Date"
+                    cell.detailTextLabel?.text = dateFormatter.stringFromDate(workout.startDate)
+                case 5:
+                    cell.textLabel?.text = "Source"
+                    cell.detailTextLabel?.text = workout.source.description
+                default:
+                    cell.textLabel?.text = ""
+                    cell.detailTextLabel?.text = ""
+                }
             }
+        } else if indexPath.section == 1 {
+            cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath) as! UITableViewCell
+            cell.textLabel?.text = "Sync to RunKeeper"
+        } else {
+            cell = UITableViewCell()
         }
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Details"
+        case 1:
+            return "Actions"
+        default:
+            return ""
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        if indexPath.section == 1 && indexPath.row == 0 {
+            println("Sync to RunKeeper")
+        }
     }
     
     func stringFromTimeInterval(interval:NSTimeInterval) -> String {
