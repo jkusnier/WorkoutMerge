@@ -90,16 +90,16 @@
 		96A6D9C21B108DB80056ECDA /* HealthLink */ = {
 			isa = PBXGroup;
 			children = (
-				96A6D9EA1B108DDD0056ECDA /* HealthLink.entitlements */,
 				96A6D9C51B108DB80056ECDA /* AppDelegate.swift */,
-				96A6D9CA1B108DB80056ECDA /* ViewController.swift */,
-				96A6D9CC1B108DB80056ECDA /* Main.storyboard */,
+				96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */,
+				96A6D9EA1B108DDD0056ECDA /* HealthLink.entitlements */,
+				96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */,
 				96A6D9CF1B108DB80056ECDA /* Images.xcassets */,
 				96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */,
-				96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */,
-				96A6D9C31B108DB80056ECDA /* Supporting Files */,
+				96A6D9CC1B108DB80056ECDA /* Main.storyboard */,
 				96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */,
-				96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */,
+				96A6D9C31B108DB80056ECDA /* Supporting Files */,
+				96A6D9CA1B108DB80056ECDA /* ViewController.swift */,
 				9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */,
 			);
 			path = HealthLink;
