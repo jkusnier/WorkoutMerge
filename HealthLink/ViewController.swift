@@ -41,6 +41,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             println("HealthKit Not Available")
         } else {
         
+            var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
+            actInd.center = self.view.center
+            actInd.hidesWhenStopped = true
+            actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+            view.addSubview(actInd)
+            actInd.startAnimating()
+            
             hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError!) -> () in
                 println("okay: \(success) error: \(err)")
                 if success {
@@ -50,6 +57,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             self.workouts = workouts
                             self.tableView.reloadData()
                         }
+                        
+                        actInd.stopAnimating()
                     })
                 }
             })
