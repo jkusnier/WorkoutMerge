@@ -35,7 +35,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.addSubview(refreshControl)
         
         let readTypes = Set([
-            HKObjectType.workoutType()
+            HKObjectType.workoutType(),
+            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
         ])
         
         if !HKHealthStore.isHealthDataAvailable() {
@@ -75,6 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if let workoutDetail = segue.destinationViewController as? WorkoutDetailViewController {
             if let selection = selectedWorkout {
                 workoutDetail.workout = selection
+                workoutDetail.hkStore = hkStore
             }
         }
         

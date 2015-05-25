@@ -19,6 +19,8 @@ class WorkoutDetailViewController: UITableViewController {
         }
     }
     
+    var hkStore:HKHealthStore?
+    
     lazy var dateFormatter:NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle
@@ -30,6 +32,13 @@ class WorkoutDetailViewController: UITableViewController {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .DecimalStyle
         formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+    
+    lazy var numberFormatterInt:NSNumberFormatter = {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .DecimalStyle
+        formatter.maximumFractionDigits = 0
         return formatter
     }()
     
@@ -54,7 +63,7 @@ class WorkoutDetailViewController: UITableViewController {
         // Return the number of rows in the section.
         switch section {
         case 0:
-            return 6
+            return 7
         case 1:
             return 1
         default:
@@ -84,9 +93,23 @@ class WorkoutDetailViewController: UITableViewController {
                         cell.detailTextLabel?.text = "\(d) mi"
                     }
                 case 4:
+                    cell.textLabel?.text = "Avg Heart Rate"
+                    func setAvgHeartRage(workout: HKWorkout, cell: UITableViewCell) {
+                        self.averageHeartRateForWorkout(workout, success: {d in
+                            dispatch_async(dispatch_get_main_queue(),{
+                                if let d = d, heartRate = self.numberFormatterInt.stringFromNumber(d) {
+                                    cell.detailTextLabel?.text = "\(heartRate) BPM"
+                                } else {
+                                    cell.detailTextLabel?.text = "N/A"
+                                }
+                            })
+                        })
+                    }
+                    setAvgHeartRage(workout, cell)
+                case 5:
                     cell.textLabel?.text = "Date"
                     cell.detailTextLabel?.text = dateFormatter.stringFromDate(workout.startDate)
-                case 5:
+                case 6:
                     cell.textLabel?.text = "Source"
                     cell.detailTextLabel?.text = workout.source.name
                 default:
@@ -134,4 +157,28 @@ class WorkoutDetailViewController: UITableViewController {
         return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
     }
 
+    func averageHeartRateForWorkout(workout: HKWorkout, success: (Double?) -> ()) {
+        if let hkStore = hkStore {
+            let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+            let workoutPredicate = HKQuery.predicateForSamplesWithStartDate(workout.startDate, endDate: workout.endDate, options: nil)
+            let startDateSort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+            
+            let query = HKSampleQuery(sampleType: quantityType, predicate: workoutPredicate,
+                limit: 0, sortDescriptors: [startDateSort]) {
+                    (sampleQuery, results, error) -> Void in
+
+                    if let heartRateSamples = results as? [HKQuantitySample] {
+                        if heartRateSamples.count > 0 {
+                            let avgHeartRate = heartRateSamples.reduce(0) {
+                                $0 + $1.quantity.doubleValueForUnit(HKUnit(fromString: "count/min"))
+                            } / Double(heartRateSamples.count)
+                            success(avgHeartRate)
+                        } else {
+                            success(nil)
+                        }
+                    }
+            }
+            hkStore.executeQuery(query)
+        }
+    }
 }
