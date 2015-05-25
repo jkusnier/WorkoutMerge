@@ -26,6 +26,13 @@ class WorkoutDetailViewController: UITableViewController {
         return formatter;
     }()
     
+    lazy var numberFormatter:NSNumberFormatter = {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .DecimalStyle
+        formatter.maximumFractionDigits = 2
+        return formatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -73,7 +80,9 @@ class WorkoutDetailViewController: UITableViewController {
                     cell.detailTextLabel?.text = workout.totalEnergyBurned.description
                 case 3:
                     cell.textLabel?.text = "Distance"
-                    cell.detailTextLabel?.text = workout.totalDistance.description
+                    if let d = numberFormatter.stringFromNumber(workout.totalDistance.doubleValueForUnit(HKUnit.mileUnit())) {
+                        cell.detailTextLabel?.text = "\(d) mi"
+                    }
                 case 4:
                     cell.textLabel?.text = "Date"
                     cell.detailTextLabel?.text = dateFormatter.stringFromDate(workout.startDate)
