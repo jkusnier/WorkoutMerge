@@ -64,7 +64,7 @@ class WorkoutDetailViewController: UITableViewController {
                 switch indexPath.row {
                 case 0:
                     cell.textLabel?.text = "Workout Type"
-                    cell.detailTextLabel?.text = "\(workout.workoutActivityType)"
+                    cell.detailTextLabel?.text = HKWorkoutActivityType.hkDescription(workout.workoutActivityType)
                 case 1:
                     cell.textLabel?.text = "Duration"
                     cell.detailTextLabel?.text = stringFromTimeInterval(workout.duration)
