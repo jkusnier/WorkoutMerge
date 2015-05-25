@@ -79,7 +79,7 @@ class WorkoutDetailViewController: UITableViewController {
                     cell.detailTextLabel?.text = dateFormatter.stringFromDate(workout.startDate)
                 case 5:
                     cell.textLabel?.text = "Source"
-                    cell.detailTextLabel?.text = workout.source.description
+                    cell.detailTextLabel?.text = workout.source.name
                 default:
                     cell.textLabel?.text = ""
                     cell.detailTextLabel?.text = ""
