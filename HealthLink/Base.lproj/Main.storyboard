@@ -190,6 +190,32 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="pFw-8q-5DX">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pFw-8q-5DX" id="1s7-po-CZB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RunKeeper" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkp-5F-OcX">
+                                                    <rect key="frame" x="8" y="11" width="86" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oar-Kv-xEb">
+                                                    <rect key="frame" x="323" y="11" width="49.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oar-Kv-xEb" firstAttribute="trailing" secondItem="1s7-po-CZB" secondAttribute="trailingMargin" id="4el-aR-LeT"/>
+                                                <constraint firstAttribute="centerY" secondItem="oar-Kv-xEb" secondAttribute="centerY" constant="0.25" id="EoL-ve-a2P"/>
+                                                <constraint firstAttribute="centerY" secondItem="gkp-5F-OcX" secondAttribute="centerY" constant="0.25" id="gFv-2k-tUS"/>
+                                                <constraint firstItem="gkp-5F-OcX" firstAttribute="leading" secondItem="1s7-po-CZB" secondAttribute="leadingMargin" id="ssY-jA-VeS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>

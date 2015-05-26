@@ -33,6 +33,10 @@ class SettingsViewController: UITableViewController {
             var alert = UIAlertController(title: "Apple Health", message: "Please adjust the settings using the Heath app.", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
+        } else if indexPath.section == 0 && indexPath.row == 1 {
+            println("RunKeeper")
         }
+        
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
