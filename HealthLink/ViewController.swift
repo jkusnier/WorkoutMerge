@@ -84,10 +84,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-        if let selection = selectedWorkout {
-            return true
+        if identifier == "workoutDetail" {
+            if let selection = selectedWorkout {
+                return true
+            }
+            return false
         }
-        return false
+        
+        return true
     }
 
     func readWorkOuts(completion: (([AnyObject]!, NSError!) -> Void)!) {
