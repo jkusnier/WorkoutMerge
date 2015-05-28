@@ -18,8 +18,9 @@ class RunKeeperAPI {
         var settings = [
             "authorize_uri": "https://runkeeper.com/apps/authorize",
             "token_uri": "https://runkeeper.com/apps/token",
-            "scope": "profile email",
-            "redirect_uris": ["healthlink://oauth.runkeeper/callback"]
+            "redirect_uris": ["healthlink://oauth.runkeeper/callback"],
+            "secret_in_body": true,
+            "verbose": true,
         ] as OAuth2JSON
         
         var myDict: NSDictionary?
@@ -49,7 +50,7 @@ class RunKeeperAPI {
         self.oauth2.authorize()
     }
     
-    func handleRedirectURL(url: NSURL) {
-        self.oauth2.handleRedirectURL(url)
+    class func handleRedirectURL(url: NSURL) {
+        sharedInstance.oauth2.handleRedirectURL(url)
     }
 }

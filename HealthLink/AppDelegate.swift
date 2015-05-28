@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("\(url)")
         if let host = url.host {
             if host == "oauth.runkeeper" {
-                let rk = RunKeeperAPI.sharedInstance
-                rk.handleRedirectURL(url)
+                RunKeeperAPI.handleRedirectURL(url)
             }
         }
 
