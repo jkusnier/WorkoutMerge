@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import p2_OAuth2
 
 class SettingsViewController: UITableViewController {
     
@@ -35,6 +36,8 @@ class SettingsViewController: UITableViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         } else if indexPath.section == 0 && indexPath.row == 1 {
             println("RunKeeper")
+            let rk = RunKeeperAPI.sharedInstance
+            rk.authorize()
         }
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
