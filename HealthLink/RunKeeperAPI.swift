@@ -13,6 +13,7 @@ class RunKeeperAPI {
     static let sharedInstance = RunKeeperAPI()
     
     let oauth2:OAuth2CodeGrant
+    let baseURL = NSURL(string: "https://api.runkeeper.com")!
     
     init() {
         var settings = [
@@ -52,5 +53,33 @@ class RunKeeperAPI {
     
     class func handleRedirectURL(url: NSURL) {
         sharedInstance.oauth2.handleRedirectURL(url)
+    }
+    
+    func postActivity(callback: ((dict: NSDictionary?, error: NSError?) -> Void)) {
+        let path = "/fitnessActivities"
+        let url = baseURL.URLByAppendingPathComponent(path)
+        let req = oauth2.request(forURL: url)
+//        req.setValue("application/vnd.com.runkeeper.NewFitnessActivity+json", forHTTPHeaderField: "Accept")
+        
+        let jsonString = "{\"type\": \"Running\",\"equipment\": \"None\",\"start_time\": \"Thu, 28 May 2015 21:00:00\",\"duration\": 80,\"notes\": \"Test WorkoutMerge\"}"
+        req.HTTPBody = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        req.HTTPMethod = "POST"
+        req.setValue("application/vnd.com.runkeeper.NewFitnessActivity+json", forHTTPHeaderField: "Content-Type")
+        
+        let queue = NSOperationQueue()
+        NSURLConnection.sendAsynchronousRequest(req, queue: queue, completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                        println("success")
+                    } else {
+                        println("failure")
+                    }
+                } else {
+                    println("fail")
+                }
+            })
+        })
     }
 }
