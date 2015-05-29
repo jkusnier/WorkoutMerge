@@ -93,7 +93,7 @@
             <objects>
                 <tableViewController id="olr-Mi-ZKl" customClass="WorkoutDetailViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qq3-8a-rn1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -117,7 +117,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActionCell" textLabel="JnG-Cs-0TE" style="IBUITableViewCellStyleDefault" id="Tvw-AA-6Bd">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ActionCell" textLabel="JnG-Cs-0TE" style="IBUITableViewCellStyleDefault" id="Tvw-AA-6Bd">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tvw-AA-6Bd" id="B8J-rn-C9E">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -137,10 +137,52 @@
                             <outlet property="delegate" destination="olr-Mi-ZKl" id="aLH-Vc-1Qa"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="ZIi-hW-c1m" kind="presentation" identifier="submitWorkout" id="Dk3-tg-fce"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOR-Pd-EVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1940" y="314"/>
+        </scene>
+        <!--Submit Workout View Controller-->
+        <scene sceneID="Hls-TQ-rzp">
+            <objects>
+                <tableViewController id="ZIi-hW-c1m" customClass="SubmitWorkoutViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="G5x-SO-Scu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Bsd-ik-JJ9">
+                            <rect key="frame" x="0.0" y="-70" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Cancel" id="AKz-h7-D2u">
+                                    <connections>
+                                        <segue destination="olr-Mi-ZKl" kind="custom" customClass="CloseModalSegue" customModule="HealthLink" id="Fe3-Rc-eLa"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="7Jh-kQ-9ve"/>
+                                <barButtonItem title="Save" id="6wj-nG-K1I"/>
+                            </items>
+                        </toolbar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wdl-Vh-qeI">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wdl-Vh-qeI" id="o6B-Cn-TRk">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ZIi-hW-c1m" id="1MH-r9-NSW"/>
+                            <outlet property="delegate" destination="ZIi-hW-c1m" id="Vhu-Zc-Shb"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Mb-7U-Xy1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2768" y="314"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Tfn-SK-aDp">
@@ -248,4 +290,7 @@
             <point key="canvasLocation" x="374" y="-447"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fe3-Rc-eLa"/>
+    </inferredMetricsTieBreakers>
 </document>

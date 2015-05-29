@@ -143,6 +143,7 @@ class WorkoutDetailViewController: UITableViewController {
 
         if indexPath.section == 1 && indexPath.row == 0 {
             println("Sync to RunKeeper")
+            performSegueWithIdentifier("submitWorkout", sender: nil)
         }
     }
     
