@@ -52,6 +52,16 @@ class WorkoutDetailViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? SubmitWorkoutViewController {
+//            Running, Cycling, Mountain Biking, Walking, Hiking, Downhill Skiing, Cross-Country Skiing, Snowboarding, Skating, Swimming, Wheelchair, Rowing, Elliptical, Other
+            
+            if let workout = workout {
+                destination.workoutData = (type: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), startTime: workout.startDate, totalDistance: workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()), duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()), notes: nil)
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
