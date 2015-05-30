@@ -19,6 +19,8 @@ class WorkoutDetailViewController: UITableViewController {
         }
     }
     
+    var averageHeartRate: Int?
+    
     var hkStore:HKHealthStore?
     
     lazy var dateFormatter:NSDateFormatter = {
@@ -173,6 +175,9 @@ class WorkoutDetailViewController: UITableViewController {
                             let avgHeartRate = heartRateSamples.reduce(0) {
                                 $0 + $1.quantity.doubleValueForUnit(HKUnit(fromString: "count/min"))
                             } / Double(heartRateSamples.count)
+
+                            self.averageHeartRate = Int(avgHeartRate)
+
                             success(avgHeartRate)
                         } else {
                             success(nil)
