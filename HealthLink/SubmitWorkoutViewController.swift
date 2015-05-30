@@ -9,6 +9,8 @@
 import UIKit
 
 class SubmitWorkoutViewController: UITableViewController {
+    
+    var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,15 @@ class SubmitWorkoutViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        println("workoutData: \(workoutData)")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().statusBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
