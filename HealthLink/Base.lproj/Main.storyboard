@@ -138,7 +138,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="ZIi-hW-c1m" kind="presentation" identifier="submitWorkout" id="Dk3-tg-fce"/>
+                        <segue destination="VRc-Qj-9FI" kind="presentation" identifier="submitWorkout" id="Dk3-tg-fce"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOR-Pd-EVm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,29 +149,70 @@
         <scene sceneID="Hls-TQ-rzp">
             <objects>
                 <tableViewController id="ZIi-hW-c1m" customClass="SubmitWorkoutViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="G5x-SO-Scu">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="G5x-SO-Scu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Bsd-ik-JJ9">
-                            <rect key="frame" x="0.0" y="-70" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <items>
-                                <barButtonItem title="Cancel" id="AKz-h7-D2u">
-                                    <connections>
-                                        <segue destination="olr-Mi-ZKl" kind="custom" customClass="CloseModalSegue" customModule="HealthLink" id="Fe3-Rc-eLa"/>
-                                    </connections>
-                                </barButtonItem>
-                                <barButtonItem style="plain" systemItem="flexibleSpace" id="7Jh-kQ-9ve"/>
-                                <barButtonItem title="Save" id="6wj-nG-K1I"/>
-                            </items>
-                        </toolbar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wdl-Vh-qeI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitDynamicCell" id="09U-9j-kqj" customClass="SubmitWorkoutTableViewCell" customModule="HealthLink" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09U-9j-kqj" id="xq4-eF-91W">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYt-9L-ffm">
+                                            <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFc-md-NRx">
+                                            <rect key="frame" x="15" y="6" width="30.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWa-o2-Jyw">
+                                            <rect key="frame" x="15" y="23" width="40" height="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kWa-o2-Jyw" secondAttribute="bottom" constant="-1.5" id="6VH-ZV-p2F"/>
+                                        <constraint firstItem="kWa-o2-Jyw" firstAttribute="leading" secondItem="xq4-eF-91W" secondAttribute="leadingMargin" constant="7" id="DCN-1q-zPA"/>
+                                        <constraint firstItem="CYt-9L-ffm" firstAttribute="trailing" secondItem="xq4-eF-91W" secondAttribute="trailingMargin" id="R8N-AU-f3X"/>
+                                        <constraint firstAttribute="centerY" secondItem="CYt-9L-ffm" secondAttribute="centerY" constant="0.25" id="i5j-BF-2Rq"/>
+                                        <constraint firstItem="QFc-md-NRx" firstAttribute="leading" secondItem="xq4-eF-91W" secondAttribute="leadingMargin" constant="7" id="prS-C1-aZD"/>
+                                        <constraint firstItem="QFc-md-NRx" firstAttribute="top" secondItem="xq4-eF-91W" secondAttribute="topMargin" constant="-2" id="u4X-2a-INu"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="sendDataSwitch" destination="CYt-9L-ffm" id="nsa-vh-xTN"/>
+                                    <outlet property="subtitleLabel" destination="kWa-o2-Jyw" id="tpY-O8-7Xy"/>
+                                    <outlet property="titleLabel" destination="QFc-md-NRx" id="pal-JF-7Yk"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitStaticCell" textLabel="XBT-oi-K5Z" detailTextLabel="sW0-CY-tQc" style="IBUITableViewCellStyleSubtitle" id="wdl-Vh-qeI" customClass="SubmitWorkoutTableViewCell" customModule="HealthLink" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wdl-Vh-qeI" id="o6B-Cn-TRk">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XBT-oi-K5Z">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sW0-CY-tQc">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="subtitleLabel" destination="sW0-CY-tQc" id="Yiu-a2-xxq"/>
+                                    <outlet property="titleLabel" destination="XBT-oi-K5Z" id="Rwa-9q-P7h"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -179,10 +220,21 @@
                             <outlet property="delegate" destination="ZIi-hW-c1m" id="Vhu-Zc-Shb"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="GXg-zV-BkG">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="yhU-Fr-Pz0">
+                            <connections>
+                                <segue destination="olr-Mi-ZKl" kind="custom" customClass="CloseModalSegue" customModule="HealthLink" id="n6z-ZM-Rgg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="AQH-3I-o49"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Mb-7U-Xy1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2768" y="314"/>
+            <point key="canvasLocation" x="3580" y="314"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="Tfn-SK-aDp">
@@ -289,8 +341,26 @@
             </objects>
             <point key="canvasLocation" x="374" y="-447"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="a34-3O-Nrj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VRc-Qj-9FI" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T7Z-Pn-Hee">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZIi-hW-c1m" kind="relationship" relationship="rootViewController" id="0e6-8t-OUN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wOq-ht-EIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2768" y="314"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fe3-Rc-eLa"/>
+        <segue reference="n6z-ZM-Rgg"/>
     </inferredMetricsTieBreakers>
 </document>

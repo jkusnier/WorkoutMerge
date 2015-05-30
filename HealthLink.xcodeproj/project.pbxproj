@@ -10,6 +10,8 @@
 		9635A0571B1690A300512FE8 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9635A0561B1690A300512FE8 /* ApiKeys.plist */; };
 		9635A05A1B169DBA00512FE8 /* RunKeeperAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */; };
 		9644A0331B124A5E00569F32 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */; };
+		964D1F9C1B1930F50050204F /* SubmitWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */; };
+		964D1F9E1B1A52670050204F /* SubmitWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */; };
 		9675E19D1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */; };
 		96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C51B108DB80056ECDA /* AppDelegate.swift */; };
 		96A6D9C91B108DB80056ECDA /* HealthLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */; };
@@ -40,6 +42,8 @@
 		9635A0561B1690A300512FE8 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunKeeperAPI.swift; sourceTree = "<group>"; };
 		9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
+		964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitWorkoutViewController.swift; sourceTree = "<group>"; };
+		964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HKWorkoutActivityType+Descriptions.swift"; sourceTree = "<group>"; };
 		96A6D9C01B108DB80056ECDA /* HealthLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A6D9C41B108DB80056ECDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				96A6D9CC1B108DB80056ECDA /* Main.storyboard */,
 				9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */,
 				96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */,
+				964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */,
+				964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */,
 				96A6D9C31B108DB80056ECDA /* Supporting Files */,
 				96A6D9CA1B108DB80056ECDA /* ViewController.swift */,
 				9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */,
@@ -321,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				964D1F9E1B1A52670050204F /* SubmitWorkoutTableViewCell.swift in Sources */,
 				9635A05A1B169DBA00512FE8 /* RunKeeperAPI.swift in Sources */,
 				96A6D9CB1B108DB80056ECDA /* ViewController.swift in Sources */,
 				96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */,
@@ -328,6 +335,7 @@
 				96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */,
 				96A6D9C91B108DB80056ECDA /* HealthLink.xcdatamodeld in Sources */,
 				96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */,
+				964D1F9C1B1930F50050204F /* SubmitWorkoutViewController.swift in Sources */,
 				9644A0331B124A5E00569F32 /* WorkoutDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

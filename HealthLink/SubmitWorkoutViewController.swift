@@ -5,22 +5,17 @@
 //  Created by Jason Kusnier on 5/29/15.
 //  Copyright (c) 2015 Jason Kusnier. All rights reserved.
 //
+//  This will need a refactor once we submit to more than one service. Intentionally coding to RunKeeper for first iteration.
 
 import UIKit
 
 class SubmitWorkoutViewController: UITableViewController {
     
     var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarHidden = true
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -34,32 +29,42 @@ class SubmitWorkoutViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+        var rowCount = 3
+        
+        // RunKeeper Required - type, startTime, duration
+        if (self.workoutData.totalDistance != nil) {
+            rowCount++
+        }
+        if (self.workoutData.averageHeartRate != nil) {
+            rowCount++
+        }
+        if (self.workoutData.totalDistance != nil) {
+            rowCount++
+        }
+        if (self.workoutData.notes != nil) {
+            rowCount++
+        }
+        
+        return rowCount
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
+//        submitDynamicCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("submitStaticCell", forIndexPath: indexPath) as! UITableViewCell
 
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
