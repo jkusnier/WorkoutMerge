@@ -53,11 +53,11 @@ class WorkoutDetailViewController: UITableViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? SubmitWorkoutViewController {
-//            Running, Cycling, Mountain Biking, Walking, Hiking, Downhill Skiing, Cross-Country Skiing, Snowboarding, Skating, Swimming, Wheelchair, Rowing, Elliptical, Other
-            
-            if let workout = workout {
-                destination.workoutData = (type: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), startTime: workout.startDate, totalDistance: workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()), duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()), notes: nil)
+        if let destination = segue.destinationViewController as? UINavigationController {
+            if let submitWorkoutViewController = destination.topViewController as? SubmitWorkoutViewController {
+                if let workout = workout {
+                    submitWorkoutViewController.workoutData = (type: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), startTime: workout.startDate, totalDistance: workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()), duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()), notes: nil)
+                }
             }
         }
     }

@@ -13,6 +13,20 @@ class SubmitWorkoutViewController: UITableViewController {
     
     var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
     
+    lazy var dateFormatter:NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        formatter.dateStyle = .ShortStyle
+        return formatter;
+        }()
+        
+    lazy var numberFormatterInt:NSNumberFormatter = {
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .DecimalStyle
+        formatter.maximumFractionDigits = 0
+        return formatter
+        }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarHidden = true
@@ -38,77 +52,102 @@ class SubmitWorkoutViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rowCount = 3
-        
-        // RunKeeper Required - type, startTime, duration
-        if (self.workoutData.totalDistance != nil) {
-            rowCount++
+        return 7
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Sync Data"
+        default:
+            return ""
         }
-        if (self.workoutData.averageHeartRate != nil) {
-            rowCount++
-        }
-        if (self.workoutData.totalDistance != nil) {
-            rowCount++
-        }
-        if (self.workoutData.notes != nil) {
-            rowCount++
-        }
-        
-        return rowCount
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        submitDynamicCell
-        let cell = tableView.dequeueReusableCellWithIdentifier("submitStaticCell", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
+        let cell:UITableViewCell
+        
+        func staticCell() -> UITableViewCell {
+            return tableView.dequeueReusableCellWithIdentifier("submitStaticCell", forIndexPath: indexPath) as! UITableViewCell
+        }
+        
+        func dynamicCell() -> UITableViewCell {
+            return tableView.dequeueReusableCellWithIdentifier("submitDynamicCell", forIndexPath: indexPath) as! UITableViewCell
+        }
+        
+        func setTitle(title: String?, cell: SubmitWorkoutTableViewCell?) {
+            if let l = cell?.titleLabel, t = title {
+                l.text = t
+            }
+        }
+        
+        func setSubtitle(title: String?, cell: SubmitWorkoutTableViewCell?) {
+            if let l = cell?.subtitleLabel, t = title {
+                l.text = t
+            }
+        }
+//        (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
+        
+        switch indexPath.row {
+        case 0:
+            cell = staticCell()
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            setTitle("Workout Type", cell as? SubmitWorkoutTableViewCell)
+            setSubtitle(self.workoutData.type, cell as? SubmitWorkoutTableViewCell)
+        case 1:
+            cell = staticCell()
+            setTitle("Duration", cell as? SubmitWorkoutTableViewCell)
+            setSubtitle(stringFromTimeInterval(self.workoutData.duration), cell as? SubmitWorkoutTableViewCell)
+        case 2:
+            cell = dynamicCell()
+            setTitle("Calories Burned", cell as? SubmitWorkoutTableViewCell)
+            if let totalCalories = self.workoutData.totalCalories {
+                setSubtitle(numberFormatterInt.stringFromNumber(totalCalories), cell as? SubmitWorkoutTableViewCell)
+            }
+        case 3:
+            cell = dynamicCell()
+            setTitle("Distance", cell as? SubmitWorkoutTableViewCell)
+            if let totalDistance = self.workoutData.totalDistance {
+                setSubtitle(numberFormatterInt.stringFromNumber(totalDistance)! + " meters", cell as? SubmitWorkoutTableViewCell)
+            }
+        case 4:
+            cell = dynamicCell()
+            setTitle("Avg Heart Rate", cell as? SubmitWorkoutTableViewCell)
+            if let averageHeartRate = self.workoutData.averageHeartRate {
+                setSubtitle(numberFormatterInt.stringFromNumber(averageHeartRate)! + " BPM", cell as? SubmitWorkoutTableViewCell)
+            }
+        case 5:
+            cell = staticCell()
+            setTitle("Date", cell as? SubmitWorkoutTableViewCell)
+            if let startTime = self.workoutData.startTime {
+                setSubtitle(dateFormatter.stringFromDate(startTime), cell as? SubmitWorkoutTableViewCell)
+            }
+        case 6:
+            cell = staticCell()
+            setTitle("Notes", cell as? SubmitWorkoutTableViewCell)
+            setSubtitle("", cell as? SubmitWorkoutTableViewCell)
+        default:
+            cell = dynamicCell()
+        }
 
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func stringFromTimeInterval(interval:NSTimeInterval?) -> String {
+        if let i = interval {
+            var ti = NSInteger(i)
+            
+            var seconds = ti % 60
+            var minutes = (ti / 60) % 60
+            var hours = (ti / 3600)
+            
+            return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+        } else {
+            return "00:00:00"
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
