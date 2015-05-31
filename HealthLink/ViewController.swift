@@ -56,11 +56,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
                         println("Made It \(results.count)")
                         if let workouts = results as? [HKWorkout] {
-                            self.workouts = workouts
-                            self.tableView.reloadData()
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.workouts = workouts
+                                self.tableView.reloadData()
+                            }
                         }
                         
-                        actInd.stopAnimating()
+                        dispatch_async(dispatch_get_main_queue()) {
+                            actInd.stopAnimating()
+                        }
                     })
                 }
             })
@@ -148,11 +152,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
             println("Made It \(results.count)")
             if let workouts = results as? [HKWorkout] {
-                self.workouts = workouts
-                self.tableView.reloadData()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.workouts = workouts
+                    self.tableView.reloadData()
+                }
             }
-            
-            self.refreshControl.endRefreshing()
+
+            dispatch_async(dispatch_get_main_queue()) {
+                self.refreshControl.endRefreshing()
+            }
         })
     }
 }
