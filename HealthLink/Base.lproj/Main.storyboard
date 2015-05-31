@@ -230,10 +230,14 @@
                     <navigationItem key="navigationItem" id="GXg-zV-BkG">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="yhU-Fr-Pz0">
                             <connections>
-                                <segue destination="olr-Mi-ZKl" kind="custom" customClass="CloseModalSegue" customModule="HealthLink" id="n6z-ZM-Rgg"/>
+                                <segue destination="olr-Mi-ZKl" kind="custom" identifier="closeSubmitWorkout" customClass="CloseModalSegue" customModule="HealthLink" id="n6z-ZM-Rgg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="AQH-3I-o49"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="AQH-3I-o49">
+                            <connections>
+                                <action selector="saveWorkout:" destination="ZIi-hW-c1m" id="eE3-nt-66H"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>

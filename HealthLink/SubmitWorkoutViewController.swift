@@ -150,4 +150,15 @@ class SubmitWorkoutViewController: UITableViewController {
             return "00:00:00"
         }
     }
+    
+    @IBAction func saveWorkout(sender: AnyObject) {
+        let runKeeper = RunKeeperAPI.sharedInstance
+        runKeeper.authorize()
+        runKeeper.postActivity(workoutData, failure: { error in
+            },
+            success: {
+                self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
+            }
+        )
+    }
 }

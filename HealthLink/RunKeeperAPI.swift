@@ -55,13 +55,42 @@ class RunKeeperAPI {
         sharedInstance.oauth2.handleRedirectURL(url)
     }
     
-    func postActivity(callback: ((dict: NSDictionary?, error: NSError?) -> Void)) {
+    func postActivity(workout: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?), failure fail : (NSError? -> ())? = { error in println(error) }, success succeed: (() -> ())? = nil) {
         let path = "/fitnessActivities"
         let url = baseURL.URLByAppendingPathComponent(path)
         let req = oauth2.request(forURL: url)
-//        req.setValue("application/vnd.com.runkeeper.NewFitnessActivity+json", forHTTPHeaderField: "Accept")
         
-        let jsonString = "{\"type\": \"Running\",\"equipment\": \"None\",\"start_time\": \"Thu, 28 May 2015 21:00:00\",\"duration\": 80,\"notes\": \"Test WorkoutMerge\"}"
+        var jsonData = [String]()
+        if let type = workout.type {
+            jsonData.append("\"type\":\"\(type)\"")
+        }
+        if let startTime = workout.startTime {
+            let dateFormatter = NSDateFormatter()
+            // Sat, 1 Jan 2011 00:00:00
+            dateFormatter.dateFormat = "EEE, d MMM yyyy HH:mm:ss"
+            let startTimeString = dateFormatter.stringFromDate(startTime)
+            
+            jsonData.append("\"start_time\":\"\(startTimeString)\"")
+        }
+        if let totalDistance = workout.totalDistance {
+            jsonData.append("\"total_distance\":\(totalDistance)")
+        }
+        if let duration = workout.duration {
+            jsonData.append("\"duration\":\(duration)")
+        }
+        if let averageHeartRate = workout.averageHeartRate {
+            jsonData.append("\"average_heart_rate\":\(averageHeartRate)")
+        }
+        if let totalCalories = workout.totalCalories {
+            jsonData.append("\"total_calories\":\(totalCalories)")
+        }
+        if let notes = workout.notes {
+            jsonData.append("\"notes\":\"\(notes)\"")
+        }
+        
+        var joiner = ","
+        var jsonString = "{" + joiner.join(jsonData) + "}"
+        
         req.HTTPBody = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         req.HTTPMethod = "POST"
         req.setValue("application/vnd.com.runkeeper.NewFitnessActivity+json", forHTTPHeaderField: "Content-Type")
@@ -73,6 +102,7 @@ class RunKeeperAPI {
                 if let httpResponse = response as? NSHTTPURLResponse {
                     if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
                         println("success")
+                        succeed!()
                     } else {
                         println("failure")
                     }
