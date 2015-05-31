@@ -328,6 +328,9 @@
                             <outlet property="delegate" destination="oHx-nR-NSM" id="pys-kw-zNO"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="runKeeperStatusLabel" destination="oar-Kv-xEb" id="Zdo-Yn-TjF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v1s-YA-qeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

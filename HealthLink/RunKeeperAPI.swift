@@ -51,6 +51,11 @@ class RunKeeperAPI {
         self.oauth2.authorize()
     }
     
+    func authorize(afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {
+        self.oauth2.afterAuthorizeOrFailure = afterAuthorizeOrFailure
+        self.oauth2.authorize()
+    }
+    
     class func handleRedirectURL(url: NSURL) {
         sharedInstance.oauth2.handleRedirectURL(url)
     }

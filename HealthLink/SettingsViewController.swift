@@ -13,7 +13,10 @@ import p2_OAuth2
 class SettingsViewController: UITableViewController {
     
     let hkStore = HKHealthStore()
+    let defaults = NSUserDefaults.standardUserDefaults()
 
+    @IBOutlet weak var runKeeperStatusLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarHidden = true
@@ -36,8 +39,27 @@ class SettingsViewController: UITableViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         } else if indexPath.section == 0 && indexPath.row == 1 {
             println("RunKeeper")
+            
             let rk = RunKeeperAPI.sharedInstance
-            rk.authorize()
+            rk.authorize({wasFailure, error in
+                if !wasFailure {
+                    func linkService(linkedServices: [String], serviceName: String) {
+                        if !contains(linkedServices, serviceName) {
+                            var linkedServices = linkedServices
+                            linkedServices.append(serviceName)
+                            self.defaults.setObject(linkedServices, forKey: "linkedServices")
+                            self.defaults.synchronize()
+                        }
+                    }
+
+                    self.defaults.arrayForKey("linkedServices")
+                    if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
+                        linkService(linkedServices, "RunKeeper")
+                    } else {
+                        linkService([String](), "RunKeeper")
+                    }
+                }
+            })
         }
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
