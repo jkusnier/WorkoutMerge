@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2CN-Ln-yCk">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="gme-BS-TXb" detailTextLabel="N9k-HK-foc" style="IBUITableViewCellStyleValue1" id="PLV-3c-YJv">
@@ -62,6 +62,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Rif-IE-DPZ" firstAttribute="top" secondItem="2CN-Ln-yCk" secondAttribute="bottom" id="61h-9G-k1R"/>
                             <constraint firstItem="2CN-Ln-yCk" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="8Ga-rQ-JGX"/>
                             <constraint firstItem="2CN-Ln-yCk" firstAttribute="bottom" secondItem="Rif-IE-DPZ" secondAttribute="bottom" id="FYH-6J-D2d"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2CN-Ln-yCk" secondAttribute="trailing" constant="-16" id="Jft-ld-Dzd"/>
@@ -74,6 +75,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="8Ga-rQ-JGX"/>
+                                <exclude reference="FYH-6J-D2d"/>
                             </mask>
                         </variation>
                     </view>
@@ -93,7 +95,7 @@
             <objects>
                 <tableViewController id="olr-Mi-ZKl" customClass="WorkoutDetailViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qq3-8a-rn1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -150,7 +152,7 @@
             <objects>
                 <tableViewController id="ZIi-hW-c1m" customClass="SubmitWorkoutViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="G5x-SO-Scu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -159,7 +161,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09U-9j-kqj" id="xq4-eF-91W">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYt-9L-ffm">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYt-9L-ffm">
                                             <rect key="frame" x="543" y="6" width="51" height="31"/>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFc-md-NRx">
@@ -374,6 +376,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="n6z-ZM-Rgg"/>
+        <segue reference="pQD-1H-FqA"/>
     </inferredMetricsTieBreakers>
 </document>
