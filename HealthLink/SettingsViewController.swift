@@ -14,12 +14,22 @@ class SettingsViewController: UITableViewController {
     
     let hkStore = HKHealthStore()
     let defaults = NSUserDefaults.standardUserDefaults()
+    var linkedServices: [String]?
 
     @IBOutlet weak var runKeeperStatusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarHidden = true
+        if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
+            self.linkedServices = linkedServices
+            
+            if contains(linkedServices, "RunKeeper") {
+                self.runKeeperStatusLabel.text = "Linked"
+            } else {
+                self.runKeeperStatusLabel.text = "Connect"
+            }
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -58,6 +68,7 @@ class SettingsViewController: UITableViewController {
                     } else {
                         linkService([String](), "RunKeeper")
                     }
+                    self.runKeeperStatusLabel.text = "Linked"
                 }
             })
         }

@@ -305,15 +305,15 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oar-Kv-xEb">
-                                                    <rect key="frame" x="323" y="11" width="49.5" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oar-Kv-xEb">
+                                                    <rect key="frame" x="306" y="11" width="66" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="oar-Kv-xEb" firstAttribute="trailing" secondItem="1s7-po-CZB" secondAttribute="trailingMargin" id="4el-aR-LeT"/>
+                                                <constraint firstItem="oar-Kv-xEb" firstAttribute="trailing" secondItem="1s7-po-CZB" secondAttribute="trailingMargin" constant="-1" id="4el-aR-LeT"/>
                                                 <constraint firstAttribute="centerY" secondItem="oar-Kv-xEb" secondAttribute="centerY" constant="0.25" id="EoL-ve-a2P"/>
                                                 <constraint firstAttribute="centerY" secondItem="gkp-5F-OcX" secondAttribute="centerY" constant="0.25" id="gFv-2k-tUS"/>
                                                 <constraint firstItem="gkp-5F-OcX" firstAttribute="leading" secondItem="1s7-po-CZB" secondAttribute="leadingMargin" id="ssY-jA-VeS"/>
