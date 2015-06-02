@@ -19,6 +19,9 @@ class WorkoutDetailViewController: UITableViewController {
         }
     }
     
+    let defaults = NSUserDefaults.standardUserDefaults()
+    var linkedServices: [String]?
+    
     var averageHeartRate: Int?
     
     var hkStore:HKHealthStore?
@@ -46,6 +49,10 @@ class WorkoutDetailViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
+            self.linkedServices = linkedServices.sorted() {$0 < $1}
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,6 +74,10 @@ class WorkoutDetailViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
+        if self.linkedServices == nil {
+            return 1
+        }
+        
         return 2
     }
 
@@ -77,7 +88,7 @@ class WorkoutDetailViewController: UITableViewController {
         case 0:
             return 7
         case 1:
-            return 1
+            return self.linkedServices!.count
         default:
             return 0
         }
@@ -131,7 +142,9 @@ class WorkoutDetailViewController: UITableViewController {
             }
         } else if indexPath.section == 1 {
             cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath) as! UITableViewCell
-            cell.textLabel?.text = "Sync to RunKeeper"
+            if let linkedService = self.linkedServices?[indexPath.row] {
+                cell.textLabel?.text = "Sync to \(linkedService)"
+            }
         } else {
             cell = UITableViewCell()
         }
@@ -153,6 +166,7 @@ class WorkoutDetailViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
+        // FIXME adjust this as more services are added
         if indexPath.section == 1 && indexPath.row == 0 {
             println("Sync to RunKeeper")
             performSegueWithIdentifier("submitWorkout", sender: self)
