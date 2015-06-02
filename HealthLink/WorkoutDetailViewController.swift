@@ -42,7 +42,7 @@ class WorkoutDetailViewController: UITableViewController {
         if let destination = segue.destinationViewController as? UINavigationController {
             if let submitWorkoutViewController = destination.topViewController as? SubmitWorkoutViewController {
                 if let workout = workout {
-                    submitWorkoutViewController.workoutData = (type: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), startTime: workout.startDate, totalDistance: workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()), duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()), notes: nil)
+                    submitWorkoutViewController.workoutData = (type: RunKeeperAPI.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()), duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()), notes: nil)
                 }
             }
         }
