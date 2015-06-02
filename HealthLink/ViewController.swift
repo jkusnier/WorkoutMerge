@@ -18,13 +18,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var selectedWorkout: HKWorkout?
     
     let refreshControl = UIRefreshControl()
-    
-    lazy var dateFormatter:NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        formatter.dateStyle = .ShortStyle
-        return formatter;
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,7 +116,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView:UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
         let workout  = self.workouts[indexPath.row]
-        let startDate = dateFormatter.stringFromDate(workout.startDate)
+        let startDate = workout.startDate.shortDateString()
         
         cell.textLabel!.text = startDate
         cell.detailTextLabel!.text = stringFromTimeInterval(workout.duration)

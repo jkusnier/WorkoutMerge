@@ -14,7 +14,7 @@ class WorkoutDetailViewController: UITableViewController {
     var workout:HKWorkout? {
         didSet {
             if let workout = workout {
-                self.title = dateFormatter.stringFromDate(workout.startDate)
+                self.title = workout.startDate.shortDateString()
             }
         }
     }
@@ -25,28 +25,7 @@ class WorkoutDetailViewController: UITableViewController {
     var averageHeartRate: Int?
     
     var hkStore:HKHealthStore?
-    
-    lazy var dateFormatter:NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        formatter.dateStyle = .ShortStyle
-        return formatter;
-    }()
-    
-    lazy var numberFormatter:NSNumberFormatter = {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .DecimalStyle
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }()
-    
-    lazy var numberFormatterInt:NSNumberFormatter = {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .DecimalStyle
-        formatter.maximumFractionDigits = 0
-        return formatter
-    }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,7 +91,7 @@ class WorkoutDetailViewController: UITableViewController {
                     cell.detailTextLabel?.text = workout.totalEnergyBurned.description
                 case 3:
                     cell.textLabel?.text = "Distance"
-                    if let d = numberFormatter.stringFromNumber(workout.totalDistance.doubleValueForUnit(HKUnit.mileUnit())) {
+                    if let d = workout.totalDistance.doubleValueForUnit(HKUnit.mileUnit()).shortDecimalString() {
                         cell.detailTextLabel?.text = "\(d) mi"
                     }
                 case 4:
@@ -120,7 +99,7 @@ class WorkoutDetailViewController: UITableViewController {
                     func setAvgHeartRage(workout: HKWorkout, cell: UITableViewCell) {
                         self.averageHeartRateForWorkout(workout, success: {d in
                             dispatch_async(dispatch_get_main_queue(),{
-                                if let d = d, heartRate = self.numberFormatterInt.stringFromNumber(d) {
+                                if let d = d, heartRate = d.intString() {
                                     cell.detailTextLabel?.text = "\(heartRate) BPM"
                                 } else {
                                     cell.detailTextLabel?.text = "N/A"
@@ -131,7 +110,7 @@ class WorkoutDetailViewController: UITableViewController {
                     setAvgHeartRage(workout, cell)
                 case 5:
                     cell.textLabel?.text = "Date"
-                    cell.detailTextLabel?.text = dateFormatter.stringFromDate(workout.startDate)
+                    cell.detailTextLabel?.text = workout.startDate.shortDateString()
                 case 6:
                     cell.textLabel?.text = "Source"
                     cell.detailTextLabel?.text = workout.source.name

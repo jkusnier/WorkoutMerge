@@ -12,21 +12,7 @@ import UIKit
 class SubmitWorkoutViewController: UITableViewController {
     
     var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
-    
-    lazy var dateFormatter:NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        formatter.dateStyle = .ShortStyle
-        return formatter;
-        }()
-        
-    lazy var numberFormatterInt:NSNumberFormatter = {
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = .DecimalStyle
-        formatter.maximumFractionDigits = 0
-        return formatter
-        }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarHidden = true
@@ -102,25 +88,25 @@ class SubmitWorkoutViewController: UITableViewController {
             cell = dynamicCell()
             setTitle("Calories Burned", cell as? SubmitWorkoutTableViewCell)
             if let totalCalories = self.workoutData.totalCalories {
-                setSubtitle(numberFormatterInt.stringFromNumber(totalCalories), cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(totalCalories.intString(), cell as? SubmitWorkoutTableViewCell)
             }
         case 3:
             cell = dynamicCell()
             setTitle("Distance", cell as? SubmitWorkoutTableViewCell)
             if let totalDistance = self.workoutData.totalDistance {
-                setSubtitle(numberFormatterInt.stringFromNumber(totalDistance)! + " meters", cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(totalDistance.intString()! + " meters", cell as? SubmitWorkoutTableViewCell)
             }
         case 4:
             cell = dynamicCell()
             setTitle("Avg Heart Rate", cell as? SubmitWorkoutTableViewCell)
             if let averageHeartRate = self.workoutData.averageHeartRate {
-                setSubtitle(numberFormatterInt.stringFromNumber(averageHeartRate)! + " BPM", cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(averageHeartRate.intString()! + " BPM", cell as? SubmitWorkoutTableViewCell)
             }
         case 5:
             cell = staticCell()
             setTitle("Date", cell as? SubmitWorkoutTableViewCell)
             if let startTime = self.workoutData.startTime {
-                setSubtitle(dateFormatter.stringFromDate(startTime), cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(startTime.shortDateString(), cell as? SubmitWorkoutTableViewCell)
             }
         case 6:
             cell = staticCell()

@@ -23,6 +23,7 @@
 		96A6D9E91B108DDD0056ECDA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A6D9E81B108DDD0056ECDA /* HealthKit.framework */; };
 		96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */; };
 		96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */; };
+		96E4FAEC1B1D315600D452AF /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4FAEB1B1D315600D452AF /* extensions.swift */; };
 		96FF75B530FF33F99F7FB348 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C994F2D7AA506F67A50CA2 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		96A6D9EA1B108DDD0056ECDA /* HealthLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HealthLink.entitlements; sourceTree = "<group>"; };
 		96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseModalSegue.swift; sourceTree = "<group>"; };
+		96E4FAEB1B1D315600D452AF /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		F827AA5BB1F465EF7C995B65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 				96A6D9C31B108DB80056ECDA /* Supporting Files */,
 				96A6D9CA1B108DB80056ECDA /* ViewController.swift */,
 				9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */,
+				96E4FAEB1B1D315600D452AF /* extensions.swift */,
 			);
 			path = HealthLink;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				964D1F9E1B1A52670050204F /* SubmitWorkoutTableViewCell.swift in Sources */,
 				9635A05A1B169DBA00512FE8 /* RunKeeperAPI.swift in Sources */,
 				96A6D9CB1B108DB80056ECDA /* ViewController.swift in Sources */,
+				96E4FAEC1B1D315600D452AF /* extensions.swift in Sources */,
 				96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */,
 				9675E19D1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift in Sources */,
 				96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */,
