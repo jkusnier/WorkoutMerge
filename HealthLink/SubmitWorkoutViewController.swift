@@ -9,9 +9,10 @@
 
 import UIKit
 
-class SubmitWorkoutViewController: UITableViewController {
+class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
+    var pickerSelection:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +62,10 @@ class SubmitWorkoutViewController: UITableViewController {
             return tableView.dequeueReusableCellWithIdentifier("submitDynamicCell", forIndexPath: indexPath) as! UITableViewCell
         }
         
+        func staticInputCell() -> UITableViewCell {
+            return tableView.dequeueReusableCellWithIdentifier("submitStaticInputCell", forIndexPath: indexPath) as! UITableViewCell
+        }
+        
         func setTitle(title: String?, cell: SubmitWorkoutTableViewCell?) {
             if let l = cell?.titleLabel, t = title {
                 l.text = t
@@ -76,7 +81,7 @@ class SubmitWorkoutViewController: UITableViewController {
         
         switch indexPath.row {
         case 0:
-            cell = staticCell()
+            cell = staticInputCell()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             setTitle("Workout Type", cell as? SubmitWorkoutTableViewCell)
             setSubtitle(self.workoutData.type, cell as? SubmitWorkoutTableViewCell)
@@ -121,6 +126,50 @@ class SubmitWorkoutViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        switch indexPath.row {
+        case 0:
+            println("workout selection")
+            var workoutPicker = UIPickerView()
+            workoutPicker.delegate = self
+            workoutPicker.dataSource = self
+            
+            var toolBar = UIToolbar()
+            toolBar.sizeToFit()
+            
+            var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
+            var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+            var cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "canclePicker")
+
+            toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+            toolBar.userInteractionEnabled = true
+            
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SubmitWorkoutTableViewCell {
+                if cell.textField != nil {
+                    cell.textField.inputView = workoutPicker
+                    cell.textField.inputAccessoryView = toolBar
+                    
+                    if let type = self.workoutData.type, idx = find(RunKeeperAPI.activityTypes, type) {
+                        self.pickerSelection = idx
+                        workoutPicker.selectRow(idx, inComponent: 0, animated: false)
+                    }
+                    
+                    cell.textField.becomeFirstResponder()
+                }
+            }
+        default:
+            break
+        }
+    }
+    
+    func canclePicker() {
+        self.view.endEditing(true)
+    }
+    
+    func donePicker() {
+        self.workoutData.type = RunKeeperAPI.activityTypes[self.pickerSelection]
+        self.tableView.reloadData()
+        self.view.endEditing(true)
     }
     
     func stringFromTimeInterval(interval:NSTimeInterval?) -> String {
@@ -146,5 +195,21 @@ class SubmitWorkoutViewController: UITableViewController {
                 self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
             }
         )
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return RunKeeperAPI.activityTypes.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return RunKeeperAPI.activityTypes[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.pickerSelection = row
     }
 }

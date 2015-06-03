@@ -95,7 +95,7 @@
             <objects>
                 <tableViewController id="olr-Mi-ZKl" customClass="WorkoutDetailViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qq3-8a-rn1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -152,7 +152,7 @@
             <objects>
                 <tableViewController id="ZIi-hW-c1m" customClass="SubmitWorkoutViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="G5x-SO-Scu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -161,7 +161,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09U-9j-kqj" id="xq4-eF-91W">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYt-9L-ffm">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYt-9L-ffm">
                                             <rect key="frame" x="543" y="6" width="51" height="31"/>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFc-md-NRx">
@@ -220,6 +220,47 @@
                                 <connections>
                                     <outlet property="subtitleLabel" destination="g3l-FU-xl7" id="FtD-Cu-jsc"/>
                                     <outlet property="titleLabel" destination="2cd-Vu-xzQ" id="fa9-hQ-xp2"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitStaticInputCell" id="T1N-6y-oav" customClass="SubmitWorkoutTableViewCell" customModule="HealthLink" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T1N-6y-oav" id="dvl-dI-Bw2">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z0U-Q9-1nE">
+                                            <rect key="frame" x="15" y="8.5" width="10" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="10" id="hae-Ju-84O"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5V-9v-sjC">
+                                            <rect key="frame" x="15" y="37" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1W-w1-q3J">
+                                            <rect key="frame" x="15" y="6" width="0.0" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="q1W-w1-q3J" firstAttribute="top" secondItem="dvl-dI-Bw2" secondAttribute="topMargin" constant="-2" id="7Sq-7m-c4B"/>
+                                        <constraint firstItem="A5V-9v-sjC" firstAttribute="leading" secondItem="dvl-dI-Bw2" secondAttribute="leadingMargin" constant="7" id="900-Cc-tm3"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="A5V-9v-sjC" secondAttribute="bottom" constant="-2" id="FaZ-RJ-pyh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="z0U-Q9-1nE" secondAttribute="bottom" constant="-2.5" id="X7O-TL-gEi"/>
+                                        <constraint firstItem="q1W-w1-q3J" firstAttribute="leading" secondItem="dvl-dI-Bw2" secondAttribute="leadingMargin" constant="7" id="c52-Jx-RvQ"/>
+                                        <constraint firstItem="z0U-Q9-1nE" firstAttribute="leading" secondItem="dvl-dI-Bw2" secondAttribute="leadingMargin" constant="7" id="mEX-Fq-6k1"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="subtitleLabel" destination="A5V-9v-sjC" id="DpR-15-AFR"/>
+                                    <outlet property="textField" destination="z0U-Q9-1nE" id="HTo-ff-ipz"/>
+                                    <outlet property="titleLabel" destination="q1W-w1-q3J" id="uBH-ss-kmc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -376,6 +417,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pQD-1H-FqA"/>
+        <segue reference="n6z-ZM-Rgg"/>
     </inferredMetricsTieBreakers>
 </document>

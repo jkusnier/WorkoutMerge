@@ -16,6 +16,8 @@ class RunKeeperAPI {
     let oauth2:OAuth2CodeGrant
     let baseURL = NSURL(string: "https://api.runkeeper.com")!
     
+    static let activityTypes = ["Cycling", "Elliptical", "Hiking", "Rowing", "Running", "Swimming", "Walking", "Other"]
+    
     init() {
         var settings = [
             "authorize_uri": "https://runkeeper.com/apps/authorize",
