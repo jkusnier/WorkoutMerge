@@ -42,7 +42,10 @@ class WorkoutDetailViewController: UITableViewController {
         if let destination = segue.destinationViewController as? UINavigationController {
             if let submitWorkoutViewController = destination.topViewController as? SubmitWorkoutViewController {
                 if let workout = workout {
-                    submitWorkoutViewController.workoutData = (type: RunKeeperAPI.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()), duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()), notes: nil)
+                    let totalDistance: Double? = (workout.totalDistance != nil) ? workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()) : nil
+                    let totalEnergyBurned: Double? = workout.totalEnergyBurned != nil ? workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()) : nil
+                    
+                    submitWorkoutViewController.workoutData = (type: RunKeeperAPI.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: totalEnergyBurned, notes: nil)
                 }
             }
         }
@@ -88,11 +91,15 @@ class WorkoutDetailViewController: UITableViewController {
                     cell.detailTextLabel?.text = stringFromTimeInterval(workout.duration)
                 case 2:
                     cell.textLabel?.text = "Calories Burned"
-                    cell.detailTextLabel?.text = workout.totalEnergyBurned.description
+                    if workout.totalEnergyBurned != nil {
+                        cell.detailTextLabel?.text = workout.totalEnergyBurned.description
+                    }
                 case 3:
                     cell.textLabel?.text = "Distance"
-                    if let d = workout.totalDistance.doubleValueForUnit(HKUnit.mileUnit()).shortDecimalString() {
-                        cell.detailTextLabel?.text = "\(d) mi"
+                    if workout.totalDistance != nil {
+                        if let d = workout.totalDistance.doubleValueForUnit(HKUnit.mileUnit()).shortDecimalString() {
+                            cell.detailTextLabel?.text = "\(d) mi"
+                        }
                     }
                 case 4:
                     cell.textLabel?.text = "Avg Heart Rate"
