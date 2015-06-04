@@ -83,42 +83,50 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         case 0:
             cell = staticInputCell()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell.selectionStyle = UITableViewCellSelectionStyle.Default
             setTitle("Workout Type", cell as? SubmitWorkoutTableViewCell)
             setSubtitle(self.workoutData.type, cell as? SubmitWorkoutTableViewCell)
         case 1:
             cell = staticCell()
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Duration", cell as? SubmitWorkoutTableViewCell)
             setSubtitle(stringFromTimeInterval(self.workoutData.duration), cell as? SubmitWorkoutTableViewCell)
         case 2:
             cell = dynamicCell()
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Calories Burned", cell as? SubmitWorkoutTableViewCell)
             if let totalCalories = self.workoutData.totalCalories {
                 setSubtitle(totalCalories.intString(), cell as? SubmitWorkoutTableViewCell)
             }
         case 3:
             cell = dynamicCell()
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Distance", cell as? SubmitWorkoutTableViewCell)
             if let totalDistance = self.workoutData.totalDistance {
                 setSubtitle(totalDistance.intString()! + " meters", cell as? SubmitWorkoutTableViewCell)
             }
         case 4:
             cell = dynamicCell()
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Avg Heart Rate", cell as? SubmitWorkoutTableViewCell)
             if let averageHeartRate = self.workoutData.averageHeartRate {
                 setSubtitle(averageHeartRate.intString()! + " BPM", cell as? SubmitWorkoutTableViewCell)
             }
         case 5:
             cell = staticCell()
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Date", cell as? SubmitWorkoutTableViewCell)
             if let startTime = self.workoutData.startTime {
                 setSubtitle(startTime.shortDateString(), cell as? SubmitWorkoutTableViewCell)
             }
         case 6:
             cell = staticCell()
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Notes", cell as? SubmitWorkoutTableViewCell)
             setSubtitle("", cell as? SubmitWorkoutTableViewCell)
         default:
             cell = dynamicCell()
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
         }
 
         return cell

@@ -80,6 +80,7 @@ class WorkoutDetailViewController: UITableViewController {
         let cell: UITableViewCell
         if indexPath.section == 0 {
             cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
 
             if let workout = workout {
                 switch indexPath.row {
