@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		962490041B21188C005A0FA1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 962490031B21188C005A0FA1 /* Settings.bundle */; };
 		9635A0571B1690A300512FE8 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9635A0561B1690A300512FE8 /* ApiKeys.plist */; };
 		9635A05A1B169DBA00512FE8 /* RunKeeperAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */; };
 		9644A0331B124A5E00569F32 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		03689D073C32DD36AFB085C1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		26C994F2D7AA506F67A50CA2 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		962490031B21188C005A0FA1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9635A0561B1690A300512FE8 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunKeeperAPI.swift; sourceTree = "<group>"; };
 		9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				96A6D9C51B108DB80056ECDA /* AppDelegate.swift */,
 				96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */,
+				96E4FAEB1B1D315600D452AF /* extensions.swift */,
 				96A6D9EA1B108DDD0056ECDA /* HealthLink.entitlements */,
 				96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */,
 				9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */,
@@ -135,13 +138,13 @@
 				96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */,
 				96A6D9CC1B108DB80056ECDA /* Main.storyboard */,
 				9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */,
+				962490031B21188C005A0FA1 /* Settings.bundle */,
 				96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */,
 				964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */,
 				964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */,
 				96A6D9C31B108DB80056ECDA /* Supporting Files */,
 				96A6D9CA1B108DB80056ECDA /* ViewController.swift */,
 				9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */,
-				96E4FAEB1B1D315600D452AF /* extensions.swift */,
 			);
 			path = HealthLink;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				96A6D9CE1B108DB80056ECDA /* Main.storyboard in Resources */,
 				9635A0571B1690A300512FE8 /* ApiKeys.plist in Resources */,
+				962490041B21188C005A0FA1 /* Settings.bundle in Resources */,
 				96A6D9D31B108DB80056ECDA /* LaunchScreen.xib in Resources */,
 				96A6D9D01B108DB80056ECDA /* Images.xcassets in Resources */,
 			);
