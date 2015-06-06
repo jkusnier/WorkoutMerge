@@ -25,6 +25,8 @@ class WorkoutDetailViewController: UITableViewController {
     var averageHeartRate: Int?
     
     var hkStore:HKHealthStore?
+    
+    var useMetric = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,8 @@ class WorkoutDetailViewController: UITableViewController {
         if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
             self.linkedServices = linkedServices.sorted() {$0 < $1}
         }
+        
+        self.useMetric = self.defaults.stringForKey("distanceUnit") == "meters"
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,8 +102,14 @@ class WorkoutDetailViewController: UITableViewController {
                 case 3:
                     cell.textLabel?.text = "Distance"
                     if workout.totalDistance != nil {
-                        if let d = workout.totalDistance.doubleValueForUnit(HKUnit.mileUnit()).shortDecimalString() {
-                            cell.detailTextLabel?.text = "\(d) mi"
+                        if self.useMetric {
+                            if let d = workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()).intString() {
+                                cell.detailTextLabel?.text = "\(d) m"
+                            }
+                        } else {
+                            if let d = workout.totalDistance.doubleValueForUnit(HKUnit.mileUnit()).shortDecimalString() {
+                                cell.detailTextLabel?.text = "\(d) mi"
+                            }
                         }
                     }
                 case 4:
