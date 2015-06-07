@@ -13,10 +13,14 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
     var pickerSelection:Int = 0
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    var useMetric = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarHidden = true
+        self.useMetric = self.defaults.stringForKey("distanceUnit") == "meters"
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -103,7 +107,12 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Distance", cell as? SubmitWorkoutTableViewCell)
             if let totalDistance = self.workoutData.totalDistance {
-                setSubtitle(totalDistance.intString()! + " meters", cell as? SubmitWorkoutTableViewCell)
+                if self.useMetric {
+                    setSubtitle(totalDistance.intString()! + " meters", cell as? SubmitWorkoutTableViewCell)
+                } else {
+                    let miles = totalDistance * 0.00062137
+                    setSubtitle(miles.shortDecimalString()! + " miles", cell as? SubmitWorkoutTableViewCell)
+                }
             }
         case 4:
             cell = dynamicCell()
