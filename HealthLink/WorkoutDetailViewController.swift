@@ -97,7 +97,7 @@ class WorkoutDetailViewController: UITableViewController {
                 case 2:
                     cell.textLabel?.text = "Calories Burned"
                     if workout.totalEnergyBurned != nil {
-                        cell.detailTextLabel?.text = workout.totalEnergyBurned.description
+                        cell.detailTextLabel?.text = workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()).intString()
                     }
                 case 3:
                     cell.textLabel?.text = "Distance"
