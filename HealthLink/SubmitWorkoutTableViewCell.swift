@@ -15,6 +15,8 @@ class SubmitWorkoutTableViewCell: UITableViewCell {
     @IBOutlet weak var sendDataSwitch: UISwitch!
     @IBOutlet weak var textField: UITextField!
     
+    var switchChangedCallback: ((Bool) -> ())?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,4 +28,11 @@ class SubmitWorkoutTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func switchChanged(sender: AnyObject) {
+        if let switchChangedCallback = self.switchChangedCallback {
+            if let uiSwitch = sender as? UISwitch {
+                switchChangedCallback(uiSwitch.on)
+            }
+        }
+    }
 }

@@ -11,7 +11,12 @@ import UIKit
 
 class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
+    var resultWorkoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
+    var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?) {
+        didSet {
+            self.resultWorkoutData = self.workoutData
+        }
+    }
     var pickerSelection:Int = 0
     
     let defaults = NSUserDefaults.standardUserDefaults()
@@ -89,18 +94,23 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
             setTitle("Workout Type", cell as? SubmitWorkoutTableViewCell)
-            setSubtitle(self.workoutData.type, cell as? SubmitWorkoutTableViewCell)
+            setSubtitle(self.resultWorkoutData.type, cell as? SubmitWorkoutTableViewCell)
         case 1:
             cell = staticCell()
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Duration", cell as? SubmitWorkoutTableViewCell)
-            setSubtitle(stringFromTimeInterval(self.workoutData.duration), cell as? SubmitWorkoutTableViewCell)
+            setSubtitle(stringFromTimeInterval(self.resultWorkoutData.duration), cell as? SubmitWorkoutTableViewCell)
         case 2:
             cell = dynamicCell()
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Calories Burned", cell as? SubmitWorkoutTableViewCell)
             if let totalCalories = self.workoutData.totalCalories {
                 setSubtitle(totalCalories.intString(), cell as? SubmitWorkoutTableViewCell)
+            }
+            if let cell = cell as? SubmitWorkoutTableViewCell {
+                cell.switchChangedCallback = { isOn in
+                    self.resultWorkoutData.totalCalories = isOn ? self.workoutData.totalCalories : nil
+                }
             }
         case 3:
             cell = dynamicCell()
@@ -114,12 +124,22 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     setSubtitle(miles.shortDecimalString()! + " miles", cell as? SubmitWorkoutTableViewCell)
                 }
             }
+            if let cell = cell as? SubmitWorkoutTableViewCell {
+                cell.switchChangedCallback = { isOn in
+                    self.resultWorkoutData.totalDistance = isOn ? self.workoutData.totalDistance : nil
+                }
+            }
         case 4:
             cell = dynamicCell()
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Avg Heart Rate", cell as? SubmitWorkoutTableViewCell)
             if let averageHeartRate = self.workoutData.averageHeartRate {
                 setSubtitle(averageHeartRate.intString()! + " BPM", cell as? SubmitWorkoutTableViewCell)
+            }
+            if let cell = cell as? SubmitWorkoutTableViewCell {
+                cell.switchChangedCallback = { isOn in
+                    self.resultWorkoutData.averageHeartRate = isOn ? self.workoutData.averageHeartRate : nil
+                }
             }
         case 5:
             cell = staticCell()
@@ -166,7 +186,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     cell.textField.inputView = workoutPicker
                     cell.textField.inputAccessoryView = toolBar
                     
-                    if let type = self.workoutData.type, idx = find(RunKeeperAPI.activityTypes, type) {
+                    if let type = self.resultWorkoutData.type, idx = find(RunKeeperAPI.activityTypes, type) {
                         self.pickerSelection = idx
                         workoutPicker.selectRow(idx, inComponent: 0, animated: false)
                     }
@@ -184,7 +204,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     }
     
     func donePicker() {
-        self.workoutData.type = RunKeeperAPI.activityTypes[self.pickerSelection]
+        self.resultWorkoutData.type = RunKeeperAPI.activityTypes[self.pickerSelection]
         self.tableView.reloadData()
         self.view.endEditing(true)
     }
@@ -206,7 +226,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     @IBAction func saveWorkout(sender: AnyObject) {
         let runKeeper = RunKeeperAPI.sharedInstance
         runKeeper.authorize()
-        runKeeper.postActivity(workoutData, failure: { error in
+        runKeeper.postActivity(resultWorkoutData, failure: { error in
             },
             success: {
                 self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
