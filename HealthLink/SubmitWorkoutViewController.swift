@@ -11,15 +11,31 @@ import UIKit
 
 class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    let kSwitchPrefTotalCalories = "kSwitchPrefTotalCalories"
+    let kSwitchPrefTotalDistance = "kSwitchPrefTotalDistance"
+    let kSwitchPrefAverageHeartRate = "kSwitchPrefAverageHeartRate"
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
     var resultWorkoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
     var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?) {
         didSet {
             self.resultWorkoutData = self.workoutData
+            
+            // Check defaults for switches
+            if let switchPrefTotalCalories = defaults.valueForKey(kSwitchPrefTotalCalories) as? Bool where !switchPrefTotalCalories {
+                self.resultWorkoutData.totalCalories = nil
+            }
+            if let switchPrefTotalDistance = defaults.valueForKey(kSwitchPrefTotalDistance) as? Bool where !switchPrefTotalDistance {
+                self.resultWorkoutData.totalDistance = nil
+            }
+            if let switchPrefAverageHeartRate = defaults.valueForKey(kSwitchPrefAverageHeartRate) as? Bool where !switchPrefAverageHeartRate {
+                self.resultWorkoutData.averageHeartRate = nil
+            }
         }
     }
     var pickerSelection:Int = 0
     
-    let defaults = NSUserDefaults.standardUserDefaults()
     var useMetric = false
 
     override func viewDidLoad() {
@@ -110,6 +126,10 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             if let cell = cell as? SubmitWorkoutTableViewCell {
                 cell.switchChangedCallback = { isOn in
                     self.resultWorkoutData.totalCalories = isOn ? self.workoutData.totalCalories : nil
+                    self.defaults.setBool(isOn, forKey: self.kSwitchPrefTotalCalories)
+                }
+                if let switchState = defaults.valueForKey(self.kSwitchPrefTotalCalories) as? Bool {
+                    cell.sendDataSwitch.on = switchState
                 }
             }
         case 3:
@@ -127,6 +147,10 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             if let cell = cell as? SubmitWorkoutTableViewCell {
                 cell.switchChangedCallback = { isOn in
                     self.resultWorkoutData.totalDistance = isOn ? self.workoutData.totalDistance : nil
+                    self.defaults.setBool(isOn, forKey: self.kSwitchPrefTotalDistance)
+                }
+                if let switchState = defaults.valueForKey(self.kSwitchPrefTotalDistance) as? Bool {
+                    cell.sendDataSwitch.on = switchState
                 }
             }
         case 4:
@@ -139,6 +163,10 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             if let cell = cell as? SubmitWorkoutTableViewCell {
                 cell.switchChangedCallback = { isOn in
                     self.resultWorkoutData.averageHeartRate = isOn ? self.workoutData.averageHeartRate : nil
+                    self.defaults.setBool(isOn, forKey: self.kSwitchPrefAverageHeartRate)
+                }
+                if let switchState = defaults.valueForKey(self.kSwitchPrefAverageHeartRate) as? Bool {
+                    cell.sendDataSwitch.on = switchState
                 }
             }
         case 5:
