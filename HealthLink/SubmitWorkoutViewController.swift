@@ -8,6 +8,7 @@
 //  This will need a refactor once we submit to more than one service. Intentionally coding to RunKeeper for first iteration.
 
 import UIKit
+import CoreData
 
 class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -257,6 +258,31 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         runKeeper.postActivity(resultWorkoutData, failure: { error in
             },
             success: {
+                if let uuid = self.resultWorkoutData.UUID?.UUIDString {
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let managedContext = appDelegate.managedObjectContext!
+                    
+                    let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+                    let predicate = NSPredicate(format: "uuid = %@", uuid)
+                    fetchRequest.predicate = predicate
+                    
+                    let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil)
+
+                    if let syncLog = fetchedEntities?.first as? NSManagedObject {
+                        syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                    } else {
+                        let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
+                        let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+                        syncLog.setValue(uuid, forKey: "uuid")
+                        syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                    }
+
+                    var error: NSError?
+                    if !managedContext.save(&error) {
+                        println("Could not save \(error)")
+                    }
+                }
+                
                 self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
             }
         )
