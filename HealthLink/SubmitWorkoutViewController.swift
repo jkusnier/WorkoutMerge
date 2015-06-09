@@ -17,8 +17,8 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    var resultWorkoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
-    var workoutData: (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?) {
+    var resultWorkoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
+    var workoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?) {
         didSet {
             self.resultWorkoutData = self.workoutData
             
