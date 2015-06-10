@@ -15,12 +15,12 @@
 		964D1F9E1B1A52670050204F /* SubmitWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */; };
 		9675E19D1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */; };
 		96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C51B108DB80056ECDA /* AppDelegate.swift */; };
-		96A6D9C91B108DB80056ECDA /* HealthLink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */; };
+		96A6D9C91B108DB80056ECDA /* WorkoutMerge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */; };
 		96A6D9CB1B108DB80056ECDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9CA1B108DB80056ECDA /* ViewController.swift */; };
 		96A6D9CE1B108DB80056ECDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96A6D9CC1B108DB80056ECDA /* Main.storyboard */; };
 		96A6D9D01B108DB80056ECDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A6D9CF1B108DB80056ECDA /* Images.xcassets */; };
 		96A6D9D31B108DB80056ECDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */; };
-		96A6D9DF1B108DB80056ECDA /* HealthLinkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9DE1B108DB80056ECDA /* HealthLinkTests.swift */; };
+		96A6D9DF1B108DB80056ECDA /* WorkoutMergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9DE1B108DB80056ECDA /* WorkoutMergeTests.swift */; };
 		96A6D9E91B108DDD0056ECDA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A6D9E81B108DDD0056ECDA /* HealthKit.framework */; };
 		96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */; };
 		96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */; };
@@ -48,19 +48,19 @@
 		964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitWorkoutViewController.swift; sourceTree = "<group>"; };
 		964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HKWorkoutActivityType+Descriptions.swift"; sourceTree = "<group>"; };
-		96A6D9C01B108DB80056ECDA /* HealthLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A6D9C01B108DB80056ECDA /* WorkoutMerge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutMerge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A6D9C41B108DB80056ECDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96A6D9C51B108DB80056ECDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		96A6D9C81B108DB80056ECDA /* HealthLink.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HealthLink.xcdatamodel; sourceTree = "<group>"; };
+		96A6D9C81B108DB80056ECDA /* WorkoutMerge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutMerge.xcdatamodel; sourceTree = "<group>"; };
 		96A6D9CA1B108DB80056ECDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		96A6D9CD1B108DB80056ECDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96A6D9CF1B108DB80056ECDA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		96A6D9D21B108DB80056ECDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		96A6D9D81B108DB80056ECDA /* HealthLinkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthLinkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A6D9D81B108DB80056ECDA /* WorkoutMergeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutMergeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A6D9DD1B108DB80056ECDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96A6D9DE1B108DB80056ECDA /* HealthLinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthLinkTests.swift; sourceTree = "<group>"; };
+		96A6D9DE1B108DB80056ECDA /* WorkoutMergeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutMergeTests.swift; sourceTree = "<group>"; };
 		96A6D9E81B108DDD0056ECDA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		96A6D9EA1B108DDD0056ECDA /* HealthLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HealthLink.entitlements; sourceTree = "<group>"; };
+		96A6D9EA1B108DDD0056ECDA /* WorkoutMerge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WorkoutMerge.entitlements; sourceTree = "<group>"; };
 		96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseModalSegue.swift; sourceTree = "<group>"; };
 		96E4FAEB1B1D315600D452AF /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
@@ -108,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				96A6D9E81B108DDD0056ECDA /* HealthKit.framework */,
-				96A6D9C21B108DB80056ECDA /* HealthLink */,
-				96A6D9DB1B108DB80056ECDA /* HealthLinkTests */,
+				96A6D9C21B108DB80056ECDA /* WorkoutMerge */,
+				96A6D9DB1B108DB80056ECDA /* WorkoutMergeTests */,
 				96A6D9C11B108DB80056ECDA /* Products */,
 				2A0B8D6433B010CC5495BDA3 /* Pods */,
 				628F8D76D4AB723AED935F24 /* Frameworks */,
@@ -119,20 +119,20 @@
 		96A6D9C11B108DB80056ECDA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96A6D9C01B108DB80056ECDA /* HealthLink.app */,
-				96A6D9D81B108DB80056ECDA /* HealthLinkTests.xctest */,
+				96A6D9C01B108DB80056ECDA /* WorkoutMerge.app */,
+				96A6D9D81B108DB80056ECDA /* WorkoutMergeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		96A6D9C21B108DB80056ECDA /* HealthLink */ = {
+		96A6D9C21B108DB80056ECDA /* WorkoutMerge */ = {
 			isa = PBXGroup;
 			children = (
 				96A6D9C51B108DB80056ECDA /* AppDelegate.swift */,
 				96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */,
 				96E4FAEB1B1D315600D452AF /* extensions.swift */,
-				96A6D9EA1B108DDD0056ECDA /* HealthLink.entitlements */,
-				96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */,
+				96A6D9EA1B108DDD0056ECDA /* WorkoutMerge.entitlements */,
+				96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */,
 				9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */,
 				96A6D9CF1B108DB80056ECDA /* Images.xcassets */,
 				96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */,
@@ -146,7 +146,7 @@
 				96A6D9CA1B108DB80056ECDA /* ViewController.swift */,
 				9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */,
 			);
-			path = HealthLink;
+			path = WorkoutMerge;
 			sourceTree = "<group>";
 		};
 		96A6D9C31B108DB80056ECDA /* Supporting Files */ = {
@@ -158,13 +158,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		96A6D9DB1B108DB80056ECDA /* HealthLinkTests */ = {
+		96A6D9DB1B108DB80056ECDA /* WorkoutMergeTests */ = {
 			isa = PBXGroup;
 			children = (
-				96A6D9DE1B108DB80056ECDA /* HealthLinkTests.swift */,
+				96A6D9DE1B108DB80056ECDA /* WorkoutMergeTests.swift */,
 				96A6D9DC1B108DB80056ECDA /* Supporting Files */,
 			);
-			path = HealthLinkTests;
+			path = WorkoutMergeTests;
 			sourceTree = "<group>";
 		};
 		96A6D9DC1B108DB80056ECDA /* Supporting Files */ = {
@@ -178,9 +178,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		96A6D9BF1B108DB80056ECDA /* HealthLink */ = {
+		96A6D9BF1B108DB80056ECDA /* WorkoutMerge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96A6D9E21B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLink" */;
+			buildConfigurationList = 96A6D9E21B108DB80056ECDA /* Build configuration list for PBXNativeTarget "WorkoutMerge" */;
 			buildPhases = (
 				41ECC84827F8C91F44E5745F /* Check Pods Manifest.lock */,
 				96A6D9BC1B108DB80056ECDA /* Sources */,
@@ -193,14 +193,14 @@
 			);
 			dependencies = (
 			);
-			name = HealthLink;
+			name = WorkoutMerge;
 			productName = HealthLink;
-			productReference = 96A6D9C01B108DB80056ECDA /* HealthLink.app */;
+			productReference = 96A6D9C01B108DB80056ECDA /* WorkoutMerge.app */;
 			productType = "com.apple.product-type.application";
 		};
-		96A6D9D71B108DB80056ECDA /* HealthLinkTests */ = {
+		96A6D9D71B108DB80056ECDA /* WorkoutMergeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96A6D9E51B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLinkTests" */;
+			buildConfigurationList = 96A6D9E51B108DB80056ECDA /* Build configuration list for PBXNativeTarget "WorkoutMergeTests" */;
 			buildPhases = (
 				96A6D9D41B108DB80056ECDA /* Sources */,
 				96A6D9D51B108DB80056ECDA /* Frameworks */,
@@ -211,9 +211,9 @@
 			dependencies = (
 				96A6D9DA1B108DB80056ECDA /* PBXTargetDependency */,
 			);
-			name = HealthLinkTests;
+			name = WorkoutMergeTests;
 			productName = HealthLinkTests;
-			productReference = 96A6D9D81B108DB80056ECDA /* HealthLinkTests.xctest */;
+			productReference = 96A6D9D81B108DB80056ECDA /* WorkoutMergeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +240,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 96A6D9BB1B108DB80056ECDA /* Build configuration list for PBXProject "HealthLink" */;
+			buildConfigurationList = 96A6D9BB1B108DB80056ECDA /* Build configuration list for PBXProject "WorkoutMerge" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -253,8 +253,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				96A6D9BF1B108DB80056ECDA /* HealthLink */,
-				96A6D9D71B108DB80056ECDA /* HealthLinkTests */,
+				96A6D9BF1B108DB80056ECDA /* WorkoutMerge */,
+				96A6D9D71B108DB80056ECDA /* WorkoutMergeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -341,7 +341,7 @@
 				96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */,
 				9675E19D1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift in Sources */,
 				96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */,
-				96A6D9C91B108DB80056ECDA /* HealthLink.xcdatamodeld in Sources */,
+				96A6D9C91B108DB80056ECDA /* WorkoutMerge.xcdatamodeld in Sources */,
 				96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */,
 				964D1F9C1B1930F50050204F /* SubmitWorkoutViewController.swift in Sources */,
 				9644A0331B124A5E00569F32 /* WorkoutDetailViewController.swift in Sources */,
@@ -352,7 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96A6D9DF1B108DB80056ECDA /* HealthLinkTests.swift in Sources */,
+				96A6D9DF1B108DB80056ECDA /* WorkoutMergeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +361,7 @@
 /* Begin PBXTargetDependency section */
 		96A6D9DA1B108DB80056ECDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 96A6D9BF1B108DB80056ECDA /* HealthLink */;
+			target = 96A6D9BF1B108DB80056ECDA /* WorkoutMerge */;
 			targetProxy = 96A6D9D91B108DB80056ECDA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -472,12 +472,12 @@
 			baseConfigurationReference = 03689D073C32DD36AFB085C1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HealthLink/HealthLink.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WorkoutMerge/WorkoutMerge.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = HealthLink/Info.plist;
+				INFOPLIST_FILE = WorkoutMerge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WorkoutMerge;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -487,12 +487,12 @@
 			baseConfigurationReference = F827AA5BB1F465EF7C995B65 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HealthLink/HealthLink.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WorkoutMerge/WorkoutMerge.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				INFOPLIST_FILE = HealthLink/Info.plist;
+				INFOPLIST_FILE = WorkoutMerge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WorkoutMerge;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -509,10 +509,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = HealthLinkTests/Info.plist;
+				INFOPLIST_FILE = WorkoutMergeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthLink.app/HealthLink";
+				PRODUCT_NAME = WorkoutMergeTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutMerge.app/WorkoutMerge";
 			};
 			name = Debug;
 		};
@@ -524,17 +524,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = HealthLinkTests/Info.plist;
+				INFOPLIST_FILE = WorkoutMergeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthLink.app/HealthLink";
+				PRODUCT_NAME = WorkoutMergeTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutMerge.app/WorkoutMerge";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		96A6D9BB1B108DB80056ECDA /* Build configuration list for PBXProject "HealthLink" */ = {
+		96A6D9BB1B108DB80056ECDA /* Build configuration list for PBXProject "WorkoutMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96A6D9E01B108DB80056ECDA /* Debug */,
@@ -543,7 +543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96A6D9E21B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLink" */ = {
+		96A6D9E21B108DB80056ECDA /* Build configuration list for PBXNativeTarget "WorkoutMerge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96A6D9E31B108DB80056ECDA /* Debug */,
@@ -552,7 +552,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96A6D9E51B108DB80056ECDA /* Build configuration list for PBXNativeTarget "HealthLinkTests" */ = {
+		96A6D9E51B108DB80056ECDA /* Build configuration list for PBXNativeTarget "WorkoutMergeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96A6D9E61B108DB80056ECDA /* Debug */,
@@ -564,13 +564,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		96A6D9C71B108DB80056ECDA /* HealthLink.xcdatamodeld */ = {
+		96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				96A6D9C81B108DB80056ECDA /* HealthLink.xcdatamodel */,
+				96A6D9C81B108DB80056ECDA /* WorkoutMerge.xcdatamodel */,
 			);
-			currentVersion = 96A6D9C81B108DB80056ECDA /* HealthLink.xcdatamodel */;
-			path = HealthLink.xcdatamodeld;
+			currentVersion = 96A6D9C81B108DB80056ECDA /* WorkoutMerge.xcdatamodel */;
+			path = WorkoutMerge.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

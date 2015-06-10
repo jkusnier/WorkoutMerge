@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--HealthLink-->
+        <!--WorkoutMerge-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="WorkoutMerge" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -79,7 +79,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="HealthLink" id="7nU-Iz-uiF"/>
+                    <navigationItem key="navigationItem" title="WorkoutMerge" id="7nU-Iz-uiF"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="tableView" destination="2CN-Ln-yCk" id="qpI-dL-Kar"/>
@@ -93,7 +93,7 @@
         <!--Workout Detail View Controller-->
         <scene sceneID="GTR-hT-fGh">
             <objects>
-                <tableViewController id="olr-Mi-ZKl" customClass="WorkoutDetailViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="olr-Mi-ZKl" customClass="WorkoutDetailViewController" customModule="WorkoutMerge" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qq3-8a-rn1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,13 +150,13 @@
         <!--Submit Workout View Controller-->
         <scene sceneID="Hls-TQ-rzp">
             <objects>
-                <tableViewController id="ZIi-hW-c1m" customClass="SubmitWorkoutViewController" customModule="HealthLink" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ZIi-hW-c1m" customClass="SubmitWorkoutViewController" customModule="WorkoutMerge" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="G5x-SO-Scu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitDynamicCell" id="09U-9j-kqj" customClass="SubmitWorkoutTableViewCell" customModule="HealthLink" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitDynamicCell" id="09U-9j-kqj" customClass="SubmitWorkoutTableViewCell" customModule="WorkoutMerge" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09U-9j-kqj" id="xq4-eF-91W">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -195,7 +195,7 @@
                                     <outlet property="titleLabel" destination="QFc-md-NRx" id="pal-JF-7Yk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitStaticCell" id="wdl-Vh-qeI" customClass="SubmitWorkoutTableViewCell" customModule="HealthLink" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitStaticCell" id="wdl-Vh-qeI" customClass="SubmitWorkoutTableViewCell" customModule="WorkoutMerge" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wdl-Vh-qeI" id="o6B-Cn-TRk">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -225,13 +225,13 @@
                                     <outlet property="titleLabel" destination="2cd-Vu-xzQ" id="fa9-hQ-xp2"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitStaticInputCell" id="T1N-6y-oav" customClass="SubmitWorkoutTableViewCell" customModule="HealthLink" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="submitStaticInputCell" id="T1N-6y-oav" customClass="SubmitWorkoutTableViewCell" customModule="WorkoutMerge" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T1N-6y-oav" id="dvl-dI-Bw2">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z0U-Q9-1nE">
-                                            <rect key="frame" x="15" y="8.5" width="10" height="30"/>
+                                            <rect key="frame" x="15" y="8" width="10" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="10" id="hae-Ju-84O"/>
                                             </constraints>
@@ -276,7 +276,7 @@
                     <navigationItem key="navigationItem" id="GXg-zV-BkG">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="yhU-Fr-Pz0">
                             <connections>
-                                <segue destination="olr-Mi-ZKl" kind="custom" identifier="closeSubmitWorkout" customClass="CloseModalSegue" customModule="HealthLink" id="n6z-ZM-Rgg"/>
+                                <segue destination="olr-Mi-ZKl" kind="custom" identifier="closeSubmitWorkout" customClass="CloseModalSegue" customModule="WorkoutMerge" id="n6z-ZM-Rgg"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="AQH-3I-o49">
@@ -295,7 +295,7 @@
         <!--Settings View Controller-->
         <scene sceneID="Tfn-SK-aDp">
             <objects>
-                <tableViewController id="oHx-nR-NSM" customClass="SettingsViewController" customModule="HealthLink" sceneMemberID="viewController">
+                <tableViewController id="oHx-nR-NSM" customClass="SettingsViewController" customModule="WorkoutMerge" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Kqc-Hu-LqE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -306,7 +306,7 @@
                             <items>
                                 <barButtonItem systemItem="done" id="wcj-OA-JIH">
                                     <connections>
-                                        <segue destination="KGX-Lb-Dcx" kind="custom" customClass="CloseModalSegue" customModule="HealthLink" id="01e-hN-LsU"/>
+                                        <segue destination="KGX-Lb-Dcx" kind="custom" customClass="CloseModalSegue" customModule="WorkoutMerge" id="01e-hN-LsU"/>
                                     </connections>
                                 </barButtonItem>
                             </items>
@@ -320,13 +320,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Health" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cE1-R1-kjw">
-                                                    <rect key="frame" x="8" y="11.5" width="99" height="20.5"/>
+                                                    <rect key="frame" x="8" y="11" width="99" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbg-LV-TS3">
-                                                    <rect key="frame" x="323.5" y="11.5" width="49.5" height="20.5"/>
+                                                    <rect key="frame" x="323" y="11" width="50" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -346,13 +346,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RunKeeper" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkp-5F-OcX">
-                                                    <rect key="frame" x="8" y="11" width="86" height="20.5"/>
+                                                    <rect key="frame" x="8" y="11" width="86" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oar-Kv-xEb">
-                                                    <rect key="frame" x="306" y="11" width="66" height="20.5"/>
+                                                    <rect key="frame" x="306" y="11" width="66" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>

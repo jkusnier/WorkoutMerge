@@ -1,6 +1,6 @@
 //
 //  SubmitWorkoutViewController.swift
-//  HealthLink
+//  WorkoutMerge
 //
 //  Created by Jason Kusnier on 5/29/15.
 //  Copyright (c) 2015 Jason Kusnier. All rights reserved.

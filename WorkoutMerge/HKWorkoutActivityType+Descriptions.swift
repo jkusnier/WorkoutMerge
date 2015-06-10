@@ -1,6 +1,6 @@
 //
 //  HKWorkoutActivityType+Descriptions.swift
-//  HealthLink
+//  WorkoutMerge
 //
 //  Created by Jason Kusnier on 5/25/15.
 //  Copyright (c) 2015 Jason Kusnier. All rights reserved.
