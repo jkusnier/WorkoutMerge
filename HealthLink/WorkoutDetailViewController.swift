@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import CoreData
 
 class WorkoutDetailViewController: UITableViewController {
 
@@ -27,6 +28,8 @@ class WorkoutDetailViewController: UITableViewController {
     var hkStore:HKHealthStore?
     
     var useMetric = false
+    
+    var isFirstLoad = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +39,13 @@ class WorkoutDetailViewController: UITableViewController {
         }
         
         self.useMetric = self.defaults.stringForKey("distanceUnit") == "meters"
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if !isFirstLoad {
+            self.tableView.reloadData()
+        }
+        isFirstLoad = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -141,6 +151,12 @@ class WorkoutDetailViewController: UITableViewController {
             cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath) as! UITableViewCell
             if let linkedService = self.linkedServices?[indexPath.row] {
                 cell.textLabel?.text = "Sync to \(linkedService)"
+                
+                if let managedObject = self.managedObject() {
+                    if managedObject.valueForKey("syncTo\(linkedService)") != nil {
+                        cell.accessoryType = .Checkmark
+                    }
+                }
             }
         } else {
             cell = UITableViewCell()
@@ -207,5 +223,24 @@ class WorkoutDetailViewController: UITableViewController {
             }
             hkStore.executeQuery(query)
         }
+    }
+    
+    func managedObject() -> NSManagedObject? {
+        if let workout = self.workout, uuid = workout.UUID?.UUIDString {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext!
+            
+            let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+            let predicate = NSPredicate(format: "uuid = %@", uuid)
+            fetchRequest.predicate = predicate
+            
+            let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil)
+            
+            if let syncLog = fetchedEntities?.first as? NSManagedObject {
+                return syncLog
+            }
+        }
+        
+        return nil
     }
 }
