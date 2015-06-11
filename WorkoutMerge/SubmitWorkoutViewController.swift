@@ -259,41 +259,45 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         
         let runKeeper = RunKeeperAPI.sharedInstance
         runKeeper.authorize({ wasFailure, error in
-            vcu.hideActivityIndicator(self.view)
-        })
-        runKeeper.postActivity(resultWorkoutData, failure: { error in
+            if wasFailure {
+                println("\(wasFailure)")
                 vcu.hideActivityIndicator(self.view)
-            },
-            success: {
-                if let uuid = self.resultWorkoutData.UUID?.UUIDString {
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    let managedContext = appDelegate.managedObjectContext!
-                    
-                    let fetchRequest = NSFetchRequest(entityName: "SyncLog")
-                    let predicate = NSPredicate(format: "uuid = %@", uuid)
-                    fetchRequest.predicate = predicate
-                    
-                    let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil)
-
-                    if let syncLog = fetchedEntities?.first as? NSManagedObject {
-                        syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
-                    } else {
-                        let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
-                        let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
-                        syncLog.setValue(uuid, forKey: "uuid")
-                        syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+            } else {
+                runKeeper.postActivity(self.resultWorkoutData, failure: { error in
+                        vcu.hideActivityIndicator(self.view)
+                    },
+                    success: {
+                        if let uuid = self.resultWorkoutData.UUID?.UUIDString {
+                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            let managedContext = appDelegate.managedObjectContext!
+                            
+                            let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+                            let predicate = NSPredicate(format: "uuid = %@", uuid)
+                            fetchRequest.predicate = predicate
+                            
+                            let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil)
+                            
+                            if let syncLog = fetchedEntities?.first as? NSManagedObject {
+                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                            } else {
+                                let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
+                                let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+                                syncLog.setValue(uuid, forKey: "uuid")
+                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                            }
+                            
+                            var error: NSError?
+                            if !managedContext.save(&error) {
+                                println("Could not save \(error)")
+                            }
+                        }
+                        
+                        vcu.hideActivityIndicator(self.view)
+                        self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
                     }
-
-                    var error: NSError?
-                    if !managedContext.save(&error) {
-                        println("Could not save \(error)")
-                    }
-                }
-        
-                vcu.hideActivityIndicator(self.view)
-                self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
+                )
             }
-        )
+        })
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
