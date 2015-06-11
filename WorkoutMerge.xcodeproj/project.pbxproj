@@ -24,6 +24,7 @@
 		96A6D9E91B108DDD0056ECDA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96A6D9E81B108DDD0056ECDA /* HealthKit.framework */; };
 		96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */; };
 		96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */; };
+		96B357B11B290BEA00246703 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B357B01B290BEA00246703 /* ViewControllerUtils.swift */; };
 		96E4FAEC1B1D315600D452AF /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4FAEB1B1D315600D452AF /* extensions.swift */; };
 		96FF75B530FF33F99F7FB348 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C994F2D7AA506F67A50CA2 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		96A6D9EA1B108DDD0056ECDA /* WorkoutMerge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WorkoutMerge.entitlements; sourceTree = "<group>"; };
 		96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseModalSegue.swift; sourceTree = "<group>"; };
+		96B357B01B290BEA00246703 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		96E4FAEB1B1D315600D452AF /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		F827AA5BB1F465EF7C995B65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,8 +133,6 @@
 				96A6D9C51B108DB80056ECDA /* AppDelegate.swift */,
 				96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */,
 				96E4FAEB1B1D315600D452AF /* extensions.swift */,
-				96A6D9EA1B108DDD0056ECDA /* WorkoutMerge.entitlements */,
-				96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */,
 				9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */,
 				96A6D9CF1B108DB80056ECDA /* Images.xcassets */,
 				96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */,
@@ -144,7 +144,10 @@
 				964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */,
 				96A6D9C31B108DB80056ECDA /* Supporting Files */,
 				96A6D9CA1B108DB80056ECDA /* ViewController.swift */,
+				96B357B01B290BEA00246703 /* ViewControllerUtils.swift */,
 				9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */,
+				96A6D9EA1B108DDD0056ECDA /* WorkoutMerge.entitlements */,
+				96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */,
 			);
 			path = WorkoutMerge;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				9675E19D1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift in Sources */,
 				96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */,
 				96A6D9C91B108DB80056ECDA /* WorkoutMerge.xcdatamodeld in Sources */,
+				96B357B11B290BEA00246703 /* ViewControllerUtils.swift in Sources */,
 				96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */,
 				964D1F9C1B1930F50050204F /* SubmitWorkoutViewController.swift in Sources */,
 				9644A0331B124A5E00569F32 /* WorkoutDetailViewController.swift in Sources */,

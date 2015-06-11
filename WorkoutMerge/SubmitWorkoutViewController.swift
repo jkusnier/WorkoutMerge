@@ -253,9 +253,16 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     }
     
     @IBAction func saveWorkout(sender: AnyObject) {
+        let vcu = ViewControllerUtils()
+        
+        vcu.showActivityIndicator(self.view)
+        
         let runKeeper = RunKeeperAPI.sharedInstance
-        runKeeper.authorize()
+        runKeeper.authorize({ wasFailure, error in
+            vcu.hideActivityIndicator(self.view)
+        })
         runKeeper.postActivity(resultWorkoutData, failure: { error in
+                vcu.hideActivityIndicator(self.view)
             },
             success: {
                 if let uuid = self.resultWorkoutData.UUID?.UUIDString {
@@ -282,7 +289,8 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         println("Could not save \(error)")
                     }
                 }
-                
+        
+                vcu.hideActivityIndicator(self.view)
                 self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
             }
         )
