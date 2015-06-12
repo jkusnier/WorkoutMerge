@@ -252,7 +252,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         }
     }
     
-    @IBAction func saveWorkout(sender: AnyObject) {
+    func doSave() {
         let vcu = ViewControllerUtils()
         
         vcu.showActivityIndicator(self.view)
@@ -264,20 +264,14 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 vcu.hideActivityIndicator(self.view)
             } else {
                 runKeeper.postActivity(self.resultWorkoutData, failure: { error in
-                        vcu.hideActivityIndicator(self.view)
+                    vcu.hideActivityIndicator(self.view)
                     },
                     success: {
                         if let uuid = self.resultWorkoutData.UUID?.UUIDString {
                             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                             let managedContext = appDelegate.managedObjectContext!
                             
-                            let fetchRequest = NSFetchRequest(entityName: "SyncLog")
-                            let predicate = NSPredicate(format: "uuid = %@", uuid)
-                            fetchRequest.predicate = predicate
-                            
-                            let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil)
-                            
-                            if let syncLog = fetchedEntities?.first as? NSManagedObject {
+                            if let syncLog = self.syncLog(uuid) {
                                 syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
                             } else {
                                 let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
@@ -300,6 +294,23 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         })
     }
     
+    @IBAction func saveWorkout(sender: AnyObject) {
+        if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
+            let alertController = UIAlertController(title: "Alert", message: "Workout already submitted", preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                // Do nothing
+            })
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
+                self.doSave()
+            })
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        } else {
+            self.doSave()
+        }
+    }
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -314,5 +325,22 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.pickerSelection = row
+    }
+    
+    func syncLog(uuid: String) -> NSManagedObject? {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+        let predicate = NSPredicate(format: "uuid = %@", uuid)
+        fetchRequest.predicate = predicate
+        
+        let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil)
+        
+        if let syncLog = fetchedEntities?.first as? NSManagedObject {
+            return syncLog
+        }
+
+        return nil
     }
 }
