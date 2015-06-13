@@ -97,7 +97,7 @@
             <objects>
                 <tableViewController id="olr-Mi-ZKl" customClass="WorkoutDetailViewController" customModule="WorkoutMerge" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Qq3-8a-rn1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -154,7 +154,7 @@
             <objects>
                 <tableViewController id="ZIi-hW-c1m" customClass="SubmitWorkoutViewController" customModule="WorkoutMerge" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="G5x-SO-Scu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -163,7 +163,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09U-9j-kqj" id="xq4-eF-91W">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYt-9L-ffm">
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYt-9L-ffm">
                                             <rect key="frame" x="543" y="6" width="51" height="31"/>
                                             <connections>
                                                 <action selector="switchChanged:" destination="09U-9j-kqj" eventType="valueChanged" id="M15-em-SgD"/>
@@ -276,12 +276,12 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="GXg-zV-BkG">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="yhU-Fr-Pz0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yhU-Fr-Pz0">
                             <connections>
                                 <segue destination="olr-Mi-ZKl" kind="custom" identifier="closeSubmitWorkout" customClass="CloseModalSegue" customModule="WorkoutMerge" id="n6z-ZM-Rgg"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="AQH-3I-o49">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="AQH-3I-o49">
                             <connections>
                                 <action selector="saveWorkout:" destination="ZIi-hW-c1m" id="eE3-nt-66H"/>
                             </connections>
@@ -422,7 +422,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pQD-1H-FqA"/>
+        <segue reference="n6z-ZM-Rgg"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.31372549019607843" green="0.45490196078431372" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
