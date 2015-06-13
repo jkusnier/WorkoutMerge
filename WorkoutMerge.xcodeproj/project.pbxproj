@@ -191,6 +191,7 @@
 				96A6D9BE1B108DB80056ECDA /* Resources */,
 				5373572930875229961DFDD0 /* Embed Pods Frameworks */,
 				981F79C7CD30CBE364B97624 /* Copy Pods Resources */,
+				961A871F1B2BD09B00D44BF2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -314,6 +315,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		961A871F1B2BD09B00D44BF2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "\"${DEVELOPER_BIN_DIR}/agvtool\" next-version -all";
 		};
 		981F79C7CD30CBE364B97624 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -479,10 +493,12 @@
 				CODE_SIGN_ENTITLEMENTS = WorkoutMerge/WorkoutMerge.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WorkoutMerge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = WorkoutMerge;
 				PROVISIONING_PROFILE = "";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -494,10 +510,12 @@
 				CODE_SIGN_ENTITLEMENTS = WorkoutMerge/WorkoutMerge.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WorkoutMerge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = WorkoutMerge;
 				PROVISIONING_PROFILE = "";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
