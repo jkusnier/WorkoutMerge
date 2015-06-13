@@ -41,8 +41,11 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().statusBarHidden = true
         self.useMetric = self.defaults.stringForKey("distanceUnit") == "meters"
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarHidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
