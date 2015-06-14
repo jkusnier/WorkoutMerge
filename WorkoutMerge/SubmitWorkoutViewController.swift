@@ -42,6 +42,10 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.useMetric = self.defaults.stringForKey("distanceUnit") == "meters"
+        
+        if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
+            self.resultWorkoutData.notes = syncLog.valueForKey("note") as? String
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
