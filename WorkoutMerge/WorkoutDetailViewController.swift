@@ -70,7 +70,7 @@ class WorkoutDetailViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        if self.linkedServices == nil {
+        if self.linkedServices == nil || self.linkedServices?.count < 1 {
             return 1
         }
         

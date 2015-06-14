@@ -59,6 +59,10 @@ class RunKeeperAPI {
         self.oauth2.authorize()
     }
     
+    func disconnect() {
+        self.oauth2.forgetTokens()
+    }
+    
     class func handleRedirectURL(url: NSURL) {
         sharedInstance.oauth2.handleRedirectURL(url)
     }

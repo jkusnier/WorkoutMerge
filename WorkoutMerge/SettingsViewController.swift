@@ -50,27 +50,50 @@ class SettingsViewController: UITableViewController {
         } else if indexPath.section == 0 && indexPath.row == 1 {
             println("RunKeeper")
             
-            let rk = RunKeeperAPI.sharedInstance
-            rk.authorize({wasFailure, error in
-                if !wasFailure {
-                    func linkService(linkedServices: [String], serviceName: String) {
-                        if !contains(linkedServices, serviceName) {
-                            var linkedServices = linkedServices
-                            linkedServices.append(serviceName)
-                            self.defaults.setObject(linkedServices, forKey: "linkedServices")
-                            self.defaults.synchronize()
-                        }
-                    }
+            if let linkedServices = self.linkedServices {
+                let rk = RunKeeperAPI.sharedInstance
 
-                    self.defaults.arrayForKey("linkedServices")
-                    if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
-                        linkService(linkedServices, "RunKeeper")
-                    } else {
-                        linkService([String](), "RunKeeper")
-                    }
-                    self.runKeeperStatusLabel.text = "Linked"
+                if contains(linkedServices, "RunKeeper") {
+                    let alertController = UIAlertController(title: "Alert", message: "Are you sure you want to unlink RunKeeper?", preferredStyle: .Alert)
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                        // Do nothing
+                    })
+                    
+                    alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
+                        rk.disconnect()
+                        if let i = find(linkedServices, "RunKeeper") {
+                            self.linkedServices?.removeAtIndex(i)
+                            self.defaults.setObject(self.linkedServices, forKey: "linkedServices")
+                            self.defaults.synchronize()
+                            self.runKeeperStatusLabel.text = "Connect"
+                        }
+                    })
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                } else {
+                    rk.authorize({wasFailure, error in
+                        if !wasFailure {
+                            func linkService(linkedServices: [String], serviceName: String) {
+                                if !contains(linkedServices, serviceName) {
+                                    var linkedServices = linkedServices
+                                    linkedServices.append(serviceName)
+                                    self.linkedServices = linkedServices
+                                    self.defaults.setObject(linkedServices, forKey: "linkedServices")
+                                    self.defaults.synchronize()
+                                }
+                            }
+
+                            self.defaults.arrayForKey("linkedServices")
+                            if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
+                                linkService(linkedServices, "RunKeeper")
+                            } else {
+                                linkService([String](), "RunKeeper")
+                            }
+                            self.runKeeperStatusLabel.text = "Linked"
+                        }
+                    })
                 }
-            })
+            }
         }
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
