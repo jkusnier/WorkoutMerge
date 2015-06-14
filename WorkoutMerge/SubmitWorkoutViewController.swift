@@ -182,9 +182,14 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             }
         case 6:
             cell = staticCell()
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell.selectionStyle = UITableViewCellSelectionStyle.Default
             setTitle("Notes", cell as? SubmitWorkoutTableViewCell)
-            setSubtitle("", cell as? SubmitWorkoutTableViewCell)
+            if let notes = self.resultWorkoutData.notes {
+                setSubtitle(notes, cell as? SubmitWorkoutTableViewCell)
+            } else {
+                setSubtitle("", cell as? SubmitWorkoutTableViewCell)
+            }
         default:
             cell = dynamicCell()
             cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -226,6 +231,22 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     cell.textField.becomeFirstResponder()
                 }
             }
+        case 6:
+            var alert = UIAlertController(title: "Notes", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let doneAction = UIAlertAction(title: "Done", style: .Default) { (action) in
+                let notesTextField = alert.textFields![0] as! UITextField
+                self.resultWorkoutData.notes = notesTextField.text
+                self.tableView.reloadData()
+            }
+            
+            alert.addAction(doneAction)
+            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+                textField.placeholder = "Enter notes:"
+                if let notes = self.resultWorkoutData.notes {
+                    textField.text = notes
+                }
+            })
+            self.presentViewController(alert, animated: true, completion: nil)
         default:
             break
         }
@@ -274,13 +295,17 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                             let managedContext = appDelegate.managedObjectContext!
                             
+                            let note = self.resultWorkoutData.notes
+                            
                             if let syncLog = self.syncLog(uuid) {
                                 syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                                syncLog.setValue(note, forKey: "note")
                             } else {
                                 let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
                                 let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
                                 syncLog.setValue(uuid, forKey: "uuid")
                                 syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                                syncLog.setValue(note, forKey: "note")
                             }
                             
                             var error: NSError?
