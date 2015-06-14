@@ -294,7 +294,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 runKeeper.postActivity(self.resultWorkoutData, failure: { error in
                     vcu.hideActivityIndicator(self.view)
                     },
-                    success: {
+                    success: { (savedKey) in
                         if let uuid = self.resultWorkoutData.UUID?.UUIDString {
                             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                             let managedContext = appDelegate.managedObjectContext!
@@ -304,12 +304,14 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                             if let syncLog = self.syncLog(uuid) {
                                 syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
                                 syncLog.setValue(note, forKey: "note")
+                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
                             } else {
                                 let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
                                 let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
                                 syncLog.setValue(uuid, forKey: "uuid")
                                 syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
                                 syncLog.setValue(note, forKey: "note")
+                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
                             }
                             
                             var error: NSError?
