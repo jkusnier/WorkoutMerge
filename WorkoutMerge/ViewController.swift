@@ -110,24 +110,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
-        return workouts.count
+        var numRows = workouts.count
+        
+        if numRows == 0 {
+            numRows = 1
+        }
+        
+        return numRows
     }
     
     func tableView(tableView:UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
-        let workout  = self.workouts[indexPath.row]
-        let startDate = workout.startDate.shortDateString()
-        
-        cell.textLabel!.text = startDate
-        cell.detailTextLabel!.text = stringFromTimeInterval(workout.duration)
-        
-        return cell
+        if self.workouts.last != nil {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+            let workout  = self.workouts[indexPath.row]
+            let startDate = workout.startDate.shortDateString()
+            
+            cell.textLabel!.text = startDate
+            cell.detailTextLabel!.text = stringFromTimeInterval(workout.duration)
+            
+            return cell
+        } else {
+            return tableView.dequeueReusableCellWithIdentifier("Empty") as! UITableViewCell
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedWorkout = self.workouts[indexPath.row]
-        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.performSegueWithIdentifier("workoutDetail", sender: self)
+        if self.workouts.last != nil {
+            self.selectedWorkout = self.workouts[indexPath.row]
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            self.performSegueWithIdentifier("workoutDetail", sender: self)
+        }
     }
     
     func stringFromTimeInterval(interval:NSTimeInterval) -> String {
