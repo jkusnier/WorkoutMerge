@@ -49,6 +49,10 @@ class SettingsViewController: UITableViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         } else if indexPath.section == 0 && indexPath.row == 1 {
             println("RunKeeper")
+
+            if self.linkedServices == nil {
+                self.linkedServices = [String]()
+            }
             
             if let linkedServices = self.linkedServices {
                 let rk = RunKeeperAPI.sharedInstance
