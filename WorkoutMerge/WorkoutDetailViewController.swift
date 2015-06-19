@@ -70,9 +70,9 @@ class WorkoutDetailViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        if self.linkedServices == nil || self.linkedServices?.count < 1 {
-            return 1
-        }
+//        if self.linkedServices == nil || self.linkedServices?.count < 1 {
+//            return 1
+//        }
         
         return 2
     }
@@ -84,7 +84,10 @@ class WorkoutDetailViewController: UITableViewController {
         case 0:
             return 7
         case 1:
-            return self.linkedServices!.count
+            if let linkedServices = self.linkedServices where linkedServices.count > 0 {
+                return linkedServices.count
+            }
+            return 1
         default:
             return 0
         }
@@ -148,15 +151,19 @@ class WorkoutDetailViewController: UITableViewController {
                 }
             }
         } else if indexPath.section == 1 {
-            cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath) as! UITableViewCell
-            if let linkedService = self.linkedServices?[indexPath.row] {
-                cell.textLabel?.text = "Sync to \(linkedService)"
-                
-                if let managedObject = self.managedObject() {
-                    if managedObject.valueForKey("syncTo\(linkedService)") != nil {
-                        cell.accessoryType = .Checkmark
+            if self.linkedServices?.last != nil {
+                cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath) as! UITableViewCell
+                if let linkedService = self.linkedServices?[indexPath.row] {
+                    cell.textLabel?.text = "Sync to \(linkedService)"
+                    
+                    if let managedObject = self.managedObject() {
+                        if managedObject.valueForKey("syncTo\(linkedService)") != nil {
+                            cell.accessoryType = .Checkmark
+                        }
                     }
                 }
+            } else {
+                cell = tableView.dequeueReusableCellWithIdentifier("EmptyActionCell", forIndexPath: indexPath) as! UITableViewCell
             }
         } else {
             cell = UITableViewCell()
@@ -180,9 +187,11 @@ class WorkoutDetailViewController: UITableViewController {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
         // FIXME adjust this as more services are added
-        if indexPath.section == 1 && indexPath.row == 0 {
-            println("Sync to RunKeeper")
-            performSegueWithIdentifier("submitWorkout", sender: self)
+        if self.linkedServices?.last != nil {
+            if indexPath.section == 1 && indexPath.row == 0 {
+                println("Sync to RunKeeper")
+                performSegueWithIdentifier("submitWorkout", sender: self)
+            }
         }
     }
     
