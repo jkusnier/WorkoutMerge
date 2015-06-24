@@ -1,0 +1,6 @@
+framework module Pods_WorkoutMergeTests {
+  umbrella header "Pods-WorkoutMergeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

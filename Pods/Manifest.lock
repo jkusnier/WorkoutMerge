@@ -1,0 +1,21 @@
+PODS:
+  - p2.OAuth2 (1.2.5)
+
+DEPENDENCIES:
+  - p2.OAuth2 (from `https://github.com/p2/OAuth2.git`, branch `develop`)
+
+EXTERNAL SOURCES:
+  p2.OAuth2:
+    :branch: develop
+    :git: https://github.com/p2/OAuth2.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  p2.OAuth2:
+    :commit: a91036685874c63862859ef33c57a8134a8c2b85
+    :git: https://github.com/p2/OAuth2.git
+
+SPEC CHECKSUMS:
+  p2.OAuth2: ab76c4b51429bbf2c50a39b2a231399eae2979fb
+
+COCOAPODS: 0.37.2

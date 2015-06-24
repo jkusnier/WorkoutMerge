@@ -1,0 +1,1213 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0576BB900168772435EC985C /* OAuth2ImplicitGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA8D9C1F316FD89763CD0C /* OAuth2ImplicitGrant.swift */; };
+		07EF466A209A22699F2BDFDB /* OAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAD76694F6C12196F5287C /* OAuth2.swift */; };
+		0827EFBBAA868C76BC0CD1E2 /* OAuth2Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0FFC31A2146C7A6650EF75 /* OAuth2Base.swift */; };
+		0B048B60457F2F17BB6D6662 /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 66DCE13572B9CD97E7D6CDD1 /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0DEC0E19C57601463C3389CC /* OAuth2CodeGrantBasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA1A1E30EB40BE2EBAE35D /* OAuth2CodeGrantBasicAuth.swift */; };
+		106EA13648ADB141CA5896C4 /* OAuth2DynReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8C5DCB005D688E14EA586 /* OAuth2DynReg.swift */; };
+		136712C87B1E2B0A3240A528 /* GenericKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418227C08464BBA68547DFF8 /* GenericKey.swift */; };
+		15FE5FCCF35D79C59BDC56EC /* OAuth2Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0FFC31A2146C7A6650EF75 /* OAuth2Base.swift */; };
+		1647EFCA8A2389EB3CE1D2B1 /* Pods-p2.OAuth2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BED9CD5DD8025FACDEB65A01 /* Pods-p2.OAuth2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AD6BCA469E90BE9984B8D35 /* OAuth2CodeGrantFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D5745E445CFA5E8DEFD7C8 /* OAuth2CodeGrantFacebook.swift */; };
+		2459CF3E96DCFB3869D9EC92 /* GenericKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418227C08464BBA68547DFF8 /* GenericKey.swift */; };
+		24B76C511F54EDE9DB39961D /* ArchiveKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB619D3D6A79403CAD67224 /* ArchiveKey.swift */; };
+		29758E9E435FA5D45A83CE74 /* OAuth2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79EC52F1C285E25F632A3F /* OAuth2Request.swift */; };
+		2A4405C1F572FF044A417A29 /* OAuth2CodeGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA4CBD97A9A9FD54ED1ACB3 /* OAuth2CodeGrant.swift */; };
+		2DBC1F625724172E78BECC24 /* Pods-WorkoutMergeTests-p2.OAuth2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D0EAD1EA2E699D5DA0AF44FE /* Pods-WorkoutMergeTests-p2.OAuth2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E05D0031151036C4E331C3F /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1E79A8A76D4AB8B25E55 /* Keychain.swift */; };
+		329EE2794931728E656D6B30 /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715960D64E9EF8D2DA2A1D1 /* OAuth2WebViewController.swift */; };
+		3311371AC45C03AD1885507C /* OAuth2ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7441AEAD5F25C0626D5CBAF /* OAuth2ClientCredentials.swift */; };
+		3393C20A26F3D85A26D1FD7F /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715960D64E9EF8D2DA2A1D1 /* OAuth2WebViewController.swift */; };
+		357FF0ACDFB75FFFC97A88FE /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168474E14506550C47A4E5A9 /* KeychainService.swift */; };
+		3702BE1E3B7B5AD12AF3BFA4 /* OAuth2+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01233B1AC3FD71131853B684 /* OAuth2+iOS.swift */; };
+		384E454CC9B514987FBE42CD /* Pods-WorkoutMerge-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D1A003E66935C2CE1C9778A /* Pods-WorkoutMerge-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		39F58633E49F760BF60D7F28 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1E79A8A76D4AB8B25E55 /* Keychain.swift */; };
+		3AA23CABA8D127E01C734D57 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0557101720C742AFAA8D6F0 /* extensions.swift */; };
+		466F7EF15DA33E3E420C5D69 /* OAuth2CodeGrantBasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA1A1E30EB40BE2EBAE35D /* OAuth2CodeGrantBasicAuth.swift */; };
+		49EF0C5878900C2E7AC9BA75 /* OAuth2ImplicitGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA8D9C1F316FD89763CD0C /* OAuth2ImplicitGrant.swift */; };
+		4F6F08463F17145255F4B0ED /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7CAB0E0C97229D2F7F40E /* KeychainQuery.swift */; };
+		518D2C153FB4619237A02A47 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0278BE8EA27CE7636F339B5 /* KeychainItem.swift */; };
+		56EA42983F9A23608641F503 /* Pods-WorkoutMerge-p2.OAuth2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CEDA9707F529B4F59B2CE838 /* Pods-WorkoutMerge-p2.OAuth2-dummy.m */; };
+		5EDF73F6427E1E3CF0316DF2 /* OAuth2Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0FFC31A2146C7A6650EF75 /* OAuth2Base.swift */; };
+		639B6184008B9543F7B746C9 /* OAuth2DynReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8C5DCB005D688E14EA586 /* OAuth2DynReg.swift */; };
+		66E2E30FC640CC8B9C820F00 /* Pods-WorkoutMerge-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7A2881E5D34820C1CBC57A /* Pods-WorkoutMerge-dummy.m */; };
+		6B67349455FA513AB7220AB6 /* OAuth2CodeGrantBasicAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59EA1A1E30EB40BE2EBAE35D /* OAuth2CodeGrantBasicAuth.swift */; };
+		6C44E0FED11688BF49A062FE /* OAuth2WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8715960D64E9EF8D2DA2A1D1 /* OAuth2WebViewController.swift */; };
+		6D526CB1C3382ED61C9C75C5 /* OAuth2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79EC52F1C285E25F632A3F /* OAuth2Request.swift */; };
+		6D9ADC6A67FCFC259ECAD035 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA5B403CE6E336CA0293D91 /* Foundation.framework */; };
+		6E26000E34C4CF02784E9655 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168474E14506550C47A4E5A9 /* KeychainService.swift */; };
+		711B2C834E738353BE60EADE /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1E79A8A76D4AB8B25E55 /* Keychain.swift */; };
+		711E1A7171D5600B9E91331A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA5B403CE6E336CA0293D91 /* Foundation.framework */; };
+		75E8832E552DF9E7BEB54AF3 /* Pods-WorkoutMergeTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C1701D3001608A867694ABED /* Pods-WorkoutMergeTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		78343B537BA2AAD44C6D6140 /* OAuth2ImplicitGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA8D9C1F316FD89763CD0C /* OAuth2ImplicitGrant.swift */; };
+		7C9BB197FFEB5F13443371E7 /* OAuth2ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7441AEAD5F25C0626D5CBAF /* OAuth2ClientCredentials.swift */; };
+		7D2402CE6E3602491E2A917B /* GenericKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418227C08464BBA68547DFF8 /* GenericKey.swift */; };
+		7DBA89B63C699B3E99D581D8 /* OAuth2CodeGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA4CBD97A9A9FD54ED1ACB3 /* OAuth2CodeGrant.swift */; };
+		8E4D9E4DF5970E7B3F05DF59 /* OAuth2+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01233B1AC3FD71131853B684 /* OAuth2+iOS.swift */; };
+		90EA34977B9074FE881097CD /* Pods-WorkoutMergeTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 557DFADE39ED0FB3C2B48F94 /* Pods-WorkoutMergeTests-dummy.m */; };
+		97368C07519D68F976FBE217 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0278BE8EA27CE7636F339B5 /* KeychainItem.swift */; };
+		9AFAACA47EFB2035BE507C21 /* OAuth2+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01233B1AC3FD71131853B684 /* OAuth2+iOS.swift */; };
+		9D18F157864A8913A0B13087 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA5B403CE6E336CA0293D91 /* Foundation.framework */; };
+		A088D48B4CAE371BB4C4EC08 /* OAuth2Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79EC52F1C285E25F632A3F /* OAuth2Request.swift */; };
+		A3F92763F4EE84D5D1E55E31 /* OAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAD76694F6C12196F5287C /* OAuth2.swift */; };
+		A64326EC971A9EB152518AD1 /* Pods-WorkoutMergeTests-p2.OAuth2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DDA67EB5D1F880A1103915 /* Pods-WorkoutMergeTests-p2.OAuth2-dummy.m */; };
+		A7F8D7354C2F894B5790B294 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0557101720C742AFAA8D6F0 /* extensions.swift */; };
+		AA794229AFC19522E73058A5 /* ArchiveKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB619D3D6A79403CAD67224 /* ArchiveKey.swift */; };
+		B84AC31B062C7E8D6052EF27 /* Pods-p2.OAuth2-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C4D9F39C970679FFDBE083 /* Pods-p2.OAuth2-dummy.m */; };
+		C20CF25AB8E3DE62E6DAA98C /* OAuth2DynReg.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC8C5DCB005D688E14EA586 /* OAuth2DynReg.swift */; };
+		C64C25A875E104A995062F09 /* OAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAD76694F6C12196F5287C /* OAuth2.swift */; };
+		C78DA3F0ABEDEB686BB9988E /* OAuth2ClientCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7441AEAD5F25C0626D5CBAF /* OAuth2ClientCredentials.swift */; };
+		CC324C85B407CCE7113D8CA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA5B403CE6E336CA0293D91 /* Foundation.framework */; };
+		CC3CD68A1F9DD6F7292352D6 /* OAuth2CodeGrantFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D5745E445CFA5E8DEFD7C8 /* OAuth2CodeGrantFacebook.swift */; };
+		D1017866E45925DCDE3B5F5C /* ArchiveKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB619D3D6A79403CAD67224 /* ArchiveKey.swift */; };
+		D25C8772A3A254398BA77744 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168474E14506550C47A4E5A9 /* KeychainService.swift */; };
+		D3905C32DAD0B5B8F9B99025 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA5B403CE6E336CA0293D91 /* Foundation.framework */; };
+		D498266D5D8056345F6601AF /* Pods-WorkoutMerge-p2.OAuth2-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AAEB3B363022A2BE660E10E /* Pods-WorkoutMerge-p2.OAuth2-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DAA8FE8CEC57E53B37561304 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA5B403CE6E336CA0293D91 /* Foundation.framework */; };
+		DF386073F1D9ADD30C9807BC /* OAuth2CodeGrantFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D5745E445CFA5E8DEFD7C8 /* OAuth2CodeGrantFacebook.swift */; };
+		E3A775695A27CCF8CD94D623 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 085B533627302BB4CB9CADB7 /* Pods-dummy.m */; };
+		EC5018207968FB6852FCBFF3 /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7CAB0E0C97229D2F7F40E /* KeychainQuery.swift */; };
+		EE99479336C935588D0F37DB /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0278BE8EA27CE7636F339B5 /* KeychainItem.swift */; };
+		F617C2B483514A71A605F781 /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7CAB0E0C97229D2F7F40E /* KeychainQuery.swift */; };
+		FAB7EC2FAFCB96C54729AE51 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0557101720C742AFAA8D6F0 /* extensions.swift */; };
+		FE1C61F9B4C3CAB23D5D0946 /* OAuth2CodeGrant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA4CBD97A9A9FD54ED1ACB3 /* OAuth2CodeGrant.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6EA372F2F02218BB9990645E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23575FF4829EFEE3C3D91FF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 639C6D9D39EB0F14582DE441;
+			remoteInfo = "Pods-WorkoutMerge-p2.OAuth2";
+		};
+		8E9056EE46E30421A6B96B6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23575FF4829EFEE3C3D91FF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4E23DFF1C735B3A6D38226B3;
+			remoteInfo = "Pods-WorkoutMergeTests-p2.OAuth2";
+		};
+		EE545BB4B743379A4EFEDA9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23575FF4829EFEE3C3D91FF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6A0E89AA04C3F86EC0F1AB8;
+			remoteInfo = "Pods-p2.OAuth2";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01233B1AC3FD71131853B684 /* OAuth2+iOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OAuth2+iOS.swift"; path = "OAuth2+iOS/OAuth2+iOS.swift"; sourceTree = "<group>"; };
+		03228123D295BA9C11797B59 /* Pods-WorkoutMergeTests-p2.OAuth2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-WorkoutMergeTests-p2.OAuth2-prefix.pch"; path = "../Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2-prefix.pch"; sourceTree = "<group>"; };
+		04DDA67EB5D1F880A1103915 /* Pods-WorkoutMergeTests-p2.OAuth2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-WorkoutMergeTests-p2.OAuth2-dummy.m"; path = "../Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2-dummy.m"; sourceTree = "<group>"; };
+		05C4D9F39C970679FFDBE083 /* Pods-p2.OAuth2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-p2.OAuth2-dummy.m"; path = "../Pods-p2.OAuth2/Pods-p2.OAuth2-dummy.m"; sourceTree = "<group>"; };
+		085B533627302BB4CB9CADB7 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		0E4D134F1F4C8C3C6E960E5B /* Pods_WorkoutMerge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutMerge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13D5745E445CFA5E8DEFD7C8 /* OAuth2CodeGrantFacebook.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrantFacebook.swift; path = OAuth2/OAuth2CodeGrantFacebook.swift; sourceTree = "<group>"; };
+		14B1CD3A97018B77EDD94927 /* Pods-WorkoutMerge-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WorkoutMerge-resources.sh"; sourceTree = "<group>"; };
+		168474E14506550C47A4E5A9 /* KeychainService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = SwiftKeychain/SwiftKeychain/Keychain/KeychainService.swift; sourceTree = "<group>"; };
+		1D19D5127B6559F7B67F5376 /* Pods-WorkoutMerge-p2.OAuth2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WorkoutMerge-p2.OAuth2-prefix.pch"; sourceTree = "<group>"; };
+		2656E21BDBCA63509BE2223F /* Pods-p2.OAuth2-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-p2.OAuth2-prefix.pch"; path = "../Pods-p2.OAuth2/Pods-p2.OAuth2-prefix.pch"; sourceTree = "<group>"; };
+		2AD0E15D57C04186266C06F0 /* Pods-WorkoutMergeTests-p2.OAuth2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutMergeTests-p2.OAuth2.xcconfig"; path = "../Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2.xcconfig"; sourceTree = "<group>"; };
+		2B5C8DB25F19EFA28DE890CE /* Pods-WorkoutMergeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WorkoutMergeTests.release.xcconfig"; sourceTree = "<group>"; };
+		2CA5B403CE6E336CA0293D91 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		2DAA8D9C1F316FD89763CD0C /* OAuth2ImplicitGrant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2ImplicitGrant.swift; path = OAuth2/OAuth2ImplicitGrant.swift; sourceTree = "<group>"; };
+		32DB62A114BA0F5E143ECD5D /* Pods_WorkoutMergeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkoutMergeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37C18483A838DDBB9ACFF3A3 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3AAEB3B363022A2BE660E10E /* Pods-WorkoutMerge-p2.OAuth2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WorkoutMerge-p2.OAuth2-umbrella.h"; sourceTree = "<group>"; };
+		3C10FE2258B057C5704ACE36 /* Pods-WorkoutMergeTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WorkoutMergeTests-frameworks.sh"; sourceTree = "<group>"; };
+		418227C08464BBA68547DFF8 /* GenericKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericKey.swift; path = SwiftKeychain/SwiftKeychain/Keychain/GenericKey.swift; sourceTree = "<group>"; };
+		426A30B70E901A056E872999 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		433865260A007559EE25E1E2 /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		4FA7CAB0E0C97229D2F7F40E /* KeychainQuery.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainQuery.swift; path = SwiftKeychain/SwiftKeychain/Keychain/KeychainQuery.swift; sourceTree = "<group>"; };
+		55102CF8DCC2635B99850F21 /* Pods-WorkoutMerge-p2.OAuth2-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WorkoutMerge-p2.OAuth2-Private.xcconfig"; sourceTree = "<group>"; };
+		557DFADE39ED0FB3C2B48F94 /* Pods-WorkoutMergeTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WorkoutMergeTests-dummy.m"; sourceTree = "<group>"; };
+		59EA1A1E30EB40BE2EBAE35D /* OAuth2CodeGrantBasicAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrantBasicAuth.swift; path = OAuth2/OAuth2CodeGrantBasicAuth.swift; sourceTree = "<group>"; };
+		5ADB9C938F6DA952F0AFD822 /* Pods-WorkoutMerge-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WorkoutMerge-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5DCAD76694F6C12196F5287C /* OAuth2.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2.swift; path = OAuth2/OAuth2.swift; sourceTree = "<group>"; };
+		638460726E9EE9533D72D0E9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		64413E141063446E408D170C /* Pods-WorkoutMergeTests-p2.OAuth2-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkoutMergeTests-p2.OAuth2-Private.xcconfig"; path = "../Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2-Private.xcconfig"; sourceTree = "<group>"; };
+		664300FD6CA4D637C18D7E72 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		66DCE13572B9CD97E7D6CDD1 /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
+		6A0FFC31A2146C7A6650EF75 /* OAuth2Base.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Base.swift; path = OAuth2/OAuth2Base.swift; sourceTree = "<group>"; };
+		6C2F1E79A8A76D4AB8B25E55 /* Keychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = SwiftKeychain/SwiftKeychain/Keychain/Keychain.swift; sourceTree = "<group>"; };
+		721DACBA81897241077695CB /* Pods-WorkoutMergeTests-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WorkoutMergeTests-environment.h"; sourceTree = "<group>"; };
+		7BA4CBD97A9A9FD54ED1ACB3 /* OAuth2CodeGrant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2CodeGrant.swift; path = OAuth2/OAuth2CodeGrant.swift; sourceTree = "<group>"; };
+		7BB619D3D6A79403CAD67224 /* ArchiveKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ArchiveKey.swift; path = SwiftKeychain/SwiftKeychain/Keychain/ArchiveKey.swift; sourceTree = "<group>"; };
+		7C178C3138ACBD3C121E7608 /* Pods-WorkoutMergeTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WorkoutMergeTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		7D1A003E66935C2CE1C9778A /* Pods-WorkoutMerge-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WorkoutMerge-umbrella.h"; sourceTree = "<group>"; };
+		82532C4F4524B83CE180F57C /* Pods-WorkoutMerge-p2.OAuth2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WorkoutMerge-p2.OAuth2.xcconfig"; sourceTree = "<group>"; };
+		8518D8E64442CBDBEE66FEB3 /* Pods-WorkoutMergeTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WorkoutMergeTests-resources.sh"; sourceTree = "<group>"; };
+		8715960D64E9EF8D2DA2A1D1 /* OAuth2WebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2WebViewController.swift; path = "OAuth2+iOS/OAuth2WebViewController.swift"; sourceTree = "<group>"; };
+		8CFB4FC749B74912FF37A324 /* Pods-WorkoutMerge-p2.OAuth2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-WorkoutMerge-p2.OAuth2.modulemap"; sourceTree = "<group>"; };
+		8D717A222899D5BA906EB515 /* Pods-WorkoutMergeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WorkoutMergeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8DA4273A0068389FAEF9EEB8 /* Pods-WorkoutMergeTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-WorkoutMergeTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8E4DCBFF54489E7864981F42 /* Pods-WorkoutMerge-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-WorkoutMerge-frameworks.sh"; sourceTree = "<group>"; };
+		8FB13B69A0F96867294D3652 /* Pods-WorkoutMerge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WorkoutMerge.debug.xcconfig"; sourceTree = "<group>"; };
+		901375431B5FAA0C0E9FB8C5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-WorkoutMergeTests-p2.OAuth2/Info.plist"; sourceTree = "<group>"; };
+		93FE6BD4FA5D6B8A7210430C /* p2_OAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = p2_OAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		96E10A6390A9C4525168A96F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E4EE6869957FD0A26F187E2 /* Pods-WorkoutMerge-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WorkoutMerge-environment.h"; sourceTree = "<group>"; };
+		A0D50D59541F1F0D79F97F7A /* Pods-WorkoutMergeTests-p2.OAuth2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-WorkoutMergeTests-p2.OAuth2.modulemap"; path = "../Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2.modulemap"; sourceTree = "<group>"; };
+		A2688E9F6A25C7926AF896C4 /* Pods-p2.OAuth2.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-p2.OAuth2.xcconfig"; path = "../Pods-p2.OAuth2/Pods-p2.OAuth2.xcconfig"; sourceTree = "<group>"; };
+		A404398308378C69AA834770 /* p2_OAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = p2_OAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD372CCB47FBC0934864F12D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		ADC8C5DCB005D688E14EA586 /* OAuth2DynReg.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2DynReg.swift; path = OAuth2/OAuth2DynReg.swift; sourceTree = "<group>"; };
+		B0278BE8EA27CE7636F339B5 /* KeychainItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainItem.swift; path = SwiftKeychain/SwiftKeychain/Keychain/KeychainItem.swift; sourceTree = "<group>"; };
+		BED9CD5DD8025FACDEB65A01 /* Pods-p2.OAuth2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-p2.OAuth2-umbrella.h"; path = "../Pods-p2.OAuth2/Pods-p2.OAuth2-umbrella.h"; sourceTree = "<group>"; };
+		C1701D3001608A867694ABED /* Pods-WorkoutMergeTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-WorkoutMergeTests-umbrella.h"; sourceTree = "<group>"; };
+		C2506729098E847A756CEB60 /* p2_OAuth2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = p2_OAuth2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4377CA533BB08EE92D9C59A /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C980C5315605D7061816BE03 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAA288F3BE7600186FA7C54E /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB7A2881E5D34820C1CBC57A /* Pods-WorkoutMerge-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WorkoutMerge-dummy.m"; sourceTree = "<group>"; };
+		CEDA9707F529B4F59B2CE838 /* Pods-WorkoutMerge-p2.OAuth2-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-WorkoutMerge-p2.OAuth2-dummy.m"; sourceTree = "<group>"; };
+		D092CD7B5208FBD7FAB8258E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0EAD1EA2E699D5DA0AF44FE /* Pods-WorkoutMergeTests-p2.OAuth2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-WorkoutMergeTests-p2.OAuth2-umbrella.h"; path = "../Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2-umbrella.h"; sourceTree = "<group>"; };
+		DF6382A760CFD7826735D843 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		DFF8A57443FDB6A5834585A6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-p2.OAuth2/Info.plist"; sourceTree = "<group>"; };
+		E1B39B0D9D1818CC9D32FF4A /* Pods-WorkoutMergeTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-WorkoutMergeTests.modulemap"; sourceTree = "<group>"; };
+		E24A02CEAA5888C04EDACE1B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E57B6025EA7046671460B3F5 /* Pods-WorkoutMerge-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-WorkoutMerge-acknowledgements.plist"; sourceTree = "<group>"; };
+		E7441AEAD5F25C0626D5CBAF /* OAuth2ClientCredentials.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2ClientCredentials.swift; path = OAuth2/OAuth2ClientCredentials.swift; sourceTree = "<group>"; };
+		EAEF71B8C26455CA70890DA2 /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
+		EDC8ABCAA6239C5474BEE109 /* Pods-WorkoutMerge.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-WorkoutMerge.modulemap"; sourceTree = "<group>"; };
+		F0557101720C742AFAA8D6F0 /* extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = extensions.swift; path = OAuth2/extensions.swift; sourceTree = "<group>"; };
+		F9BAD2096C41F5DD8EA13835 /* Pods-WorkoutMerge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-WorkoutMerge.release.xcconfig"; sourceTree = "<group>"; };
+		FABB0D0CA1EA9CB3C5510563 /* Pods-p2.OAuth2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-p2.OAuth2.modulemap"; path = "../Pods-p2.OAuth2/Pods-p2.OAuth2.modulemap"; sourceTree = "<group>"; };
+		FC79EC52F1C285E25F632A3F /* OAuth2Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuth2Request.swift; path = OAuth2/OAuth2Request.swift; sourceTree = "<group>"; };
+		FDD4851C3DC60313A28D2ADD /* Pods-p2.OAuth2-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-p2.OAuth2-Private.xcconfig"; path = "../Pods-p2.OAuth2/Pods-p2.OAuth2-Private.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		026600AAD7F9AC0ABA35079D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D18F157864A8913A0B13087 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9652BE06991D7537A61B08EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3905C32DAD0B5B8F9B99025 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B405359419274576A9D0489E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC324C85B407CCE7113D8CA2 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9C4D1261C7F22045C3361C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D9ADC6A67FCFC259ECAD035 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4CA2DF179F8608A92C79359 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				711E1A7171D5600B9E91331A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5DE74F4E2FE3F5D8C8B24BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAA8FE8CEC57E53B37561304 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2803DC49FE32FA23D9593D5B /* Pods-WorkoutMerge */ = {
+			isa = PBXGroup;
+			children = (
+				C980C5315605D7061816BE03 /* Info.plist */,
+				EDC8ABCAA6239C5474BEE109 /* Pods-WorkoutMerge.modulemap */,
+				5ADB9C938F6DA952F0AFD822 /* Pods-WorkoutMerge-acknowledgements.markdown */,
+				E57B6025EA7046671460B3F5 /* Pods-WorkoutMerge-acknowledgements.plist */,
+				CB7A2881E5D34820C1CBC57A /* Pods-WorkoutMerge-dummy.m */,
+				9E4EE6869957FD0A26F187E2 /* Pods-WorkoutMerge-environment.h */,
+				8E4DCBFF54489E7864981F42 /* Pods-WorkoutMerge-frameworks.sh */,
+				14B1CD3A97018B77EDD94927 /* Pods-WorkoutMerge-resources.sh */,
+				7D1A003E66935C2CE1C9778A /* Pods-WorkoutMerge-umbrella.h */,
+				8FB13B69A0F96867294D3652 /* Pods-WorkoutMerge.debug.xcconfig */,
+				F9BAD2096C41F5DD8EA13835 /* Pods-WorkoutMerge.release.xcconfig */,
+			);
+			name = "Pods-WorkoutMerge";
+			path = "Target Support Files/Pods-WorkoutMerge";
+			sourceTree = "<group>";
+		};
+		28E247A92C8982CCC5105CEE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2CA5B403CE6E336CA0293D91 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		37AB562149A62B9F5586A6BB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				901375431B5FAA0C0E9FB8C5 /* Info.plist */,
+				DFF8A57443FDB6A5834585A6 /* Info.plist */,
+				E24A02CEAA5888C04EDACE1B /* Info.plist */,
+				8CFB4FC749B74912FF37A324 /* Pods-WorkoutMerge-p2.OAuth2.modulemap */,
+				82532C4F4524B83CE180F57C /* Pods-WorkoutMerge-p2.OAuth2.xcconfig */,
+				55102CF8DCC2635B99850F21 /* Pods-WorkoutMerge-p2.OAuth2-Private.xcconfig */,
+				CEDA9707F529B4F59B2CE838 /* Pods-WorkoutMerge-p2.OAuth2-dummy.m */,
+				1D19D5127B6559F7B67F5376 /* Pods-WorkoutMerge-p2.OAuth2-prefix.pch */,
+				3AAEB3B363022A2BE660E10E /* Pods-WorkoutMerge-p2.OAuth2-umbrella.h */,
+				A0D50D59541F1F0D79F97F7A /* Pods-WorkoutMergeTests-p2.OAuth2.modulemap */,
+				2AD0E15D57C04186266C06F0 /* Pods-WorkoutMergeTests-p2.OAuth2.xcconfig */,
+				64413E141063446E408D170C /* Pods-WorkoutMergeTests-p2.OAuth2-Private.xcconfig */,
+				04DDA67EB5D1F880A1103915 /* Pods-WorkoutMergeTests-p2.OAuth2-dummy.m */,
+				03228123D295BA9C11797B59 /* Pods-WorkoutMergeTests-p2.OAuth2-prefix.pch */,
+				D0EAD1EA2E699D5DA0AF44FE /* Pods-WorkoutMergeTests-p2.OAuth2-umbrella.h */,
+				FABB0D0CA1EA9CB3C5510563 /* Pods-p2.OAuth2.modulemap */,
+				A2688E9F6A25C7926AF896C4 /* Pods-p2.OAuth2.xcconfig */,
+				FDD4851C3DC60313A28D2ADD /* Pods-p2.OAuth2-Private.xcconfig */,
+				05C4D9F39C970679FFDBE083 /* Pods-p2.OAuth2-dummy.m */,
+				2656E21BDBCA63509BE2223F /* Pods-p2.OAuth2-prefix.pch */,
+				BED9CD5DD8025FACDEB65A01 /* Pods-p2.OAuth2-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-WorkoutMerge-p2.OAuth2";
+			sourceTree = "<group>";
+		};
+		3983E5C5DC8322A370D285C2 /* Pods-WorkoutMergeTests */ = {
+			isa = PBXGroup;
+			children = (
+				D092CD7B5208FBD7FAB8258E /* Info.plist */,
+				E1B39B0D9D1818CC9D32FF4A /* Pods-WorkoutMergeTests.modulemap */,
+				8DA4273A0068389FAEF9EEB8 /* Pods-WorkoutMergeTests-acknowledgements.markdown */,
+				7C178C3138ACBD3C121E7608 /* Pods-WorkoutMergeTests-acknowledgements.plist */,
+				557DFADE39ED0FB3C2B48F94 /* Pods-WorkoutMergeTests-dummy.m */,
+				721DACBA81897241077695CB /* Pods-WorkoutMergeTests-environment.h */,
+				3C10FE2258B057C5704ACE36 /* Pods-WorkoutMergeTests-frameworks.sh */,
+				8518D8E64442CBDBEE66FEB3 /* Pods-WorkoutMergeTests-resources.sh */,
+				C1701D3001608A867694ABED /* Pods-WorkoutMergeTests-umbrella.h */,
+				8D717A222899D5BA906EB515 /* Pods-WorkoutMergeTests.debug.xcconfig */,
+				2B5C8DB25F19EFA28DE890CE /* Pods-WorkoutMergeTests.release.xcconfig */,
+			);
+			name = "Pods-WorkoutMergeTests";
+			path = "Target Support Files/Pods-WorkoutMergeTests";
+			sourceTree = "<group>";
+		};
+		549C00770FF8A245F6197DC6 /* p2.OAuth2 */ = {
+			isa = PBXGroup;
+			children = (
+				7BB619D3D6A79403CAD67224 /* ArchiveKey.swift */,
+				418227C08464BBA68547DFF8 /* GenericKey.swift */,
+				6C2F1E79A8A76D4AB8B25E55 /* Keychain.swift */,
+				B0278BE8EA27CE7636F339B5 /* KeychainItem.swift */,
+				4FA7CAB0E0C97229D2F7F40E /* KeychainQuery.swift */,
+				168474E14506550C47A4E5A9 /* KeychainService.swift */,
+				5DCAD76694F6C12196F5287C /* OAuth2.swift */,
+				01233B1AC3FD71131853B684 /* OAuth2+iOS.swift */,
+				6A0FFC31A2146C7A6650EF75 /* OAuth2Base.swift */,
+				E7441AEAD5F25C0626D5CBAF /* OAuth2ClientCredentials.swift */,
+				7BA4CBD97A9A9FD54ED1ACB3 /* OAuth2CodeGrant.swift */,
+				59EA1A1E30EB40BE2EBAE35D /* OAuth2CodeGrantBasicAuth.swift */,
+				13D5745E445CFA5E8DEFD7C8 /* OAuth2CodeGrantFacebook.swift */,
+				ADC8C5DCB005D688E14EA586 /* OAuth2DynReg.swift */,
+				2DAA8D9C1F316FD89763CD0C /* OAuth2ImplicitGrant.swift */,
+				FC79EC52F1C285E25F632A3F /* OAuth2Request.swift */,
+				8715960D64E9EF8D2DA2A1D1 /* OAuth2WebViewController.swift */,
+				F0557101720C742AFAA8D6F0 /* extensions.swift */,
+				37AB562149A62B9F5586A6BB /* Support Files */,
+			);
+			path = p2.OAuth2;
+			sourceTree = "<group>";
+		};
+		73851918A78EC1C8C7837B30 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				89FAFB0850AE933D249A7F1C /* Pods */,
+				2803DC49FE32FA23D9593D5B /* Pods-WorkoutMerge */,
+				3983E5C5DC8322A370D285C2 /* Pods-WorkoutMergeTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		75590DBAA736239D49B7B0EC = {
+			isa = PBXGroup;
+			children = (
+				37C18483A838DDBB9ACFF3A3 /* Podfile */,
+				C3677D4C70D33AEB307D69E0 /* Frameworks */,
+				A5DD710F8DC104693AC686F1 /* Pods */,
+				8935FAF0DDBA58D3FAF883E6 /* Products */,
+				73851918A78EC1C8C7837B30 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8935FAF0DDBA58D3FAF883E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CAA288F3BE7600186FA7C54E /* Pods.framework */,
+				0E4D134F1F4C8C3C6E960E5B /* Pods_WorkoutMerge.framework */,
+				32DB62A114BA0F5E143ECD5D /* Pods_WorkoutMergeTests.framework */,
+				93FE6BD4FA5D6B8A7210430C /* p2_OAuth2.framework */,
+				A404398308378C69AA834770 /* p2_OAuth2.framework */,
+				C2506729098E847A756CEB60 /* p2_OAuth2.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		89FAFB0850AE933D249A7F1C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96E10A6390A9C4525168A96F /* Info.plist */,
+				433865260A007559EE25E1E2 /* Pods.modulemap */,
+				C4377CA533BB08EE92D9C59A /* Pods-acknowledgements.markdown */,
+				664300FD6CA4D637C18D7E72 /* Pods-acknowledgements.plist */,
+				085B533627302BB4CB9CADB7 /* Pods-dummy.m */,
+				EAEF71B8C26455CA70890DA2 /* Pods-environment.h */,
+				426A30B70E901A056E872999 /* Pods-frameworks.sh */,
+				DF6382A760CFD7826735D843 /* Pods-resources.sh */,
+				66DCE13572B9CD97E7D6CDD1 /* Pods-umbrella.h */,
+				AD372CCB47FBC0934864F12D /* Pods.debug.xcconfig */,
+				638460726E9EE9533D72D0E9 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			path = "Target Support Files/Pods";
+			sourceTree = "<group>";
+		};
+		A5DD710F8DC104693AC686F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				549C00770FF8A245F6197DC6 /* p2.OAuth2 */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C3677D4C70D33AEB307D69E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28E247A92C8982CCC5105CEE /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		384C275112893731EA56A54B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384E454CC9B514987FBE42CD /* Pods-WorkoutMerge-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		725391B8724E12408984840A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DBC1F625724172E78BECC24 /* Pods-WorkoutMergeTests-p2.OAuth2-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82A8E6D9528D0EC40DA06C56 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B048B60457F2F17BB6D6662 /* Pods-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837C90F931BDCAB888B6BAC6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75E8832E552DF9E7BEB54AF3 /* Pods-WorkoutMergeTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		874123A2C7801EE338589BE8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1647EFCA8A2389EB3CE1D2B1 /* Pods-p2.OAuth2-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A64EC41B7EC7D860A2FC279A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D498266D5D8056345F6601AF /* Pods-WorkoutMerge-p2.OAuth2-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4E23DFF1C735B3A6D38226B3 /* Pods-WorkoutMergeTests-p2.OAuth2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2F8B079F28B0BF765AA4D19 /* Build configuration list for PBXNativeTarget "Pods-WorkoutMergeTests-p2.OAuth2" */;
+			buildPhases = (
+				363AEE946F8998B656F55BE8 /* Sources */,
+				026600AAD7F9AC0ABA35079D /* Frameworks */,
+				725391B8724E12408984840A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-WorkoutMergeTests-p2.OAuth2";
+			productName = "Pods-WorkoutMergeTests-p2.OAuth2";
+			productReference = A404398308378C69AA834770 /* p2_OAuth2.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		639C6D9D39EB0F14582DE441 /* Pods-WorkoutMerge-p2.OAuth2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E40A9A397C63FC8645DEB6CA /* Build configuration list for PBXNativeTarget "Pods-WorkoutMerge-p2.OAuth2" */;
+			buildPhases = (
+				646284F76CEA152D611A1D09 /* Sources */,
+				B405359419274576A9D0489E /* Frameworks */,
+				A64EC41B7EC7D860A2FC279A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-WorkoutMerge-p2.OAuth2";
+			productName = "Pods-WorkoutMerge-p2.OAuth2";
+			productReference = C2506729098E847A756CEB60 /* p2_OAuth2.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		ADB635719A788EE9322489EA /* Pods-WorkoutMergeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17C36E015BE594D046BB3E46 /* Build configuration list for PBXNativeTarget "Pods-WorkoutMergeTests" */;
+			buildPhases = (
+				23FDF1CF99CBF2631CB80068 /* Sources */,
+				9652BE06991D7537A61B08EC /* Frameworks */,
+				837C90F931BDCAB888B6BAC6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3018DDDDF23CF5E6C229F269 /* PBXTargetDependency */,
+			);
+			name = "Pods-WorkoutMergeTests";
+			productName = "Pods-WorkoutMergeTests";
+			productReference = 32DB62A114BA0F5E143ECD5D /* Pods_WorkoutMergeTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C6A0E89AA04C3F86EC0F1AB8 /* Pods-p2.OAuth2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E858DD624BCF191C67D0AC98 /* Build configuration list for PBXNativeTarget "Pods-p2.OAuth2" */;
+			buildPhases = (
+				0D7003CF1615B7926F4C4DF3 /* Sources */,
+				F5DE74F4E2FE3F5D8C8B24BC /* Frameworks */,
+				874123A2C7801EE338589BE8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-p2.OAuth2";
+			productName = "Pods-p2.OAuth2";
+			productReference = 93FE6BD4FA5D6B8A7210430C /* p2_OAuth2.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D1DBC23238FB09D6BD63BF13 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0961E9AECBC5FB1C349C9895 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				A757F9C787A79A242BDFA725 /* Sources */,
+				B9C4D1261C7F22045C3361C9 /* Frameworks */,
+				82A8E6D9528D0EC40DA06C56 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9593B96FA9A00CF14BDB1A9E /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = CAA288F3BE7600186FA7C54E /* Pods.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E524C7D7872CBF479F76C718 /* Pods-WorkoutMerge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6C6C6A4C0F463E04FFFCC57 /* Build configuration list for PBXNativeTarget "Pods-WorkoutMerge" */;
+			buildPhases = (
+				8D16F2492CE087699C0F6D76 /* Sources */,
+				D4CA2DF179F8608A92C79359 /* Frameworks */,
+				384C275112893731EA56A54B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E3B2BC57104730016DBE614B /* PBXTargetDependency */,
+			);
+			name = "Pods-WorkoutMerge";
+			productName = "Pods-WorkoutMerge";
+			productReference = 0E4D134F1F4C8C3C6E960E5B /* Pods_WorkoutMerge.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		23575FF4829EFEE3C3D91FF9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+			};
+			buildConfigurationList = C98DA01AA6831F934B4A9BA9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 75590DBAA736239D49B7B0EC;
+			productRefGroup = 8935FAF0DDBA58D3FAF883E6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D1DBC23238FB09D6BD63BF13 /* Pods */,
+				E524C7D7872CBF479F76C718 /* Pods-WorkoutMerge */,
+				639C6D9D39EB0F14582DE441 /* Pods-WorkoutMerge-p2.OAuth2 */,
+				ADB635719A788EE9322489EA /* Pods-WorkoutMergeTests */,
+				4E23DFF1C735B3A6D38226B3 /* Pods-WorkoutMergeTests-p2.OAuth2 */,
+				C6A0E89AA04C3F86EC0F1AB8 /* Pods-p2.OAuth2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D7003CF1615B7926F4C4DF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24B76C511F54EDE9DB39961D /* ArchiveKey.swift in Sources */,
+				2459CF3E96DCFB3869D9EC92 /* GenericKey.swift in Sources */,
+				711B2C834E738353BE60EADE /* Keychain.swift in Sources */,
+				518D2C153FB4619237A02A47 /* KeychainItem.swift in Sources */,
+				EC5018207968FB6852FCBFF3 /* KeychainQuery.swift in Sources */,
+				6E26000E34C4CF02784E9655 /* KeychainService.swift in Sources */,
+				9AFAACA47EFB2035BE507C21 /* OAuth2+iOS.swift in Sources */,
+				C64C25A875E104A995062F09 /* OAuth2.swift in Sources */,
+				5EDF73F6427E1E3CF0316DF2 /* OAuth2Base.swift in Sources */,
+				3311371AC45C03AD1885507C /* OAuth2ClientCredentials.swift in Sources */,
+				FE1C61F9B4C3CAB23D5D0946 /* OAuth2CodeGrant.swift in Sources */,
+				0DEC0E19C57601463C3389CC /* OAuth2CodeGrantBasicAuth.swift in Sources */,
+				CC3CD68A1F9DD6F7292352D6 /* OAuth2CodeGrantFacebook.swift in Sources */,
+				106EA13648ADB141CA5896C4 /* OAuth2DynReg.swift in Sources */,
+				49EF0C5878900C2E7AC9BA75 /* OAuth2ImplicitGrant.swift in Sources */,
+				6D526CB1C3382ED61C9C75C5 /* OAuth2Request.swift in Sources */,
+				329EE2794931728E656D6B30 /* OAuth2WebViewController.swift in Sources */,
+				B84AC31B062C7E8D6052EF27 /* Pods-p2.OAuth2-dummy.m in Sources */,
+				3AA23CABA8D127E01C734D57 /* extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23FDF1CF99CBF2631CB80068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90EA34977B9074FE881097CD /* Pods-WorkoutMergeTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		363AEE946F8998B656F55BE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1017866E45925DCDE3B5F5C /* ArchiveKey.swift in Sources */,
+				136712C87B1E2B0A3240A528 /* GenericKey.swift in Sources */,
+				39F58633E49F760BF60D7F28 /* Keychain.swift in Sources */,
+				97368C07519D68F976FBE217 /* KeychainItem.swift in Sources */,
+				F617C2B483514A71A605F781 /* KeychainQuery.swift in Sources */,
+				357FF0ACDFB75FFFC97A88FE /* KeychainService.swift in Sources */,
+				8E4D9E4DF5970E7B3F05DF59 /* OAuth2+iOS.swift in Sources */,
+				A3F92763F4EE84D5D1E55E31 /* OAuth2.swift in Sources */,
+				0827EFBBAA868C76BC0CD1E2 /* OAuth2Base.swift in Sources */,
+				C78DA3F0ABEDEB686BB9988E /* OAuth2ClientCredentials.swift in Sources */,
+				7DBA89B63C699B3E99D581D8 /* OAuth2CodeGrant.swift in Sources */,
+				6B67349455FA513AB7220AB6 /* OAuth2CodeGrantBasicAuth.swift in Sources */,
+				DF386073F1D9ADD30C9807BC /* OAuth2CodeGrantFacebook.swift in Sources */,
+				C20CF25AB8E3DE62E6DAA98C /* OAuth2DynReg.swift in Sources */,
+				0576BB900168772435EC985C /* OAuth2ImplicitGrant.swift in Sources */,
+				A088D48B4CAE371BB4C4EC08 /* OAuth2Request.swift in Sources */,
+				6C44E0FED11688BF49A062FE /* OAuth2WebViewController.swift in Sources */,
+				A64326EC971A9EB152518AD1 /* Pods-WorkoutMergeTests-p2.OAuth2-dummy.m in Sources */,
+				A7F8D7354C2F894B5790B294 /* extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		646284F76CEA152D611A1D09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA794229AFC19522E73058A5 /* ArchiveKey.swift in Sources */,
+				7D2402CE6E3602491E2A917B /* GenericKey.swift in Sources */,
+				2E05D0031151036C4E331C3F /* Keychain.swift in Sources */,
+				EE99479336C935588D0F37DB /* KeychainItem.swift in Sources */,
+				4F6F08463F17145255F4B0ED /* KeychainQuery.swift in Sources */,
+				D25C8772A3A254398BA77744 /* KeychainService.swift in Sources */,
+				3702BE1E3B7B5AD12AF3BFA4 /* OAuth2+iOS.swift in Sources */,
+				07EF466A209A22699F2BDFDB /* OAuth2.swift in Sources */,
+				15FE5FCCF35D79C59BDC56EC /* OAuth2Base.swift in Sources */,
+				7C9BB197FFEB5F13443371E7 /* OAuth2ClientCredentials.swift in Sources */,
+				2A4405C1F572FF044A417A29 /* OAuth2CodeGrant.swift in Sources */,
+				466F7EF15DA33E3E420C5D69 /* OAuth2CodeGrantBasicAuth.swift in Sources */,
+				1AD6BCA469E90BE9984B8D35 /* OAuth2CodeGrantFacebook.swift in Sources */,
+				639B6184008B9543F7B746C9 /* OAuth2DynReg.swift in Sources */,
+				78343B537BA2AAD44C6D6140 /* OAuth2ImplicitGrant.swift in Sources */,
+				29758E9E435FA5D45A83CE74 /* OAuth2Request.swift in Sources */,
+				3393C20A26F3D85A26D1FD7F /* OAuth2WebViewController.swift in Sources */,
+				56EA42983F9A23608641F503 /* Pods-WorkoutMerge-p2.OAuth2-dummy.m in Sources */,
+				FAB7EC2FAFCB96C54729AE51 /* extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D16F2492CE087699C0F6D76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66E2E30FC640CC8B9C820F00 /* Pods-WorkoutMerge-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A757F9C787A79A242BDFA725 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3A775695A27CCF8CD94D623 /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3018DDDDF23CF5E6C229F269 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-WorkoutMergeTests-p2.OAuth2";
+			target = 4E23DFF1C735B3A6D38226B3 /* Pods-WorkoutMergeTests-p2.OAuth2 */;
+			targetProxy = 8E9056EE46E30421A6B96B6A /* PBXContainerItemProxy */;
+		};
+		9593B96FA9A00CF14BDB1A9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-p2.OAuth2";
+			target = C6A0E89AA04C3F86EC0F1AB8 /* Pods-p2.OAuth2 */;
+			targetProxy = EE545BB4B743379A4EFEDA9B /* PBXContainerItemProxy */;
+		};
+		E3B2BC57104730016DBE614B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-WorkoutMerge-p2.OAuth2";
+			target = 639C6D9D39EB0F14582DE441 /* Pods-WorkoutMerge-p2.OAuth2 */;
+			targetProxy = 6EA372F2F02218BB9990645E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		01F0FDE75B60D0F20E3C4CDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64413E141063446E408D170C /* Pods-WorkoutMergeTests-p2.OAuth2-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-WorkoutMergeTests-p2.OAuth2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = p2_OAuth2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0B8CD89481EFF0AAEC7A5EB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B5C8DB25F19EFA28DE890CE /* Pods-WorkoutMergeTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WorkoutMergeTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-WorkoutMergeTests/Pods-WorkoutMergeTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_WorkoutMergeTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1D743CC0393C8B581D59C602 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1DCF1ACEEC0BADCEF8446F32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55102CF8DCC2635B99850F21 /* Pods-WorkoutMerge-p2.OAuth2-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-WorkoutMerge-p2.OAuth2/Pods-WorkoutMerge-p2.OAuth2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-WorkoutMerge-p2.OAuth2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-WorkoutMerge-p2.OAuth2/Pods-WorkoutMerge-p2.OAuth2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = p2_OAuth2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		24F0D1579220E4A563275B3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDD4851C3DC60313A28D2ADD /* Pods-p2.OAuth2-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-p2.OAuth2/Pods-p2.OAuth2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-p2.OAuth2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-p2.OAuth2/Pods-p2.OAuth2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = p2_OAuth2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2E2866932B0BC1EB154562EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55102CF8DCC2635B99850F21 /* Pods-WorkoutMerge-p2.OAuth2-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-WorkoutMerge-p2.OAuth2/Pods-WorkoutMerge-p2.OAuth2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-WorkoutMerge-p2.OAuth2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-WorkoutMerge-p2.OAuth2/Pods-WorkoutMerge-p2.OAuth2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = p2_OAuth2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3BF256335C60A2433C6C0D6C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		4E22E4B88020664F9AE6FAB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8FB13B69A0F96867294D3652 /* Pods-WorkoutMerge.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WorkoutMerge/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-WorkoutMerge/Pods-WorkoutMerge.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_WorkoutMerge;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		56D0155BEB6272248547CBB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 638460726E9EE9533D72D0E9 /* Pods.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7096C9A4BBCC61BA29AE3E01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64413E141063446E408D170C /* Pods-WorkoutMergeTests-p2.OAuth2-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-WorkoutMergeTests-p2.OAuth2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-WorkoutMergeTests-p2.OAuth2/Pods-WorkoutMergeTests-p2.OAuth2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = p2_OAuth2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		94778B70D7D1348C76E71285 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD372CCB47FBC0934864F12D /* Pods.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BAB48E1171AD5DE8CF33C1DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9BAD2096C41F5DD8EA13835 /* Pods-WorkoutMerge.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WorkoutMerge/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-WorkoutMerge/Pods-WorkoutMerge.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_WorkoutMerge;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DF904C3FAAC5D1F4131A5922 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDD4851C3DC60313A28D2ADD /* Pods-p2.OAuth2-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-p2.OAuth2/Pods-p2.OAuth2-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-p2.OAuth2/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-p2.OAuth2/Pods-p2.OAuth2.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = p2_OAuth2;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		EC1312AB3503EC9917E11A2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D717A222899D5BA906EB515 /* Pods-WorkoutMergeTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-WorkoutMergeTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-WorkoutMergeTests/Pods-WorkoutMergeTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_WorkoutMergeTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0961E9AECBC5FB1C349C9895 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94778B70D7D1348C76E71285 /* Debug */,
+				56D0155BEB6272248547CBB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17C36E015BE594D046BB3E46 /* Build configuration list for PBXNativeTarget "Pods-WorkoutMergeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC1312AB3503EC9917E11A2B /* Debug */,
+				0B8CD89481EFF0AAEC7A5EB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C98DA01AA6831F934B4A9BA9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BF256335C60A2433C6C0D6C /* Debug */,
+				1D743CC0393C8B581D59C602 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2F8B079F28B0BF765AA4D19 /* Build configuration list for PBXNativeTarget "Pods-WorkoutMergeTests-p2.OAuth2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7096C9A4BBCC61BA29AE3E01 /* Debug */,
+				01F0FDE75B60D0F20E3C4CDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E40A9A397C63FC8645DEB6CA /* Build configuration list for PBXNativeTarget "Pods-WorkoutMerge-p2.OAuth2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DCF1ACEEC0BADCEF8446F32 /* Debug */,
+				2E2866932B0BC1EB154562EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6C6C6A4C0F463E04FFFCC57 /* Build configuration list for PBXNativeTarget "Pods-WorkoutMerge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4E22E4B88020664F9AE6FAB8 /* Debug */,
+				BAB48E1171AD5DE8CF33C1DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E858DD624BCF191C67D0AC98 /* Build configuration list for PBXNativeTarget "Pods-p2.OAuth2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF904C3FAAC5D1F4131A5922 /* Debug */,
+				24F0D1579220E4A563275B3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 23575FF4829EFEE3C3D91FF9 /* Project object */;
+}
