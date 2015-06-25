@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   p2.OAuth2:
-    :commit: a91036685874c63862859ef33c57a8134a8c2b85
+    :commit: 3f8b24bfd0bf3237f0f46e12fb0980d04f08c6e5
     :git: https://github.com/p2/OAuth2.git
 
 SPEC CHECKSUMS:

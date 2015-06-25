@@ -11,6 +11,8 @@ To use on **iOS 7** you'll have to include the source files in your main project
 _Note_ that it's possible to run embedded frameworks in iOS 7 with some tricks, however you will not be able to submit such an App to the App Store.
 Supported OAuth2 [flows](#flows) are the _code grant_ (`response_type=code`) and the _implicit grant_ (`response_type=token`).
 
+#### Swift Versions
+
 Since the Swift language is constantly evolving I am [adding tags](https://github.com/p2/OAuth2/releases) that mark which revision should work with which Swift version.
 Brand new Swift releases are likely to be found on the `develop` branch.
 
@@ -190,6 +192,11 @@ Since this is **enabled by default**, if you do _not_ turn it off during initial
 If you turn it off _after_ initialization, the keychain will be queried for existing tokens, but new tokens will not be written to the keychain.
 
 If you want to delete the tokens from keychain, i.e. **log the user out** completely, call `forgetTokens()`.
+
+Ideally, access tokens get delivered with an "expires_in" parameter that tells you how long the token is valid.
+If it is missing the framework will still use those tokens if one is found in the keychain and not re-perform the OAuth dance.
+You will need to intercept 401s and re-authenticate if an access token has expired but the framework has still pulled it from the keychain.
+This behavior can be turned off by supplying "token_assume_unexpired": false in settings or setting `accessTokenAssumeUnexpired` to false.
 
 
 Installation
