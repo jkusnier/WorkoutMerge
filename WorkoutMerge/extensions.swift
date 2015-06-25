@@ -16,6 +16,10 @@ extension NSDate {
         
         return dateFormatter.stringFromDate(self)
     }
+    
+    public func timeFormat() -> String {
+        return NSDateFormatter.localizedStringFromDate(self, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+    }
 }
 
 extension Double {
