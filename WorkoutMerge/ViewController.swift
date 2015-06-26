@@ -18,13 +18,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var selectedWorkout: HKWorkout?
     
     let refreshControl = UIRefreshControl()
+    var lastRefreshDate: NSDate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: "Last Refresh: ")
         refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh")
         self.tableView.addSubview(refreshControl)
         
         let readTypes = Set([
@@ -51,6 +53,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                         if let workouts = results as? [HKWorkout] {
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.workouts = workouts
+                                self.lastRefreshDate = NSDate()
+                                self.refreshControl.attributedTitle = NSAttributedString(string: "Last Refresh: \(self.lastRefreshDate!.timeFormat())")
                                 self.tableView.reloadData()
                             }
                         }
@@ -159,6 +163,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let workouts = results as? [HKWorkout] {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.workouts = workouts
+                    self.lastRefreshDate = NSDate()
+                    self.refreshControl.attributedTitle = NSAttributedString(string: "Last Refresh: \(self.lastRefreshDate!.timeFormat())")
                     self.tableView.reloadData()
                 }
             }
