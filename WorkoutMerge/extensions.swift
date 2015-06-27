@@ -20,6 +20,14 @@ extension NSDate {
     public func timeFormat() -> String {
         return NSDateFormatter.localizedStringFromDate(self, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
     }
+    public func relativeDateFormat() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .ShortStyle
+        dateFormatter.timeStyle = .ShortStyle
+        dateFormatter.doesRelativeDateFormatting = true
+        
+        return dateFormatter.stringFromDate(self)
+    }
 }
 
 extension Double {
