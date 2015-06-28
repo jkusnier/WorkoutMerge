@@ -127,7 +127,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if self.workouts.last != nil {
             let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
             let workout  = self.workouts[indexPath.row]
-            let startDate = workout.startDate.shortDateString()
+            let startDate = workout.startDate.relativeDateFormat()
             
             cell.textLabel!.text = startDate
             cell.detailTextLabel!.text = stringFromTimeInterval(workout.duration)
