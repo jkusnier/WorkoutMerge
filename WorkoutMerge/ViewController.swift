@@ -159,7 +159,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func refresh(refreshControl: UIRefreshControl) {
         self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
-            println("Made It \(results.count)")
+            if (error != nil) {
+                println(error.localizedDescription)
+                var alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            
             if let workouts = results as? [HKWorkout] {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.workouts = workouts
@@ -167,6 +173,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     self.refreshControl.attributedTitle = NSAttributedString(string: "Last Refresh: \(self.lastRefreshDate!.timeFormat())")
                     self.tableView.reloadData()
                 }
+            } else {
+                self.workouts.removeAll(keepCapacity: false)
             }
 
             dispatch_async(dispatch_get_main_queue()) {
