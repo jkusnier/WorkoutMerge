@@ -122,9 +122,15 @@ class RunKeeperAPI {
                         succeed!(savedKey: savedKey)
                     } else {
                         println("failure")
+                        if let fail = fail {
+                            fail(error)
+                        }
                     }
                 } else {
                     println("fail")
+                    if let fail = fail {
+                        fail(error)
+                    }
                 }
             })
         })

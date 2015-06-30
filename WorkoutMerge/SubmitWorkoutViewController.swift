@@ -292,7 +292,16 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 vcu.hideActivityIndicator(self.view)
             } else {
                 runKeeper.postActivity(self.resultWorkoutData, failure: { error in
-                    vcu.hideActivityIndicator(self.view)
+                        vcu.hideActivityIndicator(self.view)
+                        let errorMessage: String
+                        if let error = error {
+                            errorMessage = error.localizedDescription
+                        } else {
+                            errorMessage = "An error occurred while saving workout."
+                        }
+                        var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
                     },
                     success: { (savedKey) in
                         if let uuid = self.resultWorkoutData.UUID?.UUIDString {
