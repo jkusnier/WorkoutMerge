@@ -59,9 +59,7 @@ class SettingsViewController: UITableViewController {
 
                 if contains(linkedServices, "RunKeeper") {
                     let alertController = UIAlertController(title: "Alert", message: "Are you sure you want to unlink RunKeeper?", preferredStyle: .Alert)
-                    alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                        // Do nothing
-                    })
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
                     
                     alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
                         rk.disconnect()
