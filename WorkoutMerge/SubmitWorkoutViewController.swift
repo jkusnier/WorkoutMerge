@@ -340,10 +340,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     @IBAction func saveWorkout(sender: AnyObject) {
         if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
             let alertController = UIAlertController(title: "Alert", message: "Workout already submitted", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-                // Do nothing
-            })
-            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
             alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
                 self.doSave()
             })
