@@ -19,6 +19,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     let refreshControl = UIRefreshControl()
     var lastRefreshDate: NSDate?
+    
+    var healthKitAvailable = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,17 +37,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if !HKHealthStore.isHealthDataAvailable() {
             println("HealthKit Not Available")
+            self.healthKitAvailable = false
+            self.refreshControl.removeFromSuperview()
         } else {
-        
-            var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
-            actInd.center = self.view.center
-            actInd.hidesWhenStopped = true
-            actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
-            view.addSubview(actInd)
-            actInd.startAnimating()
-            
             hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError!) -> () in
                 println("okay: \(success) error: \(err)")
+                
+                var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
+                actInd.center = self.view.center
+                actInd.hidesWhenStopped = true
+                actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+                self.view.addSubview(actInd)
+                actInd.startAnimating()
+                
                 if success {
                     self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
                         println("Made It \(results.count)")
@@ -62,6 +66,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             actInd.stopAnimating()
                         }
                     })
+                } else {
+                    actInd.stopAnimating()
                 }
             })
         }
@@ -122,7 +128,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView:UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) -> UITableViewCell {
-        if self.workouts.last != nil {
+        if !self.healthKitAvailable {
+            return tableView.dequeueReusableCellWithIdentifier("NoHealthKit") as! UITableViewCell
+        } else if self.workouts.last != nil {
             let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
             let workout  = self.workouts[indexPath.row]
             let startDate = workout.startDate.relativeDateFormat()
@@ -156,27 +164,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func refresh(refreshControl: UIRefreshControl) {
-        self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
-            if (error != nil) {
-                println(error.localizedDescription)
-                var alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            
-            if let workouts = results as? [HKWorkout] {
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.workouts = workouts
-                    self.lastRefreshDate = NSDate()
-                    self.refreshControl.attributedTitle = NSAttributedString(string: "Last Refresh: \(self.lastRefreshDate!.timeFormat())")
-                    self.tableView.reloadData()
-                }
-            } else {
-                self.workouts.removeAll(keepCapacity: false)
-            }
+        let readTypes = Set([
+            HKObjectType.workoutType(),
+            HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+            ])
+        
+        hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError!) -> () in
+            if success {
+                self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
+                    if (error != nil) {
+                        println(error.localizedDescription)
+                        var alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                    
+                    if let workouts = results as? [HKWorkout] {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.workouts = workouts
+                            self.lastRefreshDate = NSDate()
+                            self.refreshControl.attributedTitle = NSAttributedString(string: "Last Refresh: \(self.lastRefreshDate!.timeFormat())")
+                            self.tableView.reloadData()
+                        }
+                    } else {
+                        self.workouts.removeAll(keepCapacity: false)
+                    }
 
-            dispatch_async(dispatch_get_main_queue()) {
-                self.refreshControl.endRefreshing()
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.refreshControl.endRefreshing()
+                    }
+                })
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.refreshControl.endRefreshing()
+                }
             }
         })
     }
