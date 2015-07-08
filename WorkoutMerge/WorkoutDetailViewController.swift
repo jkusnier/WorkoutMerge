@@ -43,6 +43,10 @@ class WorkoutDetailViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         if !isFirstLoad {
+            if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
+                self.linkedServices = linkedServices.sorted() {$0 < $1}
+            }
+            
             self.tableView.reloadData()
         }
         isFirstLoad = false

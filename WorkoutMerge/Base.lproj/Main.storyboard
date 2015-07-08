@@ -166,7 +166,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyActionCell" textLabel="GGS-m4-2Vf" style="IBUITableViewCellStyleDefault" id="WM5-rg-62y">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="EmptyActionCell" textLabel="GGS-m4-2Vf" style="IBUITableViewCellStyleDefault" id="WM5-rg-62y">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WM5-rg-62y" id="lBQ-ab-GEh">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -179,6 +179,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="oHx-nR-NSM" kind="presentation" id="Qb7-Xp-9dv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -427,7 +430,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v1s-YA-qeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445" y="1245"/>
+            <point key="canvasLocation" x="1212" y="1249"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BHg-Si-hjQ">
@@ -465,26 +468,10 @@
             </objects>
             <point key="canvasLocation" x="2768" y="314"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="0kB-NA-ATt">
-            <objects>
-                <viewController id="95M-r6-abp" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZmU-LT-TQi"/>
-                        <viewControllerLayoutGuide type="bottom" id="2Rx-da-yBs"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SdR-9o-Aao">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qGX-Dj-uJ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="pQD-1H-FqA"/>
+        <segue reference="Qb7-Xp-9dv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.31372549019607843" green="0.45490196078431372" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
