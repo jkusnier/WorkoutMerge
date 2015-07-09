@@ -106,6 +106,7 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 	
 	override public func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
+        UIApplication.sharedApplication().statusBarHidden = true
 		
 		if !webView.canGoBack {
 			if nil != startURL {
@@ -116,6 +117,11 @@ public class OAuth2WebViewController: UIViewController, UIWebViewDelegate
 			}
 		}
 	}
+    
+    override public func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.sharedApplication().statusBarHidden = false
+    }
 	
 	func showHideBackButton(show: Bool) {
 		if show {
