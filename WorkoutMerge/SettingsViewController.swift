@@ -73,7 +73,7 @@ class SettingsViewController: UITableViewController {
                     
                     self.presentViewController(alertController, animated: true, completion: nil)
                 } else {
-                    rk.authorize({wasFailure, error in
+                    rk.authorizeEmbeddedFrom(self, params: nil, afterAuthorizeOrFailure: {wasFailure, error in
                         if !wasFailure {
                             func linkService(linkedServices: [String], serviceName: String) {
                                 if !contains(linkedServices, serviceName) {

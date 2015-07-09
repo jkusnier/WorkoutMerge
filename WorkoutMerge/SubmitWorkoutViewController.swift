@@ -286,7 +286,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         vcu.showActivityIndicator(self.view)
         
         let runKeeper = RunKeeperAPI.sharedInstance
-        runKeeper.authorize({ wasFailure, error in
+        runKeeper.authorizeEmbeddedFrom(self, params: nil, afterAuthorizeOrFailure: { wasFailure, error in
             if wasFailure {
                 println("\(wasFailure)")
                 vcu.hideActivityIndicator(self.view)

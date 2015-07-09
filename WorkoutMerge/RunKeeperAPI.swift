@@ -50,13 +50,14 @@ class RunKeeperAPI {
         }
     }
     
-    func authorize() {
-        self.oauth2.authorize()
-    }
-    
-    func authorize(afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {
-        self.oauth2.afterAuthorizeOrFailure = afterAuthorizeOrFailure
-        self.oauth2.authorize()
+    func authorizeEmbeddedFrom(controller: UIViewController, params: [String : String]?, afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {
+        let web = self.oauth2.authorizeEmbeddedFrom(controller, params: params)
+        
+        self.oauth2.afterAuthorizeOrFailure = { wasFailure, error in
+            web.dismissViewControllerAnimated(true, completion: nil)
+            afterAuthorizeOrFailure(wasFailure: wasFailure, error: error)
+        }
+
     }
     
     func disconnect() {
