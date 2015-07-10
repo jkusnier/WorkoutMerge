@@ -54,7 +54,9 @@ class RunKeeperAPI {
         let web = self.oauth2.authorizeEmbeddedFrom(controller, params: params)
         
         self.oauth2.afterAuthorizeOrFailure = { wasFailure, error in
-            web.dismissViewControllerAnimated(true, completion: nil)
+            if !wasFailure {
+                web.dismissViewControllerAnimated(true, completion: nil)
+            }
             afterAuthorizeOrFailure(wasFailure: wasFailure, error: error)
         }
 
