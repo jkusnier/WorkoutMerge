@@ -46,10 +46,8 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
             self.resultWorkoutData.notes = syncLog.valueForKey("note") as? String
         }
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarHidden = true
+        
+        self.tableView.contentInset = UIEdgeInsetsMake(20, self.tableView.contentInset.left, self.tableView.contentInset.bottom, self.tableView.contentInset.right)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -58,7 +56,6 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.sharedApplication().statusBarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
