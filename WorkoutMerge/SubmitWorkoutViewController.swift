@@ -283,18 +283,18 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         vcu.showActivityIndicator(self.view)
         
         let runKeeper = RunKeeperAPI.sharedInstance
-        runKeeper.authorizeEmbeddedFrom(self, params: nil, afterAuthorizeOrFailure: { wasFailure, error in
-            if wasFailure {
-                println("\(wasFailure)")
-                vcu.hideActivityIndicator(self.view)
-            } else {
+//        runKeeper.authorizeEmbeddedFrom(self, params: nil, afterAuthorizeOrFailure: { wasFailure, error in
+//            if wasFailure {
+//                println("\(wasFailure)")
+//                vcu.hideActivityIndicator(self.view)
+//            } else {
                 runKeeper.postActivity(self.resultWorkoutData, failure: { error in
                         vcu.hideActivityIndicator(self.view)
                         let errorMessage: String
                         if let error = error {
                             errorMessage = error.localizedDescription
                         } else {
-                            errorMessage = "An error occurred while saving workout."
+                            errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper"
                         }
                         var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
@@ -330,8 +330,8 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
                     }
                 )
-            }
-        })
+//            }
+//        })
     }
     
     @IBAction func saveWorkout(sender: AnyObject) {
