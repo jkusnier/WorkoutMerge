@@ -133,7 +133,7 @@ class WorkoutDetailViewController: UITableViewController {
                                     cell.detailTextLabel?.text = "N/A"
                                 }
                             })
-                        })
+                        }, tryAgain: true)
                     }
                     setAvgHeartRage(workout, cell)
                 case 5:
@@ -203,10 +203,10 @@ class WorkoutDetailViewController: UITableViewController {
         return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
     }
 
-    func averageHeartRateForWorkout(workout: HKWorkout, success: (Double?) -> ()) {
+    func averageHeartRateForWorkout(workout: HKWorkout, success: (Double?) -> (), tryAgain: Bool) {
         if let hkStore = hkStore {
             let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-            let workoutPredicate = HKQuery.predicateForSamplesWithStartDate(workout.startDate, endDate: workout.endDate, options: nil)
+            let workoutPredicate = HKQuery.predicateForSamplesWithStartDate(workout.startDate, endDate: workout.endDate, options: .None)
             let startDateSort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
             
             let query = HKSampleQuery(sampleType: quantityType, predicate: workoutPredicate,
@@ -223,7 +223,12 @@ class WorkoutDetailViewController: UITableViewController {
 
                             success(avgHeartRate)
                         } else {
-                            success(nil)
+                            // If we hit this, try 1 more time before giving up
+                            if tryAgain {
+                                self.averageHeartRateForWorkout(workout, success: success, tryAgain: false)
+                            } else {
+                                success(nil)
+                            }
                         }
                     }
             }
