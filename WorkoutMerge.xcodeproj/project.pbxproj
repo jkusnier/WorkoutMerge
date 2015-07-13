@@ -11,6 +11,7 @@
 		9635A0571B1690A300512FE8 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9635A0561B1690A300512FE8 /* ApiKeys.plist */; };
 		9635A05A1B169DBA00512FE8 /* RunKeeperAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */; };
 		9644A0331B124A5E00569F32 /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */; };
+		964A757C1B5474C7000D8EF2 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A757B1B5474C7000D8EF2 /* WorkoutTableViewCell.swift */; };
 		964D1F9C1B1930F50050204F /* SubmitWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */; };
 		964D1F9E1B1A52670050204F /* SubmitWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */; };
 		9675E19D1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */; };
@@ -46,6 +47,7 @@
 		9635A0561B1690A300512FE8 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunKeeperAPI.swift; sourceTree = "<group>"; };
 		9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
+		964A757B1B5474C7000D8EF2 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitWorkoutViewController.swift; sourceTree = "<group>"; };
 		964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		967020B51B2DEDE900FE0114 /* WorkoutMerge 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WorkoutMerge 2.xcdatamodel"; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				9644A0321B124A5E00569F32 /* WorkoutDetailViewController.swift */,
 				96A6D9EA1B108DDD0056ECDA /* WorkoutMerge.entitlements */,
 				96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */,
+				964A757B1B5474C7000D8EF2 /* WorkoutTableViewCell.swift */,
 			);
 			path = WorkoutMerge;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				9675E19D1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift in Sources */,
 				96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */,
 				96A6D9C91B108DB80056ECDA /* WorkoutMerge.xcdatamodeld in Sources */,
+				964A757C1B5474C7000D8EF2 /* WorkoutTableViewCell.swift in Sources */,
 				96B357B11B290BEA00246703 /* ViewControllerUtils.swift in Sources */,
 				96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */,
 				964D1F9C1B1930F50050204F /* SubmitWorkoutViewController.swift in Sources */,

@@ -131,14 +131,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if !self.healthKitAvailable {
             return tableView.dequeueReusableCellWithIdentifier("NoHealthKit") as! UITableViewCell
         } else if self.workouts.last != nil {
-            let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
-            let workout  = self.workouts[indexPath.row]
-            let startDate = workout.startDate.relativeDateFormat()
-            
-            cell.textLabel!.text = startDate
-            cell.detailTextLabel!.text = stringFromTimeInterval(workout.duration)
-            
-            return cell
+            if let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? WorkoutTableViewCell {
+                let workout  = self.workouts[indexPath.row]
+                let startDate = workout.startDate.relativeDateFormat()
+                
+                cell.startTimeLabel?.text = startDate
+                cell.durationLabel?.text = stringFromTimeInterval(workout.duration)
+                cell.workoutTypeLabel?.text = HKWorkoutActivityType.hkDescription(workout.workoutActivityType)
+                
+                return cell
+            } else {
+                return tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+            }
         } else {
             return tableView.dequeueReusableCellWithIdentifier("Empty") as! UITableViewCell
         }
