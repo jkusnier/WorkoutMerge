@@ -69,6 +69,10 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if resultWorkoutData.type == "Other" {
+            // Select other type
+            return 8
+        }
         return 7
     }
     
@@ -109,7 +113,25 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         }
 //        (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
         
-        switch indexPath.row {
+        var row = indexPath.row
+        
+        // ugly hack for now to add a conditional cell
+        if resultWorkoutData.type == "Other" {
+            
+            
+            if row > 1 {
+                // reset so our case works
+                row--
+            } else if row == 1 {
+                cell = staticInputCell()
+                cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+                cell.selectionStyle = UITableViewCellSelectionStyle.Default
+                setTitle("Other", cell as? SubmitWorkoutTableViewCell)
+                return cell
+            }
+        }
+        
+        switch row {
         case 0:
             cell = staticInputCell()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -202,7 +224,12 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        switch indexPath.row {
+        var row = indexPath.row
+        if resultWorkoutData.type == "Other" && row > 1 {
+            row--
+        }
+        
+        switch row {
         case 0:
             println("workout selection")
             var workoutPicker = UIPickerView()
