@@ -259,6 +259,10 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     cell.textField.becomeFirstResponder()
                 }
             }
+        case 1:
+            if resultWorkoutData.type == "Other" {
+                println("workout other selection")
+            }
         case 6:
             var alert = UIAlertController(title: "Notes", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let doneAction = UIAlertAction(title: "Done", style: .Default) { (action) in
