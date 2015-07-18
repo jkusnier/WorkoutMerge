@@ -262,6 +262,33 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         case 1:
             if resultWorkoutData.type == "Other" {
                 println("workout other selection")
+                
+                var workoutPicker = UIPickerView()
+                
+                var toolBar = UIToolbar()
+                toolBar.sizeToFit()
+                
+                var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
+                var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+                var cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "canclePicker")
+                
+                toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+                toolBar.userInteractionEnabled = true
+                
+                if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SubmitWorkoutTableViewCell {
+                    if cell.textField != nil {
+                        cell.textField.inputView = workoutPicker
+                        cell.textField.inputAccessoryView = toolBar
+                        
+                        if let type = self.resultWorkoutData.type, idx = find(RunKeeperAPI.activityTypes, type) {
+                            self.pickerSelection = idx
+                            workoutPicker.selectRow(idx, inComponent: 0, animated: false)
+                        }
+                        
+                        cell.textField.becomeFirstResponder()
+                    }
+                }
+
             }
         case 6:
             var alert = UIAlertController(title: "Notes", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
