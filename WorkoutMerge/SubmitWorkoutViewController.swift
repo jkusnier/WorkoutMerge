@@ -35,6 +35,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             }
         }
     }
+    var picker:Int = 0
     var pickerSelection:Int = 0
     
     var useMetric = false
@@ -232,6 +233,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         switch row {
         case 0:
             println("workout selection")
+            self.picker = 0
             var workoutPicker = UIPickerView()
             workoutPicker.delegate = self
             workoutPicker.dataSource = self
@@ -262,6 +264,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         case 1:
             if resultWorkoutData.type == "Other" {
                 println("workout other selection")
+                self.picker = 1
                 
                 var workoutPicker = UIPickerView()
                 
