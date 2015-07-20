@@ -319,7 +319,11 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     }
     
     func donePicker() {
-        self.resultWorkoutData.type = RunKeeperAPI.activityTypes[self.pickerSelection]
+        if self.picker == 0 {
+            self.resultWorkoutData.type = RunKeeperAPI.activityTypes[self.pickerSelection]
+        } else if self.picker == 1 {
+//            self.resultWorkoutData.otherType = RunKeeperAPI.otherTypes[self.pickerSelection]
+        }
         self.tableView.reloadData()
         self.view.endEditing(true)
     }
@@ -414,11 +418,23 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return RunKeeperAPI.activityTypes.count
+        if self.picker == 0 {
+            return RunKeeperAPI.activityTypes.count
+        } else if self.picker == 1 {
+            return RunKeeperAPI.otherTypes.count
+        }
+
+        return 0
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return RunKeeperAPI.activityTypes[row]
+        if self.picker == 0 {
+            return RunKeeperAPI.activityTypes[row]
+        } else if self.picker == 1 {
+            return RunKeeperAPI.otherTypes[row]
+        }
+        
+        return nil
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
