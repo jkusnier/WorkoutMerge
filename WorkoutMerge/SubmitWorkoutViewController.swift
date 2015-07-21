@@ -267,6 +267,8 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 self.picker = 1
                 
                 var workoutPicker = UIPickerView()
+                workoutPicker.delegate = self
+                workoutPicker.dataSource = self
                 
                 var toolBar = UIToolbar()
                 toolBar.sizeToFit()
