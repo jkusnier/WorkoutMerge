@@ -285,7 +285,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         cell.textField.inputView = workoutPicker
                         cell.textField.inputAccessoryView = toolBar
                         
-                        if let type = self.resultWorkoutData.type, idx = find(RunKeeperAPI.activityTypes, type) {
+                        if let type = self.resultWorkoutData.type, idx = find(RunKeeperAPI.otherTypes, type) {
                             self.pickerSelection = idx
                             workoutPicker.selectRow(idx, inComponent: 0, animated: false)
                         }
