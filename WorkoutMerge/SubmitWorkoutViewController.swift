@@ -18,8 +18,8 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    var resultWorkoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
-    var workoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?) {
+    var resultWorkoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?)
+    var workoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?) {
         didSet {
             self.resultWorkoutData = self.workoutData
             
@@ -128,6 +128,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell.selectionStyle = UITableViewCellSelectionStyle.Default
                 setTitle("Other", cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(self.resultWorkoutData.otherType == nil ? "" : self.resultWorkoutData.otherType, cell as? SubmitWorkoutTableViewCell)
                 return cell
             }
         }
@@ -285,7 +286,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         cell.textField.inputView = workoutPicker
                         cell.textField.inputAccessoryView = toolBar
                         
-                        if let type = self.resultWorkoutData.type, idx = find(RunKeeperAPI.otherTypes, type) {
+                        if let otherType = self.resultWorkoutData.otherType, idx = find(RunKeeperAPI.otherTypes, otherType) {
                             self.pickerSelection = idx
                             workoutPicker.selectRow(idx, inComponent: 0, animated: false)
                         }
@@ -323,8 +324,11 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     func donePicker() {
         if self.picker == 0 {
             self.resultWorkoutData.type = RunKeeperAPI.activityTypes[self.pickerSelection]
+            if resultWorkoutData.type != "Other" {
+                self.resultWorkoutData.otherType = nil
+            }
         } else if self.picker == 1 {
-//            self.resultWorkoutData.otherType = RunKeeperAPI.otherTypes[self.pickerSelection]
+            self.resultWorkoutData.otherType = RunKeeperAPI.otherTypes[self.pickerSelection]
         }
         self.tableView.reloadData()
         self.view.endEditing(true)

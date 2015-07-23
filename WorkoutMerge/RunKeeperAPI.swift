@@ -132,7 +132,7 @@ class RunKeeperAPI {
         sharedInstance.oauth2.handleRedirectURL(url)
     }
     
-    func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?), failure fail : (NSError? -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
+    func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : (NSError? -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
         let path = "/fitnessActivities"
         let url = baseURL.URLByAppendingPathComponent(path)
         let req = oauth2.request(forURL: url)
