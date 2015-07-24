@@ -164,6 +164,9 @@ class RunKeeperAPI {
         if let notes = workout.notes {
             jsonData.append("\"notes\":\"\(notes)\"")
         }
+        if let type = workout.type, otherType = workout.otherType where type == "Other" {
+            jsonData.append("\"secondary_type\":\"\(otherType)\"")
+        }
         
         var joiner = ","
         var jsonString = "{" + joiner.join(jsonData) + "}"
