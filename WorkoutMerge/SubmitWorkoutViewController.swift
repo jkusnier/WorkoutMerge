@@ -46,6 +46,12 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         
         if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
             self.resultWorkoutData.notes = syncLog.valueForKey("note") as? String
+            if let workoutType = syncLog.valueForKey("workoutType") as? String {
+                self.resultWorkoutData.type = workoutType
+            }
+            if let workoutOtherType = syncLog.valueForKey("workoutOtherType") as? String {
+                self.resultWorkoutData.otherType = workoutOtherType
+            }
         }
         
         self.tableView.contentInset = UIEdgeInsetsMake(20, self.tableView.contentInset.left, self.tableView.contentInset.bottom, self.tableView.contentInset.right)
@@ -382,6 +388,12 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                                 syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
                                 syncLog.setValue(note, forKey: "note")
                                 syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
+                                if let workoutType = self.resultWorkoutData.type {
+                                    syncLog.setValue(workoutType, forKey: "workoutType")
+                                }
+                                if let workoutOtherType = self.resultWorkoutData.otherType {
+                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
+                                }
                             } else {
                                 let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
                                 let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
@@ -389,6 +401,12 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                                 syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
                                 syncLog.setValue(note, forKey: "note")
                                 syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
+                                if let workoutType = self.resultWorkoutData.type {
+                                    syncLog.setValue(workoutType, forKey: "workoutType")
+                                }
+                                if let workoutOtherType = self.resultWorkoutData.otherType {
+                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
+                                }
                             }
                             
                             var error: NSError?
