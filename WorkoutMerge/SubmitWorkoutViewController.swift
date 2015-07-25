@@ -295,6 +295,9 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         if let otherType = self.resultWorkoutData.otherType, idx = find(RunKeeperAPI.otherTypes, otherType) {
                             self.pickerSelection = idx
                             workoutPicker.selectRow(idx, inComponent: 0, animated: false)
+                        } else {
+                            self.pickerSelection = 0
+                            workoutPicker.selectRow(0, inComponent: 0, animated: false)
                         }
                         
                         cell.textField.becomeFirstResponder()
