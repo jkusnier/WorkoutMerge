@@ -143,6 +143,7 @@ class RunKeeperAPI {
         }
         if let startTime = workout.startTime {
             let dateFormatter = NSDateFormatter()
+            dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
             // Sat, 1 Jan 2011 00:00:00
             dateFormatter.dateFormat = "EEE, d MMM yyyy HH:mm:ss"
             let startTimeString = dateFormatter.stringFromDate(startTime)
