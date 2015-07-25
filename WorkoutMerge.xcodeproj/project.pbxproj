@@ -52,6 +52,7 @@
 		964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmitWorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		967020B51B2DEDE900FE0114 /* WorkoutMerge 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WorkoutMerge 2.xcdatamodel"; sourceTree = "<group>"; };
 		9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HKWorkoutActivityType+Descriptions.swift"; sourceTree = "<group>"; };
+		968B19221B63AE8E003F50CB /* WorkoutMerge 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WorkoutMerge 3.xcdatamodel"; sourceTree = "<group>"; };
 		96A6D9C01B108DB80056ECDA /* WorkoutMerge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutMerge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A6D9C41B108DB80056ECDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96A6D9C51B108DB80056ECDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -594,10 +595,11 @@
 		96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				968B19221B63AE8E003F50CB /* WorkoutMerge 3.xcdatamodel */,
 				967020B51B2DEDE900FE0114 /* WorkoutMerge 2.xcdatamodel */,
 				96A6D9C81B108DB80056ECDA /* WorkoutMerge.xcdatamodel */,
 			);
-			currentVersion = 967020B51B2DEDE900FE0114 /* WorkoutMerge 2.xcdatamodel */;
+			currentVersion = 968B19221B63AE8E003F50CB /* WorkoutMerge 3.xcdatamodel */;
 			path = WorkoutMerge.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
