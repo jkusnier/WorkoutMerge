@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -21,6 +22,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var lastRefreshDate: NSDate?
     
     var healthKitAvailable = true
+    
+    let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
+    
+    var initialAppearance = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +75,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     actInd.stopAnimating()
                 }
             })
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if !self.initialAppearance {
+            // Refresh for tableview accessories
+            self.tableView.reloadData()
+        } else {
+            self.initialAppearance = false
         }
     }
 
@@ -134,6 +149,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as? WorkoutTableViewCell {
                 let workout  = self.workouts[indexPath.row]
                 let startDate = workout.startDate.relativeDateFormat()
+                
+                if let managedObject = managedObject(workout) {
+                    cell.accessoryType = .Checkmark
+                }
                 
                 cell.startTimeLabel?.text = startDate
                 cell.durationLabel?.text = stringFromTimeInterval(workout.duration)
@@ -204,6 +223,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             }
         })
+    }
+    
+    func managedObject(workout: HKWorkout) -> NSManagedObject? {
+        if let uuid = workout.UUID?.UUIDString {
+            let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+            let predicate = NSPredicate(format: "uuid = %@", uuid)
+            fetchRequest.predicate = predicate
+            
+            let fetchedEntities = self.managedContext.executeFetchRequest(fetchRequest, error: nil)
+            
+            if let syncLog = fetchedEntities?.first as? NSManagedObject {
+                return syncLog
+            }
+        }
+        
+        return nil
     }
 }
 
