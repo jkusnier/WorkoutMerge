@@ -152,6 +152,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 if let managedObject = managedObject(workout) {
                     cell.accessoryType = .Checkmark
+                } else {
+                    cell.accessoryType = .DisclosureIndicator
                 }
                 
                 cell.startTimeLabel?.text = startDate
