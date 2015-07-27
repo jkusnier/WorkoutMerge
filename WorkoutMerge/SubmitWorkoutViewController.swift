@@ -368,13 +368,13 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
 //                println("\(wasFailure)")
 //                vcu.hideActivityIndicator(self.view)
 //            } else {
-                runKeeper.postActivity(self.resultWorkoutData, failure: { error in
+                runKeeper.postActivity(self.resultWorkoutData, failure: { (error, msg) in
                         vcu.hideActivityIndicator(self.view)
                         let errorMessage: String
                         if let error = error {
-                            errorMessage = error.localizedDescription
+                            errorMessage = "\(error.localizedDescription) - \(msg)"
                         } else {
-                            errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper"
+                            errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
                         }
                         var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
