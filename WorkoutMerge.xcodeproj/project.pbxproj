@@ -27,6 +27,7 @@
 		96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */; };
 		96B357B11B290BEA00246703 /* ViewControllerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B357B01B290BEA00246703 /* ViewControllerUtils.swift */; };
 		96E4FAEC1B1D315600D452AF /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E4FAEB1B1D315600D452AF /* extensions.swift */; };
+		96E810F81B685886009D03F6 /* StravaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E810F71B685886009D03F6 /* StravaAPI.swift */; };
 		96FF75B530FF33F99F7FB348 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C994F2D7AA506F67A50CA2 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseModalSegue.swift; sourceTree = "<group>"; };
 		96B357B01B290BEA00246703 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
 		96E4FAEB1B1D315600D452AF /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		96E810F71B685886009D03F6 /* StravaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaAPI.swift; sourceTree = "<group>"; };
 		F827AA5BB1F465EF7C995B65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 				96A6D9D11B108DB80056ECDA /* LaunchScreen.xib */,
 				96A6D9CC1B108DB80056ECDA /* Main.storyboard */,
 				9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */,
+				96E810F71B685886009D03F6 /* StravaAPI.swift */,
 				962490031B21188C005A0FA1 /* Settings.bundle */,
 				96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */,
 				964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */,
@@ -365,6 +368,7 @@
 				96A6D9F01B10A1B00056ECDA /* CloseModalSegue.swift in Sources */,
 				96A6D9C91B108DB80056ECDA /* WorkoutMerge.xcdatamodeld in Sources */,
 				964A757C1B5474C7000D8EF2 /* WorkoutTableViewCell.swift in Sources */,
+				96E810F81B685886009D03F6 /* StravaAPI.swift in Sources */,
 				96B357B11B290BEA00246703 /* ViewControllerUtils.swift in Sources */,
 				96A6D9EC1B109D240056ECDA /* SettingsViewController.swift in Sources */,
 				964D1F9C1B1930F50050204F /* SubmitWorkoutViewController.swift in Sources */,
