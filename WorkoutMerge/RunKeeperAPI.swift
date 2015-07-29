@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Jason Kusnier. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import p2_OAuth2
 import HealthKit
 
