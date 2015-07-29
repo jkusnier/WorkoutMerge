@@ -17,6 +17,7 @@ class SettingsViewController: UITableViewController {
     var linkedServices: [String]?
 
     @IBOutlet weak var runKeeperStatusLabel: UILabel!
+    @IBOutlet weak var stravaStatusLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,12 @@ class SettingsViewController: UITableViewController {
                 self.runKeeperStatusLabel.text = "Linked"
             } else {
                 self.runKeeperStatusLabel.text = "Connect"
+            }
+            
+            if contains(linkedServices, "Strava") {
+                self.stravaStatusLabel.text = "Linked"
+            } else {
+                self.stravaStatusLabel.text = "Connect"
             }
         }
         
@@ -92,6 +99,55 @@ class SettingsViewController: UITableViewController {
                                 linkService([String](), "RunKeeper")
                             }
                             self.runKeeperStatusLabel.text = "Linked"
+                        }
+                    })
+                }
+            }
+        } else if indexPath.section == 0 && indexPath.row == 2 {
+            println("Strava")
+            
+            if self.linkedServices == nil {
+                self.linkedServices = [String]()
+            }
+            
+            if let linkedServices = self.linkedServices {
+                let strava = StravaAPI.sharedInstance
+                
+                if contains(linkedServices, "Strava") {
+                    let alertController = UIAlertController(title: "Alert", message: "Are you sure you want to unlink Strava?", preferredStyle: .Alert)
+                    alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                    
+                    alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
+                        strava.disconnect()
+                        if let i = find(linkedServices, "Strava") {
+                            self.linkedServices?.removeAtIndex(i)
+                            self.defaults.setObject(self.linkedServices, forKey: "linkedServices")
+                            self.defaults.synchronize()
+                            self.stravaStatusLabel.text = "Connect"
+                        }
+                        })
+                    
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                } else {
+                    strava.authorizeEmbeddedFrom(self, params: nil, afterAuthorizeOrFailure: {wasFailure, error in
+                        if !wasFailure {
+                            func linkService(linkedServices: [String], serviceName: String) {
+                                if !contains(linkedServices, serviceName) {
+                                    var linkedServices = linkedServices
+                                    linkedServices.append(serviceName)
+                                    self.linkedServices = linkedServices
+                                    self.defaults.setObject(linkedServices, forKey: "linkedServices")
+                                    self.defaults.synchronize()
+                                }
+                            }
+                            
+                            self.defaults.arrayForKey("linkedServices")
+                            if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
+                                linkService(linkedServices, "Strava")
+                            } else {
+                                linkService([String](), "Strava")
+                            }
+                            self.stravaStatusLabel.text = "Linked"
                         }
                     })
                 }

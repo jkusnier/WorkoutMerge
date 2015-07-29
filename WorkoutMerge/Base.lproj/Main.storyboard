@@ -435,6 +435,32 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="gf8-99-c1s">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gf8-99-c1s" id="6jo-Iy-Ghy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strava" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjr-Ok-gE2">
+                                                    <rect key="frame" x="8" y="11.5" width="49.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDQ-ps-exd">
+                                                    <rect key="frame" x="306" y="11" width="65.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JDQ-ps-exd" firstAttribute="trailing" secondItem="6jo-Iy-Ghy" secondAttribute="trailingMargin" constant="-1" id="KEl-gB-94g"/>
+                                                <constraint firstAttribute="centerY" secondItem="wjr-Ok-gE2" secondAttribute="centerY" constant="0.25" id="MUf-55-URZ"/>
+                                                <constraint firstAttribute="centerY" secondItem="JDQ-ps-exd" secondAttribute="centerY" constant="0.25" id="O7e-mf-1pk"/>
+                                                <constraint firstItem="wjr-Ok-gE2" firstAttribute="leading" secondItem="6jo-Iy-Ghy" secondAttribute="leadingMargin" id="sMB-0P-QUh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -445,6 +471,7 @@
                     </tableView>
                     <connections>
                         <outlet property="runKeeperStatusLabel" destination="oar-Kv-xEb" id="Zdo-Yn-TjF"/>
+                        <outlet property="stravaStatusLabel" destination="JDQ-ps-exd" id="pDe-F1-WOU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v1s-YA-qeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
