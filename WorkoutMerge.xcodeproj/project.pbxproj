@@ -15,6 +15,7 @@
 		964D1F9C1B1930F50050204F /* SubmitWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964D1F9B1B1930F50050204F /* SubmitWorkoutViewController.swift */; };
 		964D1F9E1B1A52670050204F /* SubmitWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */; };
 		9675E19D1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */; };
+		969284071B6C1FE800E7247F /* WorkoutSyncAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969284061B6C1FE800E7247F /* WorkoutSyncAPI.swift */; };
 		96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C51B108DB80056ECDA /* AppDelegate.swift */; };
 		96A6D9C91B108DB80056ECDA /* WorkoutMerge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */; };
 		96A6D9CB1B108DB80056ECDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A6D9CA1B108DB80056ECDA /* ViewController.swift */; };
@@ -54,6 +55,7 @@
 		967020B51B2DEDE900FE0114 /* WorkoutMerge 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WorkoutMerge 2.xcdatamodel"; sourceTree = "<group>"; };
 		9675E19C1B1331B400B11C37 /* HKWorkoutActivityType+Descriptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HKWorkoutActivityType+Descriptions.swift"; sourceTree = "<group>"; };
 		968B19221B63AE8E003F50CB /* WorkoutMerge 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WorkoutMerge 3.xcdatamodel"; sourceTree = "<group>"; };
+		969284061B6C1FE800E7247F /* WorkoutSyncAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutSyncAPI.swift; sourceTree = "<group>"; };
 		96A6D9C01B108DB80056ECDA /* WorkoutMerge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutMerge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A6D9C41B108DB80056ECDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96A6D9C51B108DB80056ECDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				96A6D9CC1B108DB80056ECDA /* Main.storyboard */,
 				9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */,
 				96E810F71B685886009D03F6 /* StravaAPI.swift */,
+				969284061B6C1FE800E7247F /* WorkoutSyncAPI.swift */,
 				962490031B21188C005A0FA1 /* Settings.bundle */,
 				96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */,
 				964D1F9D1B1A52670050204F /* SubmitWorkoutTableViewCell.swift */,
@@ -361,6 +364,7 @@
 			files = (
 				964D1F9E1B1A52670050204F /* SubmitWorkoutTableViewCell.swift in Sources */,
 				9635A05A1B169DBA00512FE8 /* RunKeeperAPI.swift in Sources */,
+				969284071B6C1FE800E7247F /* WorkoutSyncAPI.swift in Sources */,
 				96A6D9CB1B108DB80056ECDA /* ViewController.swift in Sources */,
 				96E4FAEC1B1D315600D452AF /* extensions.swift in Sources */,
 				96A6D9C61B108DB80056ECDA /* AppDelegate.swift in Sources */,

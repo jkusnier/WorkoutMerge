@@ -10,7 +10,7 @@ import UIKit
 import p2_OAuth2
 import HealthKit
 
-class StravaAPI {
+class StravaAPI: WorkoutSyncAPI {
     static let sharedInstance = StravaAPI()
     
     let oauth2:OAuth2CodeGrant

@@ -10,7 +10,7 @@ import UIKit
 import p2_OAuth2
 import HealthKit
 
-class RunKeeperAPI {
+class RunKeeperAPI: WorkoutSyncAPI {
     static let sharedInstance = RunKeeperAPI()
     
     let oauth2:OAuth2CodeGrant
