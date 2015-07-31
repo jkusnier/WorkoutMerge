@@ -188,6 +188,9 @@ class WorkoutDetailViewController: UITableViewController {
             if indexPath.section == 1 && indexPath.row == 0 {
                 println("Sync to RunKeeper")
                 performSegueWithIdentifier("submitWorkout", sender: self)
+            } else if indexPath.section == 1 && indexPath.row == 1 {
+                println("Sync to Strava")
+                performSegueWithIdentifier("submitWorkout", sender: self)
             }
         }
     }
