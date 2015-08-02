@@ -154,8 +154,13 @@ class WorkoutDetailViewController: UITableViewController {
                     cell.textLabel?.text = "Sync to \(linkedService)"
                     
                     if let managedObject = self.managedObject() {
-                        if managedObject.valueForKey("syncTo\(linkedService)") != nil {
-                            cell.accessoryType = .Checkmark
+                        let propertiesByName = managedObject.entity.propertiesByName
+                        
+                        cell.accessoryType = .DisclosureIndicator
+                        if propertiesByName["syncTo\(linkedService)"] != nil {
+                            if managedObject.valueForKey("syncTo\(linkedService)") != nil {
+                                cell.accessoryType = .Checkmark
+                            }
                         }
                     }
                 }
