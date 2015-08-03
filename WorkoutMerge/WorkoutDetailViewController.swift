@@ -63,7 +63,9 @@ class WorkoutDetailViewController: UITableViewController {
                     let totalDistance: Double? = (workout.totalDistance != nil) ? workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()) : nil
                     let totalEnergyBurned: Double? = workout.totalEnergyBurned != nil ? workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()) : nil
                     
-                    submitWorkoutViewController.workoutData = (workout.UUID, type: RunKeeperAPI.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: totalEnergyBurned, notes: nil, otherType: nil)
+                    let workoutApi = WorkoutSyncAPI()
+                    
+                    submitWorkoutViewController.workoutData = (workout.UUID, type: workoutApi.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: totalEnergyBurned, notes: nil, otherType: nil)
                 }
             }
         }

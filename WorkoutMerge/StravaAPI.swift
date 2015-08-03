@@ -16,7 +16,7 @@ class StravaAPI: WorkoutSyncAPI {
     let oauth2:OAuth2CodeGrant
     let baseURL = NSURL(string: "https://www.strava.com/api")!
     
-    init() {
+    override init() {
         var settings = [
             "authorize_uri": "https://www.strava.com/oauth/authorize",
             "token_uri": "https://www.strava.com/oauth/token",
@@ -49,7 +49,7 @@ class StravaAPI: WorkoutSyncAPI {
         }
     }
     
-    func authorizeEmbeddedFrom(controller: UIViewController, params: [String : String]?, afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {
+    override func authorizeEmbeddedFrom(controller: UIViewController, params: [String : String]?, afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {
         let web = self.oauth2.authorizeEmbeddedFrom(controller, params: params)
         
         self.oauth2.afterAuthorizeOrFailure = { wasFailure, error in
@@ -60,24 +60,24 @@ class StravaAPI: WorkoutSyncAPI {
         }
     }
     
-    func disconnect() {
+    override func disconnect() {
         self.oauth2.forgetTokens()
     }
     
-    class func handleRedirectURL(url: NSURL) {
+    override class func handleRedirectURL(url: NSURL) {
         sharedInstance.oauth2.handleRedirectURL(url)
     }
     
-    func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
+    override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
     }
     
-    static func activityType(t: HKWorkoutActivityType) -> String {
+    override func activityType(t: HKWorkoutActivityType) -> String {
         switch t {
         default: return "Other"
         }
     }
     
-    static func otherActivityType(t: HKWorkoutActivityType) -> String? {
+    override func otherActivityType(t: HKWorkoutActivityType) -> String? {
         switch t {
         default: return nil
         }

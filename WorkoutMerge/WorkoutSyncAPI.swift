@@ -9,17 +9,40 @@
 import UIKit
 import HealthKit
 
-protocol WorkoutSyncAPI {
+class WorkoutSyncAPI {
     
-    func authorizeEmbeddedFrom(controller: UIViewController, params: [String : String]?, afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void)
+    func authorizeEmbeddedFrom(controller: UIViewController, params: [String : String]?, afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {
+    }
     
-    func disconnect()
+    func disconnect() {
+    }
     
-//    class func handleRedirectURL(url: NSURL)
+    class func handleRedirectURL(url: NSURL) {
+    }
     
-    func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : ((NSError?, String) -> ())?, success succeed: ((savedKey: String?) -> ())?)
+    func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : ((NSError?, String) -> ())?, success succeed: ((savedKey: String?) -> ())?) {
+    }
     
-    static func activityType(t: HKWorkoutActivityType) -> String
+    func activityType(t: HKWorkoutActivityType) -> String {
+        switch t {
+        case .Running: return "Running"
+        case .Cycling: return "Cycling"
+            //      Mountain Biking
+        case .Walking: return "Walking"
+        case .Hiking: return "Hiking"
+            //      Downhill Skiing
+            //      Cross-Country Skiing
+            //      Snowboarding
+            //      Skating
+        case .Swimming: return "Swimming"
+            //      Wheelchair
+        case .Rowing: return "Rowing"
+        case .Elliptical: return "Elliptical"
+        default: return "Other"
+        }
+    }
     
-    static func otherActivityType(t: HKWorkoutActivityType) -> String?
+    func otherActivityType(t: HKWorkoutActivityType) -> String? {
+        return nil
+    }
 }
