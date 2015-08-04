@@ -47,6 +47,15 @@ class StravaAPI: WorkoutSyncAPI {
                 println("Authorization went wrong: \(error!.localizedDescription)")
             }
         }
+        
+        super.init(activityTypes: [
+            "Ride",
+            "Run",
+            "Swim",
+            "Workout",
+            "Hike",
+            "Walk"
+            ], otherTypes: [String]())
     }
     
     override func authorizeEmbeddedFrom(controller: UIViewController, params: [String : String]?, afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {
@@ -69,12 +78,37 @@ class StravaAPI: WorkoutSyncAPI {
     }
     
     override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
+        
+//        name:	string required
+//        type:	string required, case insensitive
+//        possible values: ride, run, swim, workout, hike, walk, nordicski, alpineski, backcountryski, iceskate, inlineskate, kitesurf, rollerski, windsurf, workout, snowboard, snowshoe, ebikeride, virtualride
+//        start_date_local:	datetime required
+//        ISO 8601 formatted date time, see Dates for more information
+//        elapsed_time:	integer required
+//        seconds
+//        description:	string optional
+//        distance:	float optional
+//        meters
+//        private:	integer optional
+//        set to 1 to mark the resulting activity as private, ‘view_private’ permissions will be necessary to view the activity
+//        trainer:	integer optional
+//        set to 1 to mark as a trainer activity
+//        commute:	integer optional 
+//        set to 1 to mark as commute
     }
     
     override func activityType(t: HKWorkoutActivityType) -> String {
         switch t {
-        default: return "Other"
+        case .Cycling: return "Ride"
+        case .Running: return "Run"
+        case .Swimming: return "Swim"
+        case .CrossTraining: return "Workout"
+        case .Hiking: return "Hike"
+        case .Walking: return "Walk"
+        default: return "Ride"
         }
+        
+        // nordicski, alpineski, backcountryski, iceskate, inlineskate, kitesurf, rollerski, windsurf, workout, snowboard, snowshoe, ebikeride, virtualride
     }
     
     override func otherActivityType(t: HKWorkoutActivityType) -> String? {

@@ -11,6 +11,19 @@ import HealthKit
 
 class WorkoutSyncAPI {
     
+    let activityTypes: [String]
+    let otherTypes: [String]
+    
+    init() {
+        self.activityTypes = [String]()
+        self.otherTypes = [String]()
+    }
+    
+    init(activityTypes: [String], otherTypes: [String]) {
+        self.activityTypes = activityTypes
+        self.otherTypes = otherTypes
+    }
+    
     func authorizeEmbeddedFrom(controller: UIViewController, params: [String : String]?, afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {
     }
     

@@ -18,6 +18,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
+    var workoutSyncAPI: WorkoutSyncAPI = WorkoutSyncAPI()
     var resultWorkoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?)
     var workoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?) {
         didSet {
@@ -260,7 +261,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     cell.textField.inputView = workoutPicker
                     cell.textField.inputAccessoryView = toolBar
                     
-                    if let type = self.resultWorkoutData.type, idx = find(RunKeeperAPI.activityTypes, type) {
+                    if let type = self.resultWorkoutData.type, idx = find(self.workoutSyncAPI.activityTypes, type) {
                         self.pickerSelection = idx
                         workoutPicker.selectRow(idx, inComponent: 0, animated: false)
                     }
@@ -292,7 +293,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         cell.textField.inputView = workoutPicker
                         cell.textField.inputAccessoryView = toolBar
                         
-                        if let otherType = self.resultWorkoutData.otherType, idx = find(RunKeeperAPI.otherTypes, otherType) {
+                        if let otherType = self.resultWorkoutData.otherType, idx = find(self.workoutSyncAPI.otherTypes, otherType) {
                             self.pickerSelection = idx
                             workoutPicker.selectRow(idx, inComponent: 0, animated: false)
                         } else {
@@ -332,12 +333,12 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     func donePicker() {
         if self.picker == 0 {
-            self.resultWorkoutData.type = RunKeeperAPI.activityTypes[self.pickerSelection]
+            self.resultWorkoutData.type = self.workoutSyncAPI.activityTypes[self.pickerSelection]
             if resultWorkoutData.type != "Other" {
                 self.resultWorkoutData.otherType = nil
             }
         } else if self.picker == 1 {
-            self.resultWorkoutData.otherType = RunKeeperAPI.otherTypes[self.pickerSelection]
+            self.resultWorkoutData.otherType = self.workoutSyncAPI.otherTypes[self.pickerSelection]
         }
         self.tableView.reloadData()
         self.view.endEditing(true)
@@ -446,9 +447,9 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if self.picker == 0 {
-            return RunKeeperAPI.activityTypes.count
+            return self.workoutSyncAPI.activityTypes.count
         } else if self.picker == 1 {
-            return RunKeeperAPI.otherTypes.count
+            return self.workoutSyncAPI.otherTypes.count
         }
 
         return 0
@@ -456,9 +457,9 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if self.picker == 0 {
-            return RunKeeperAPI.activityTypes[row]
+            return self.workoutSyncAPI.activityTypes[row]
         } else if self.picker == 1 {
-            return RunKeeperAPI.otherTypes[row]
+            return self.workoutSyncAPI.otherTypes[row]
         }
         
         return nil

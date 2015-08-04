@@ -15,71 +15,7 @@ class RunKeeperAPI: WorkoutSyncAPI {
     
     let oauth2:OAuth2CodeGrant
     let baseURL = NSURL(string: "https://api.runkeeper.com")!
-    
-    static let activityTypes = [
-        "Cycling",
-        "Elliptical",
-        "Hiking",
-        "Rowing",
-        "Running",
-        "Swimming",
-        "Walking",
-        "Other"
-    ]
-    
-    static let otherTypes = [
-        "AmericanFootball",
-        "Archery",
-        "AustralianFootball",
-        "Badminton",
-        "Baseball",
-        "Basketball",
-        "Bowling",
-        "Boxing",
-        "Climbing",
-        "Cricket",
-        "CrossTraining",
-        "Curling",
-        "Dance",
-        "DanceInspiredTraining",
-        "EquestrianSports",
-        "Fencing",
-        "Fishing",
-        "FunctionalStrengthTraining",
-        "Golf",
-        "Gymnastics",
-        "Handball",
-        "Hockey",
-        "Hunting",
-        "Lacrosse",
-        "MartialArts",
-        "MindAndBody",
-        "MixedMetabolicCardioTraining",
-        "PaddleSports",
-        "Play",
-        "PreparationAndRecovery",
-        "Racquetball",
-        "Rugby",
-        "Sailing",
-        "SkatingSports",
-        "SnowSports",
-        "Soccer",
-        "Softball",
-        "Squash",
-        "StairClimbing",
-        "SurfingSports",
-        "TableTennis",
-        "Tennis",
-        "TrackAndField",
-        "TraditionalStrengthTraining",
-        "Volleyball",
-        "WaterFitness",
-        "WaterPolo",
-        "WaterSports",
-        "Wrestling",
-        "Yoga"
-    ]
-    
+
     override init() {
         var settings = [
             "authorize_uri": "https://runkeeper.com/apps/authorize",
@@ -110,6 +46,68 @@ class RunKeeperAPI: WorkoutSyncAPI {
                 println("Authorization went wrong: \(error!.localizedDescription)")
             }
         }
+        
+        super.init(activityTypes: [
+            "Cycling",
+            "Elliptical",
+            "Hiking",
+            "Rowing",
+            "Running",
+            "Swimming",
+            "Walking",
+            "Other"
+            ], otherTypes: [
+                "AmericanFootball",
+                "Archery",
+                "AustralianFootball",
+                "Badminton",
+                "Baseball",
+                "Basketball",
+                "Bowling",
+                "Boxing",
+                "Climbing",
+                "Cricket",
+                "CrossTraining",
+                "Curling",
+                "Dance",
+                "DanceInspiredTraining",
+                "EquestrianSports",
+                "Fencing",
+                "Fishing",
+                "FunctionalStrengthTraining",
+                "Golf",
+                "Gymnastics",
+                "Handball",
+                "Hockey",
+                "Hunting",
+                "Lacrosse",
+                "MartialArts",
+                "MindAndBody",
+                "MixedMetabolicCardioTraining",
+                "PaddleSports",
+                "Play",
+                "PreparationAndRecovery",
+                "Racquetball",
+                "Rugby",
+                "Sailing",
+                "SkatingSports",
+                "SnowSports",
+                "Soccer",
+                "Softball",
+                "Squash",
+                "StairClimbing",
+                "SurfingSports",
+                "TableTennis",
+                "Tennis",
+                "TrackAndField",
+                "TraditionalStrengthTraining",
+                "Volleyball",
+                "WaterFitness",
+                "WaterPolo",
+                "WaterSports",
+                "Wrestling",
+                "Yoga"
+            ])
     }
     
     override func authorizeEmbeddedFrom(controller: UIViewController, params: [String : String]?, afterAuthorizeOrFailure: (wasFailure: Bool, error: NSError?) -> Void) {

@@ -30,6 +30,8 @@ class WorkoutDetailViewController: UITableViewController {
     var useMetric = false
     
     var isFirstLoad = true
+    
+    var workoutSyncAPI: WorkoutSyncAPI?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +65,10 @@ class WorkoutDetailViewController: UITableViewController {
                     let totalDistance: Double? = (workout.totalDistance != nil) ? workout.totalDistance.doubleValueForUnit(HKUnit.meterUnit()) : nil
                     let totalEnergyBurned: Double? = workout.totalEnergyBurned != nil ? workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()) : nil
                     
-                    let workoutApi = WorkoutSyncAPI()
-                    
-                    submitWorkoutViewController.workoutData = (workout.UUID, type: workoutApi.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: totalEnergyBurned, notes: nil, otherType: nil)
+                    if let workoutSyncAPI = self.workoutSyncAPI {
+                        submitWorkoutViewController.workoutData = (workout.UUID, type: workoutSyncAPI.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: totalEnergyBurned, notes: nil, otherType: nil)
+                        submitWorkoutViewController.workoutSyncAPI = workoutSyncAPI
+                    }
                 }
             }
         }
@@ -194,9 +197,11 @@ class WorkoutDetailViewController: UITableViewController {
         if self.linkedServices?.last != nil {
             if indexPath.section == 1 && indexPath.row == 0 {
                 println("Sync to RunKeeper")
+                self.workoutSyncAPI = RunKeeperAPI.sharedInstance
                 performSegueWithIdentifier("submitWorkout", sender: self)
             } else if indexPath.section == 1 && indexPath.row == 1 {
                 println("Sync to Strava")
+                self.workoutSyncAPI = StravaAPI.sharedInstance
                 performSegueWithIdentifier("submitWorkout", sender: self)
             }
         }
