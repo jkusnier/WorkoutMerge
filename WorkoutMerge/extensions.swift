@@ -28,6 +28,22 @@ extension NSDate {
         
         return dateFormatter.stringFromDate(self)
     }
+    
+    public func ISOStringFromDate() -> String {
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        
+        return dateFormatter.stringFromDate(self).stringByAppendingString("Z")
+    }
+    
+    public func dayOfWeek() -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        
+        return dateFormatter.stringFromDate(self)
+    }
 }
 
 extension Double {
