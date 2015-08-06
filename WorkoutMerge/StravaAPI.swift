@@ -14,7 +14,7 @@ class StravaAPI: WorkoutSyncAPI {
     static let sharedInstance = StravaAPI()
     
     let oauth2:OAuth2CodeGrant
-    let baseURL = NSURL(string: "https://www.strava.com/api")!
+    let baseURL = NSURL(string: "https://www.strava.com/api/v3")!
     
     override init() {
         var settings = [
