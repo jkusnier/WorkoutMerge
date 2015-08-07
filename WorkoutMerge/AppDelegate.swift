@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let host = url.host {
             if host == "oauth.runkeeper" {
                 RunKeeperAPI.handleRedirectURL(url)
+            } else if host == "oauth.strava" {
+                StravaAPI.handleRedirectURL(url)
             }
         }
 
