@@ -23,6 +23,7 @@ class StravaAPI: WorkoutSyncAPI {
             "redirect_uris": ["http://www.workoutmerge.com/callback"],
             "secret_in_body": true,
             "verbose": true,
+            "scope": "write",
             ] as OAuth2JSON
         
         var myDict: NSDictionary?
@@ -33,7 +34,6 @@ class StravaAPI: WorkoutSyncAPI {
             if let strava = dict["strava"] as? NSDictionary {
                 settings["client_id"] = strava["client_id"]
                 settings["client_secret"] = strava["client_secret"]
-                settings["access_token"] = strava["access_token"]
             }
         }
         
