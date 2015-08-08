@@ -72,6 +72,7 @@
 		96A6D9EB1B109D240056ECDA /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		96A6D9EF1B10A1B00056ECDA /* CloseModalSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseModalSegue.swift; sourceTree = "<group>"; };
 		96B357B01B290BEA00246703 /* ViewControllerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerUtils.swift; sourceTree = "<group>"; };
+		96C64DA91B7622AA0087BB86 /* WorkoutMerge 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "WorkoutMerge 4.xcdatamodel"; sourceTree = "<group>"; };
 		96E4FAEB1B1D315600D452AF /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		96E810F71B685886009D03F6 /* StravaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StravaAPI.swift; sourceTree = "<group>"; };
 		F827AA5BB1F465EF7C995B65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -603,11 +604,12 @@
 		96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				96C64DA91B7622AA0087BB86 /* WorkoutMerge 4.xcdatamodel */,
 				968B19221B63AE8E003F50CB /* WorkoutMerge 3.xcdatamodel */,
 				967020B51B2DEDE900FE0114 /* WorkoutMerge 2.xcdatamodel */,
 				96A6D9C81B108DB80056ECDA /* WorkoutMerge.xcdatamodel */,
 			);
-			currentVersion = 968B19221B63AE8E003F50CB /* WorkoutMerge 3.xcdatamodel */;
+			currentVersion = 96C64DA91B7622AA0087BB86 /* WorkoutMerge 4.xcdatamodel */;
 			path = WorkoutMerge.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

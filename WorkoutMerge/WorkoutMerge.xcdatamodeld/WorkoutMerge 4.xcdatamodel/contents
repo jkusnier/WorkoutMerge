@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="Model v0.4" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="SyncLog" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="savedKeyRunKeeper" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="savedKeyStrava" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncToRunKeeper" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="syncToStrava" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="workoutOtherType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="workoutType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SyncLog" positionX="-63" positionY="-18" width="128" height="180"/>
+    </elements>
+</model>
