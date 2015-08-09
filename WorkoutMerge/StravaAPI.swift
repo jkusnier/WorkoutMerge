@@ -78,23 +78,92 @@ class StravaAPI: WorkoutSyncAPI {
     }
     
     override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
+        let path = "/activities"
+        let url = baseURL.URLByAppendingPathComponent(path)
+        let req = oauth2.request(forURL: url)
         
-//        name:	string required
-//        type:	string required, case insensitive
-//        possible values: ride, run, swim, workout, hike, walk, nordicski, alpineski, backcountryski, iceskate, inlineskate, kitesurf, rollerski, windsurf, workout, snowboard, snowshoe, ebikeride, virtualride
-//        start_date_local:	datetime required
-//        ISO 8601 formatted date time, see Dates for more information
-//        elapsed_time:	integer required
-//        seconds
-//        description:	string optional
-//        distance:	float optional
-//        meters
-//        private:	integer optional
-//        set to 1 to mark the resulting activity as private, ‘view_private’ permissions will be necessary to view the activity
-//        trainer:	integer optional
-//        set to 1 to mark as a trainer activity
-//        commute:	integer optional 
-//        set to 1 to mark as commute
+        var jsonData = [String]()
+        
+        if let type = workout.type {
+            // Create a default name for now, the user will be given the option to change this in the future
+            jsonData.append("\"name\":\"\(NSDate().dayOfWeek()) - \(type)\"")
+            jsonData.append("\"type\":\"\(type)\"")
+        }
+        if let startTime = workout.startTime {
+            let startTimeString = startTime.ISOStringFromDate()
+            jsonData.append("\"start_date_local\":\"\(startTimeString)\"")
+        }
+        if let duration = workout.duration {
+            jsonData.append("\"elapsed_time\":\(Int(duration))")
+        }
+        if let totalDistance = workout.totalDistance {
+            jsonData.append("\"distance\":\(totalDistance)")
+        }
+
+        // Strava doesn't accept heart rate or calories
+//        if let averageHeartRate = workout.averageHeartRate {
+//            jsonData.append("\"average_heart_rate\":\(averageHeartRate)")
+//        }
+//        if let totalCalories = workout.totalCalories {
+//            jsonData.append("\"total_calories\":\(totalCalories)")
+//        }
+        if let notes = workout.notes {
+            jsonData.append("\"description\":\"\(notes)\"")
+        }
+//        if let type = workout.type, otherType = workout.otherType where type == "Other" {
+//            jsonData.append("\"secondary_type\":\"\(otherType)\"")
+//        }
+        
+        var joiner = ","
+        var jsonString = "{" + joiner.join(jsonData) + "}"
+        
+        req.HTTPBody = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        req.HTTPMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(req) { data, response, error in
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                    println("success")
+
+                    var savedKey: String?
+                    var error: NSError?
+                    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
+                        if let workoutId = jsonDict["id"] as? Int {
+                            savedKey = "\(workoutId)"
+                        }
+                    }
+                    succeed!(savedKey: savedKey)
+                } else {
+                    println("failure")
+                    if let fail = fail {
+                        if let error = error {
+                            fail(error, "Status Code \(httpResponse.statusCode)")
+                        }
+                    }
+                }
+            } else {
+                println("fail")
+                if let fail = fail {
+                    fail(error, "No Response")
+                }
+            }
+        }
+        task.resume()
+
+        //[
+        //    name:	string required
+        //    type:	string required, case insensitive
+        //    start_date_local:	datetime required ISO 8601 formatted date time, see Dates for more information
+        //    elapsed_time:	integer required seconds
+        //    description:	string optional
+        //    distance:	float optional meters
+        //    private:	integer optional 1 is private
+        //    trainer:	integer optional 1 is trainer
+        //    commute:	integer optional  1 is commute
+        //]
     }
     
     override func activityType(t: HKWorkoutActivityType) -> String {
