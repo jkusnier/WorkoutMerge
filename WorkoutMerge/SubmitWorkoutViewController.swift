@@ -363,68 +363,118 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         
         vcu.showActivityIndicator(self.view)
         
-        let runKeeper = RunKeeperAPI.sharedInstance
-//        runKeeper.authorizeEmbeddedFrom(self, params: nil, afterAuthorizeOrFailure: { wasFailure, error in
-//            if wasFailure {
-//                println("\(wasFailure)")
-//                vcu.hideActivityIndicator(self.view)
-//            } else {
-                runKeeper.postActivity(self.resultWorkoutData, failure: { (error, msg) in
-                        vcu.hideActivityIndicator(self.view)
-                        let errorMessage: String
-                        if let error = error {
-                            errorMessage = "\(error.localizedDescription) - \(msg)"
-                        } else {
-                            errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
-                        }
-                        var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
-                    },
-                    success: { (savedKey) in
-                        if let uuid = self.resultWorkoutData.UUID?.UUIDString {
-                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                            let managedContext = appDelegate.managedObjectContext!
-                            
-                            let note = self.resultWorkoutData.notes
-                            
-                            if let syncLog = self.syncLog(uuid) {
-                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
-                                syncLog.setValue(note, forKey: "note")
-                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
-                                if let workoutType = self.resultWorkoutData.type {
-                                    syncLog.setValue(workoutType, forKey: "workoutType")
-                                }
-                                if let workoutOtherType = self.resultWorkoutData.otherType {
-                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
-                                }
-                            } else {
-                                let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
-                                let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
-                                syncLog.setValue(uuid, forKey: "uuid")
-                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
-                                syncLog.setValue(note, forKey: "note")
-                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
-                                if let workoutType = self.resultWorkoutData.type {
-                                    syncLog.setValue(workoutType, forKey: "workoutType")
-                                }
-                                if let workoutOtherType = self.resultWorkoutData.otherType {
-                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
-                                }
+        if let runKeeper = self.workoutSyncAPI as? RunKeeperAPI {
+            runKeeper.postActivity(self.resultWorkoutData, failure: { (error, msg) in
+                    vcu.hideActivityIndicator(self.view)
+                    let errorMessage: String
+                    if let error = error {
+                        errorMessage = "\(error.localizedDescription) - \(msg)"
+                    } else {
+                        errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
+                    }
+                    var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                },
+                success: { (savedKey) in
+                    if let uuid = self.resultWorkoutData.UUID?.UUIDString {
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        let managedContext = appDelegate.managedObjectContext!
+                        
+                        let note = self.resultWorkoutData.notes
+                        
+                        if let syncLog = self.syncLog(uuid) {
+                            syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                            syncLog.setValue(note, forKey: "note")
+                            syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
+                            if let workoutType = self.resultWorkoutData.type {
+                                syncLog.setValue(workoutType, forKey: "workoutType")
                             }
-                            
-                            var error: NSError?
-                            if !managedContext.save(&error) {
-                                println("Could not save \(error)")
+                            if let workoutOtherType = self.resultWorkoutData.otherType {
+                                syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
+                            }
+                        } else {
+                            let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
+                            let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+                            syncLog.setValue(uuid, forKey: "uuid")
+                            syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                            syncLog.setValue(note, forKey: "note")
+                            syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
+                            if let workoutType = self.resultWorkoutData.type {
+                                syncLog.setValue(workoutType, forKey: "workoutType")
+                            }
+                            if let workoutOtherType = self.resultWorkoutData.otherType {
+                                syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
                             }
                         }
                         
-                        vcu.hideActivityIndicator(self.view)
-                        self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
+                        var error: NSError?
+                        if !managedContext.save(&error) {
+                            println("Could not save \(error)")
+                        }
                     }
-                )
-//            }
-//        })
+                    
+                    vcu.hideActivityIndicator(self.view)
+                    self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
+                }
+            )
+        } else if let strava = self.workoutSyncAPI as? StravaAPI {
+            strava.postActivity(self.resultWorkoutData, failure: { (error, msg) in
+                vcu.hideActivityIndicator(self.view)
+                let errorMessage: String
+                if let error = error {
+                    errorMessage = "\(error.localizedDescription) - \(msg)"
+                } else {
+                    errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
+                }
+                var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+                },
+                success: { (savedKey) in
+                    if let uuid = self.resultWorkoutData.UUID?.UUIDString {
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        let managedContext = appDelegate.managedObjectContext!
+                        
+                        let note = self.resultWorkoutData.notes
+                        
+                        if let syncLog = self.syncLog(uuid) {
+                            syncLog.setValue(NSDate(), forKey: "syncToStrava")
+                            syncLog.setValue(note, forKey: "note")
+                            syncLog.setValue(savedKey, forKey: "savedKeyStrava")
+                            if let workoutType = self.resultWorkoutData.type {
+                                syncLog.setValue(workoutType, forKey: "workoutType")
+                            }
+//                            if let workoutOtherType = self.resultWorkoutData.otherType {
+//                                syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
+//                            }
+                        } else {
+                            let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
+                            let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+                            syncLog.setValue(uuid, forKey: "uuid")
+                            syncLog.setValue(NSDate(), forKey: "syncToStrava")
+                            syncLog.setValue(note, forKey: "note")
+                            syncLog.setValue(savedKey, forKey: "savedKeyStrava")
+                            if let workoutType = self.resultWorkoutData.type {
+                                syncLog.setValue(workoutType, forKey: "workoutType")
+                            }
+//                            if let workoutOtherType = self.resultWorkoutData.otherType {
+//                                syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
+//                            }
+                        }
+                        
+                        var error: NSError?
+                        if !managedContext.save(&error) {
+                            println("Could not save \(error)")
+                        }
+                    }
+                    
+                    vcu.hideActivityIndicator(self.view)
+                    self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
+                }
+            )
+
+        }
     }
     
     @IBAction func saveWorkout(sender: AnyObject) {
