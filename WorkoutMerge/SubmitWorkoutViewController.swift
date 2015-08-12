@@ -47,11 +47,20 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         
         if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
             self.resultWorkoutData.notes = syncLog.valueForKey("note") as? String
-            if let workoutType = syncLog.valueForKey("workoutType") as? String {
-                self.resultWorkoutData.type = workoutType
-            }
-            if let workoutOtherType = syncLog.valueForKey("workoutOtherType") as? String {
-                self.resultWorkoutData.otherType = workoutOtherType
+            // FIXME find a better way
+            if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
+                // Strava Workout Types
+                if let workoutType = syncLog.valueForKey("workoutTypeStrava") as? String {
+                    self.resultWorkoutData.type = workoutType
+                }
+            } else {
+                // Default is RunKeeper
+                if let workoutType = syncLog.valueForKey("workoutType") as? String {
+                    self.resultWorkoutData.type = workoutType
+                }
+                if let workoutOtherType = syncLog.valueForKey("workoutOtherType") as? String {
+                    self.resultWorkoutData.otherType = workoutOtherType
+                }
             }
         }
         
@@ -443,7 +452,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                             syncLog.setValue(note, forKey: "note")
                             syncLog.setValue(savedKey, forKey: "savedKeyStrava")
                             if let workoutType = self.resultWorkoutData.type {
-                                syncLog.setValue(workoutType, forKey: "workoutType")
+                                syncLog.setValue(workoutType, forKey: "workoutTypeStrava")
                             }
 //                            if let workoutOtherType = self.resultWorkoutData.otherType {
 //                                syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
@@ -456,7 +465,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                             syncLog.setValue(note, forKey: "note")
                             syncLog.setValue(savedKey, forKey: "savedKeyStrava")
                             if let workoutType = self.resultWorkoutData.type {
-                                syncLog.setValue(workoutType, forKey: "workoutType")
+                                syncLog.setValue(workoutType, forKey: "workoutTypeStrava")
                             }
 //                            if let workoutOtherType = self.resultWorkoutData.otherType {
 //                                syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
@@ -479,13 +488,29 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     @IBAction func saveWorkout(sender: AnyObject) {
         if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
-            let alertController = UIAlertController(title: "Alert", message: "Workout already submitted", preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
-                self.doSave()
-            })
+            var showError = false
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
+                if let workoutType = syncLog.valueForKey("savedKeyStrava") as? String {
+                    showError = true
+                }
+            } else if let workoutSyncAPI = self.workoutSyncAPI as? RunKeeperAPI {
+                if let workoutType = syncLog.valueForKey("savedKeyRunKeeper") as? String {
+                    showError = true
+                }
+            }
+            
+            if showError {
+                let alertController = UIAlertController(title: "Alert", message: "Workout already submitted", preferredStyle: .Alert)
+                alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
+                    self.doSave()
+                })
+                
+                self.presentViewController(alertController, animated: true, completion: nil)
+            } else {
+                self.doSave()
+            }
         } else {
             self.doSave()
         }
