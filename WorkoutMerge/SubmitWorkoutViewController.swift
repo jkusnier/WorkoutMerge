@@ -19,8 +19,8 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     let defaults = NSUserDefaults.standardUserDefaults()
     
     var workoutSyncAPI: WorkoutSyncAPI = WorkoutSyncAPI()
-    var resultWorkoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?)
-    var workoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?) {
+    var resultWorkoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?)
+    var workoutData: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?) {
         didSet {
             self.resultWorkoutData = self.workoutData
             

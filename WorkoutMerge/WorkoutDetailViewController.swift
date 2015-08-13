@@ -66,7 +66,7 @@ class WorkoutDetailViewController: UITableViewController {
                     let totalEnergyBurned: Double? = workout.totalEnergyBurned != nil ? workout.totalEnergyBurned.doubleValueForUnit(HKUnit.kilocalorieUnit()) : nil
                     
                     if let workoutSyncAPI = self.workoutSyncAPI {
-                        submitWorkoutViewController.workoutData = (workout.UUID, type: workoutSyncAPI.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: totalEnergyBurned, notes: nil, otherType: nil)
+                        submitWorkoutViewController.workoutData = (workout.UUID, type: workoutSyncAPI.activityType(workout.workoutActivityType), startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: averageHeartRate, totalCalories: totalEnergyBurned, notes: nil, otherType: nil, activityName: nil)
                         submitWorkoutViewController.workoutSyncAPI = workoutSyncAPI
                     }
                 }
