@@ -223,29 +223,32 @@ class WorkoutDetailViewController: UITableViewController {
             let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
             let workoutPredicate = HKQuery.predicateForSamplesWithStartDate(workout.startDate, endDate: workout.endDate, options: .None)
             let startDateSort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
-            
-            let query = HKSampleQuery(sampleType: quantityType, predicate: workoutPredicate,
-                limit: 0, sortDescriptors: [startDateSort]) {
-                    (sampleQuery, results, error) -> Void in
 
-                    if let heartRateSamples = results as? [HKQuantitySample] {
-                        if heartRateSamples.count > 0 {
-                            let avgHeartRate = heartRateSamples.reduce(0) {
-                                $0 + $1.quantity.doubleValueForUnit(HKUnit(fromString: "count/min"))
-                            } / Double(heartRateSamples.count)
-
-                            self.averageHeartRate = Int(avgHeartRate)
-
-                            success(avgHeartRate)
-                        } else {
-                            // If we hit this, try 1 more time before giving up
-                            if tryAgain {
-                                self.averageHeartRateForWorkout(workout, success: success, tryAgain: false)
-                            } else {
-                                success(nil)
-                            }
-                        }
+            let query = HKStatisticsQuery(quantityType: quantityType, quantitySamplePredicate: workoutPredicate, options: .DiscreteAverage) {
+                (query, results, error) -> Void in
+                
+                if error != nil {
+                    println("\(error)")
+                    if tryAgain {
+                        self.averageHeartRateForWorkout(workout, success: success, tryAgain: false)
+                    } else {
+                        println("failed to retrieve heart rate data")
+                        success(nil)
                     }
+                } else {
+                    if results.averageQuantity() != nil {
+                        let avgHeartRate = results.averageQuantity().doubleValueForUnit(HKUnit(fromString: "count/min"));
+                        
+                        self.averageHeartRate = Int(avgHeartRate)
+                        success(avgHeartRate)
+                    } else if tryAgain {
+                        println("averageQuantity unexpectedly found nil")
+                        self.averageHeartRateForWorkout(workout, success: success, tryAgain: false)
+                    } else {
+                        println("failed to retrieve heart rate data")
+                        success(nil)
+                    }
+                }
             }
             hkStore.executeQuery(query)
         }
