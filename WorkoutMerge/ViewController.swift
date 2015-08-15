@@ -46,7 +46,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.refreshControl.removeFromSuperview()
         } else {
             hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError!) -> () in
-                println("okay: \(success) error: \(err)")
+//                println("okay: \(success) error: \(err)")
                 
                 var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
                 actInd.center = self.view.center
@@ -57,7 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 if success {
                     self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
-                        println("Made It \(results.count)")
+                        println("Found \(results.count) workouts")
                         if let workouts = results as? [HKWorkout] {
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.workouts = workouts
