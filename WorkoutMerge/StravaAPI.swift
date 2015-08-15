@@ -85,8 +85,6 @@ class StravaAPI: WorkoutSyncAPI {
         var jsonData = [String]()
         
         if let type = workout.type {
-            // Create a default name for now, the user will be given the option to change this in the future
-            jsonData.append("\"name\":\"\(NSDate().dayOfWeek()) - \(type)\"")
             jsonData.append("\"type\":\"\(type)\"")
         }
         if let startTime = workout.startTime {
@@ -98,6 +96,15 @@ class StravaAPI: WorkoutSyncAPI {
         }
         if let totalDistance = workout.totalDistance {
             jsonData.append("\"distance\":\(totalDistance)")
+        }
+        if let activityName = workout.activityName {
+            jsonData.append("\"name\":\"\(activityName)\"")
+        } else {
+            if let type = workout.type, startTime = workout.startTime {
+                jsonData.append("\"name\":\"\(startTime.dayOfWeek()) - \(type)\"")
+            } else {
+                jsonData.append("\"name\":\"unknown\"")
+            }
         }
 
         // Strava doesn't accept heart rate or calories

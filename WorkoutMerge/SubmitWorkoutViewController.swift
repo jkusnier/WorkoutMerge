@@ -46,7 +46,13 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         self.useMetric = self.defaults.stringForKey("distanceUnit") == "meters"
         
         if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
-            self.resultWorkoutData.notes = syncLog.valueForKey("note") as? String
+            if let note = syncLog.valueForKey("note") as? String {
+                self.resultWorkoutData.notes = note
+            }
+            if let activityName = syncLog.valueForKey("name") as? String {
+                self.resultWorkoutData.activityName = activityName
+            }
+            
             // FIXME find a better way
             if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
                 // Strava Workout Types
@@ -86,11 +92,18 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var rows = 7
+        
+        if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
+            // Add 1 for workout Name
+            rows++
+        }
+        
         if resultWorkoutData.type == "Other" {
             // Select other type
-            return 8
+            return rows++
         }
-        return 7
+        return rows
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -231,6 +244,19 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             } else {
                 setSubtitle("", cell as? SubmitWorkoutTableViewCell)
             }
+        case 7:
+            cell = staticCell()
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            cell.selectionStyle = UITableViewCellSelectionStyle.Default
+            setTitle("Name", cell as? SubmitWorkoutTableViewCell)
+
+            if let activityName = self.resultWorkoutData.activityName {
+                setSubtitle("\(activityName)", cell as? SubmitWorkoutTableViewCell)
+            } else {
+                if let startTime = self.workoutData.startTime, type = self.resultWorkoutData.type {
+                    setSubtitle("\(startTime.dayOfWeek()) - \(type)", cell as? SubmitWorkoutTableViewCell)
+                }
+            }
         default:
             cell = dynamicCell()
             cell.selectionStyle = UITableViewCellSelectionStyle.None
@@ -328,6 +354,22 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 textField.placeholder = "Enter notes:"
                 if let notes = self.resultWorkoutData.notes {
                     textField.text = notes
+                }
+            })
+            self.presentViewController(alert, animated: true, completion: nil)
+        case 7:
+            var alert = UIAlertController(title: "Name", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let doneAction = UIAlertAction(title: "Done", style: .Default) { (action) in
+                let nameTextField = alert.textFields![0] as! UITextField
+                self.resultWorkoutData.activityName = nameTextField.text.isEmpty ? nil : nameTextField.text
+                self.tableView.reloadData()
+            }
+            
+            alert.addAction(doneAction)
+            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+                textField.placeholder = "Enter name:"
+                if let activityName = self.resultWorkoutData.activityName {
+                    textField.text = activityName
                 }
             })
             self.presentViewController(alert, animated: true, completion: nil)
