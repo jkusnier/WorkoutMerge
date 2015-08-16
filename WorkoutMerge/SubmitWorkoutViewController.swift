@@ -187,7 +187,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     self.defaults.setBool(isOn, forKey: self.kSwitchPrefTotalCalories)
                 }
                 if let switchState = defaults.valueForKey(self.kSwitchPrefTotalCalories) as? Bool {
-                    cell.sendDataSwitch.on = switchState
+                    cell.setSwitchState(switchState)
                 }
             }
         case 3:
@@ -208,7 +208,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     self.defaults.setBool(isOn, forKey: self.kSwitchPrefTotalDistance)
                 }
                 if let switchState = defaults.valueForKey(self.kSwitchPrefTotalDistance) as? Bool {
-                    cell.sendDataSwitch.on = switchState
+                    cell.setSwitchState(switchState)
                 }
             }
         case 4:
@@ -224,7 +224,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     self.defaults.setBool(isOn, forKey: self.kSwitchPrefAverageHeartRate)
                 }
                 if let switchState = defaults.valueForKey(self.kSwitchPrefAverageHeartRate) as? Bool {
-                    cell.sendDataSwitch.on = switchState
+                    cell.setSwitchState(switchState)
                 }
             }
         case 5:

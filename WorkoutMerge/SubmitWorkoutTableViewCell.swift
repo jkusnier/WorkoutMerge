@@ -35,4 +35,10 @@ class SubmitWorkoutTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    func setSwitchState(switchState: Bool) {
+        self.sendDataSwitch.on = switchState
+        self.titleLabel.enabled = switchState
+        self.subtitleLabel.enabled = switchState
+    }
 }
