@@ -26,8 +26,11 @@ class SubmitWorkoutTableViewCell: UITableViewCell {
     }
 
     @IBAction func switchChanged(sender: AnyObject) {
-        if let switchChangedCallback = self.switchChangedCallback {
+        if let switchChangedCallback = self.switchChangedCallback {            
             if let uiSwitch = sender as? UISwitch {
+                self.titleLabel.enabled = uiSwitch.on
+                self.subtitleLabel.enabled = uiSwitch.on
+
                 switchChangedCallback(uiSwitch.on)
             }
         }
