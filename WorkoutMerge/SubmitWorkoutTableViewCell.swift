@@ -37,8 +37,14 @@ class SubmitWorkoutTableViewCell: UITableViewCell {
     }
     
     func setSwitchState(switchState: Bool) {
-        self.sendDataSwitch.on = switchState
-        self.titleLabel.enabled = switchState
-        self.subtitleLabel.enabled = switchState
+        if let sendDataSwitch = self.sendDataSwitch {
+            sendDataSwitch.on = switchState
+        }
+        if let titleLabel = self.titleLabel {
+            titleLabel.enabled = switchState
+        }
+        if let subtitleLabel = self.subtitleLabel {
+            subtitleLabel.enabled = switchState
+        }
     }
 }
