@@ -130,6 +130,15 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             return tableView.dequeueReusableCellWithIdentifier("submitStaticInputCell", forIndexPath: indexPath) as! UITableViewCell
         }
         
+        func disabledCell() -> UITableViewCell {
+            if let cell = tableView.dequeueReusableCellWithIdentifier("submitStaticInputCell", forIndexPath: indexPath) as? SubmitWorkoutTableViewCell {
+                cell.setDisabled(true)
+                return cell
+            } else {
+                return tableView.dequeueReusableCellWithIdentifier("submitStaticCell", forIndexPath: indexPath) as! UITableViewCell
+            }
+        }
+        
         func setTitle(title: String?, cell: SubmitWorkoutTableViewCell?) {
             if let l = cell?.titleLabel, t = title {
                 l.text = t
@@ -175,7 +184,11 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             setTitle("Duration", cell as? SubmitWorkoutTableViewCell)
             setSubtitle(stringFromTimeInterval(self.resultWorkoutData.duration), cell as? SubmitWorkoutTableViewCell)
         case 2:
-            cell = dynamicCell()
+            if let strava = self.workoutSyncAPI as? StravaAPI {
+                cell = disabledCell()
+            } else {
+                cell = dynamicCell()
+            }
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Calories Burned", cell as? SubmitWorkoutTableViewCell)
             if let totalCalories = self.workoutData.totalCalories {
@@ -186,8 +199,10 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     self.resultWorkoutData.totalCalories = isOn ? self.workoutData.totalCalories : nil
                     self.defaults.setBool(isOn, forKey: self.kSwitchPrefTotalCalories)
                 }
-                if let switchState = defaults.valueForKey(self.kSwitchPrefTotalCalories) as? Bool {
-                    cell.setSwitchState(switchState)
+                if !cell.isDisabled {
+                    if let switchState = defaults.valueForKey(self.kSwitchPrefTotalCalories) as? Bool {
+                        cell.setSwitchState(switchState)
+                    }
                 }
             }
         case 3:
@@ -212,7 +227,11 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 }
             }
         case 4:
-            cell = dynamicCell()
+            if let strava = self.workoutSyncAPI as? StravaAPI {
+                cell = disabledCell()
+            } else {
+                cell = dynamicCell()
+            }
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             setTitle("Avg Heart Rate", cell as? SubmitWorkoutTableViewCell)
             if let averageHeartRate = self.workoutData.averageHeartRate {
@@ -223,8 +242,10 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     self.resultWorkoutData.averageHeartRate = isOn ? self.workoutData.averageHeartRate : nil
                     self.defaults.setBool(isOn, forKey: self.kSwitchPrefAverageHeartRate)
                 }
-                if let switchState = defaults.valueForKey(self.kSwitchPrefAverageHeartRate) as? Bool {
-                    cell.setSwitchState(switchState)
+                if !cell.isDisabled {
+                    if let switchState = defaults.valueForKey(self.kSwitchPrefAverageHeartRate) as? Bool {
+                        cell.setSwitchState(switchState)
+                    }
                 }
             }
         case 5:
