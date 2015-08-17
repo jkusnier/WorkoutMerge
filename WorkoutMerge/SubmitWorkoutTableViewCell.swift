@@ -17,6 +17,8 @@ class SubmitWorkoutTableViewCell: UITableViewCell {
     
     var switchChangedCallback: ((Bool) -> ())?
     
+    var isDisabled = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -45,6 +47,19 @@ class SubmitWorkoutTableViewCell: UITableViewCell {
         }
         if let subtitleLabel = self.subtitleLabel {
             subtitleLabel.enabled = switchState
+        }
+    }
+    
+    func setDisabled(disabledState: Bool) {
+        self.isDisabled = disabledState
+        if let sendDataSwitch = self.sendDataSwitch {
+            sendDataSwitch.enabled = !disabledState
+        }
+        if let titleLabel = self.titleLabel {
+            titleLabel.enabled = !disabledState
+        }
+        if let subtitleLabel = self.subtitleLabel {
+            subtitleLabel.enabled = !disabledState
         }
     }
 }
