@@ -26,6 +26,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     
     var initialAppearance = true
+    
+    var dataLoaded = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +124,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: nil, limit: 50, sortDescriptors: [sortDescriptor])
             { (sampleQuery, results, error ) -> Void in
-                
+                self.dataLoaded = true
+
                 if let queryError = error {
                     println( "There was an error while reading the samples: \(queryError.localizedDescription)")
                 }
@@ -135,7 +138,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView:UITableView, numberOfRowsInSection section:Int) -> Int {
         var numRows = workouts.count
         
-        if numRows == 0 {
+        if numRows == 0 && dataLoaded {
             numRows = 1
         }
         
