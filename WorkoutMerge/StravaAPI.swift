@@ -14,7 +14,7 @@ class StravaAPI: WorkoutSyncAPI {
     static let sharedInstance = StravaAPI()
     
     let oauth2:OAuth2CodeGrant
-    let baseURL = NSURL(string: "https://www.strava.com/api/v3")!
+    let baseURL = NSURL(string: "https://www.strava.com")!
     
     override init() {
         var settings = [
@@ -78,7 +78,7 @@ class StravaAPI: WorkoutSyncAPI {
     }
     
     override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
-        let path = "/activities"
+        let path = "api/v3/activities"
         let url = baseURL.URLByAppendingPathComponent(path)
         let req = oauth2.request(forURL: url)
         
