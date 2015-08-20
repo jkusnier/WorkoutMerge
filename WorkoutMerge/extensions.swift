@@ -44,6 +44,15 @@ extension NSDate {
         
         return dateFormatter.stringFromDate(self)
     }
+    
+//    public func dateFromISOString(string: String) -> NSDate? {
+//        var dateFormatter = NSDateFormatter()
+//        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+//        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//        
+//        return dateFormatter.dateFromString(string)
+//    }
 }
 
 extension Double {
