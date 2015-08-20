@@ -82,28 +82,28 @@ class StravaAPI: WorkoutSyncAPI {
         let url = baseURL.URLByAppendingPathComponent(path)
         let req = oauth2.request(forURL: url)
         
-        var jsonData = [String]()
+        var postData = [String: String]()
         
         if let type = workout.type {
-            jsonData.append("\"type\":\"\(type)\"")
+            postData["type"] = type
         }
         if let startTime = workout.startTime {
             let startTimeString = startTime.ISOStringFromDate()
-            jsonData.append("\"start_date_local\":\"\(startTimeString)\"")
+            postData["start_date_local"] = startTimeString
         }
         if let duration = workout.duration {
-            jsonData.append("\"elapsed_time\":\(Int(duration))")
+            postData["elapsed_time"] = "\(Int(duration))"
         }
         if let totalDistance = workout.totalDistance {
-            jsonData.append("\"distance\":\(totalDistance)")
+            postData["distance"] = "\(totalDistance)"
         }
         if let activityName = workout.activityName {
-            jsonData.append("\"name\":\"\(activityName)\"")
+            postData["name"] = "\(activityName)"
         } else {
             if let type = workout.type, startTime = workout.startTime {
-                jsonData.append("\"name\":\"\(startTime.dayOfWeek()) - \(type)\"")
+                postData["name"] = "\(startTime.dayOfWeek()) - \(type)"
             } else {
-                jsonData.append("\"name\":\"unknown\"")
+                postData["name"] = "unknown"
             }
         }
 
@@ -115,18 +115,16 @@ class StravaAPI: WorkoutSyncAPI {
 //            jsonData.append("\"total_calories\":\(totalCalories)")
 //        }
         if let notes = workout.notes {
-            jsonData.append("\"description\":\"\(notes)\"")
+            postData["description"] = notes
         }
 //        if let type = workout.type, otherType = workout.otherType where type == "Other" {
 //            jsonData.append("\"secondary_type\":\"\(otherType)\"")
 //        }
         
-        var joiner = ","
-        var jsonString = "{" + joiner.join(jsonData) + "}"
-        
-        req.HTTPBody = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        let urlParameters = "&".join( map(postData) { "\($0)=\($1)" } )
+        req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         req.HTTPMethod = "POST"
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(req) { data, response, error in
