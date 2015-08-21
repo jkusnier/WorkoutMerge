@@ -126,37 +126,38 @@ class StravaAPI: WorkoutSyncAPI {
         req.HTTPMethod = "POST"
         req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(req) { data, response, error in
-            
-            if let httpResponse = response as? NSHTTPURLResponse {
-                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
-                    println("success")
-
-                    var savedKey: String?
-                    var error: NSError?
-                    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
-                        if let workoutId = jsonDict["id"] as? Int {
-                            savedKey = "\(workoutId)"
+        let queue = NSOperationQueue()
+        NSURLConnection.sendAsynchronousRequest(req, queue: queue, completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                        println("success")
+                        
+                        var savedKey: String?
+                        var error: NSError?
+                        if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
+                            if let workoutId = jsonDict["id"] as? Int {
+                                savedKey = "\(workoutId)"
+                            }
+                        }
+                        succeed!(savedKey: savedKey)
+                    } else {
+                        println("failure")
+                        if let fail = fail {
+                            if let error = error {
+                                fail(error, "Status Code \(httpResponse.statusCode)")
+                            }
                         }
                     }
-                    succeed!(savedKey: savedKey)
                 } else {
-                    println("failure")
+                    println("fail")
                     if let fail = fail {
-                        if let error = error {
-                            fail(error, "Status Code \(httpResponse.statusCode)")
-                        }
+                        fail(error, "No Response")
                     }
                 }
-            } else {
-                println("fail")
-                if let fail = fail {
-                    fail(error, "No Response")
-                }
-            }
-        }
-        task.resume()
+            })
+        })
 
         //[
         //    name:	string required
