@@ -20,6 +20,10 @@
 
 import Foundation
 
+
+/**
+    A class to handle authorization for clients via password grant.
+ */
 public class OAuth2PasswordGrant: OAuth2
 {
 	/// Username to use during authentication.
@@ -66,8 +70,13 @@ public class OAuth2PasswordGrant: OAuth2
 		performRequest(post) { (data, status, error) -> Void in
 			var myError = error
 			if let data = data, let json = self.parseAccessTokenResponse(data, error: &myError) {
-				self.logIfVerbose("Did get access token [\(nil != self.accessToken)]")
-				callback(error: nil)
+				if status < 400 && nil == json["error"] {
+					self.logIfVerbose("Did get access token [\(nil != self.accessToken)]")
+					callback(error: nil)
+				}
+				else {
+					callback(error: self.errorForErrorResponse(json, fallback: "The username or password is incorrect"))
+				}
 			}
 			else {
 				callback(error: myError ?? genOAuth2Error("Unknown error when requesting access token"))

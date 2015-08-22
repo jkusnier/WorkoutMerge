@@ -39,7 +39,7 @@ public class OAuth2Base
 	/// Set to `true` to log all the things. `false` by default. Use `"verbose": bool` in settings.
 	public var verbose = false
 	
-	/// An optional title that will propagate to views handled by OAuth2, such as OAuth2WebViewController.
+	/// An optional title that will propagate to views handled by OAuth2, such as OAuth2WebViewController. TODO: remove with Swift 2.0 release in favor of OAuth2Config.
 	public var viewTitle: String?
 	
 	/// If set to `true` (the default) will use system keychain to store tokens. Use `"keychain": bool` in settings.
@@ -101,7 +101,7 @@ public class OAuth2Base
 	/** Stores our current token(s) in the keychain. */
 	internal func storeToKeychain() {
 		if let items = storableKeychainItems() where !items.isEmpty {
-			logIfVerbose("Storing to keychain")
+			logIfVerbose("Storing items to keychain")
 			
 			let keychain = Keychain(serviceName: keychainServiceName())
 			let key = ArchiveKey(keyName: keychainKeyName(), object: items)

@@ -11,10 +11,11 @@ To use on **iOS 7** you'll have to include the source files in your main project
 _Note_ that it's possible to run embedded frameworks in iOS 7 with some tricks, however you will not be able to submit such an App to the App Store.
 Supported OAuth2 [flows](#flows) are the _code grant_ (`response_type=code`) and the _implicit grant_ (`response_type=token`).
 
-#### Swift Versions
+#### Swift Version
 
-Since the Swift language is constantly evolving I am [adding tags](https://github.com/p2/OAuth2/releases) that mark which revision should work with which Swift version.
-Brand new Swift releases are likely to be found on the `develop` branch.
+Since the Swift language is constantly evolving I have adopted a versioning scheme mirroring Swift versions:
+the framework version's first two digits are always the Swift version the library is compatible with, see [releases](https://github.com/p2/OAuth2/releases).
+Code compatible with brand new Swift versions are to be found on a separate branch named after their swift version.
 
 
 Usage
@@ -36,17 +37,18 @@ If you need to provide additional parameters to the authorize URL take a look at
         "token_uri": "https://authorize.smartplatforms.org/token",
         "scope": "profile email",
         "redirect_uris": ["myapp://oauth/callback"],   // don't forget to register this scheme
-        "keychain": false,  // if you DON'T want keychain integration
-    ] as OAuth2JSON         // the "as" part may or may not be needed
+        "keychain": false,     // if you DON'T want keychain integration
+        "title": "My Service"  // optional title to show in views
+    ] as OAuth2JSON            // the "as" part may or may not be needed
     ```
 
-2. Create an `OAuth2CodeGrant` instance. **Optionally**, set the `onAuthorize` and `onFailure` closures **or** just the `afterAuthorizeOrFailure` closure to keep informed about the status.
+2. Create an `OAuth2CodeGrant` instance.
+    **Optionally**, set the `onAuthorize` and `onFailure` closures **or** just the `afterAuthorizeOrFailure` closure to keep informed about the status.
     Note that _afterAuthorizeOrFailure_ gets called immediately after either _onAuthorize_ or _onFailure_.
     Hence, unless you have a reason to, you don't need to set all three callbacks.
     
     ```swift
     let oauth2 = OAuth2CodeGrant(settings: settings)
-    oauth2.viewTitle = "My Service"      // optional
     oauth2.onAuthorize = { parameters in
         println("Did authorize with parameters: \(parameters)")
     }
@@ -56,6 +58,8 @@ If you need to provide additional parameters to the authorize URL take a look at
         }
     }
     ```
+    
+    Take a look at `oauth2.authConfig` for configuration options on how to customize login.
 
 3. There are three ways to have the user authorize:
     
@@ -70,6 +74,7 @@ If you need to provide additional parameters to the authorize URL take a look at
     ```swift
     oauth2.authConfig.authorizeEmbedded = true
     oauth2.authConfig.authorizeContext = <# presenting view controller #>
+    oauth2.authConfig.ui.backButton = <# UIBarButtonItem(...) #>    // to customize go-back button
     oauth2.authorize()
     ```
     
@@ -87,6 +92,7 @@ If you need to provide additional parameters to the authorize URL take a look at
     ```swift
     let vc = <# presenting view controller #>
     let web = oauth2.authorizeEmbeddedFrom(vc, params: nil)
+    // customize go-back button: web.backButton = UIBarButtonItem(...)
     oauth2.afterAuthorizeOrFailure = { wasFailure, error in
         web.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -122,12 +128,12 @@ If you need to provide additional parameters to the authorize URL take a look at
     See the [OAuth2 Sample App][sample]'s AppDelegate class on how to receive the callback URL in your Mac app.
 
 4. After everything completes either the `onAuthorize` or the `onFailure` closure will be called, and after that the `afterAuthorizeOrFailure` closure if it has been set.
-You can use any of those.
+    You can use any of those.
 
 5. You can now obtain an `OAuth2Request`, which is an already signed `NSMutableURLRequest`, to retrieve data from your server.
     
     ```swift
-    let req = oauth.request(forURL: <# resource URL #>)
+    let req = oauth2.request(forURL: <# resource URL #>)
     let session = NSURLSession.sharedSession()
     let task = session.dataTaskWithRequest(req) { data, response, error in
         if nil != error {
@@ -139,7 +145,11 @@ You can use any of those.
         }
     }
     task.resume()
-    ``` 
+    ```
+
+6. It is safe to always call `oauth2.authorize()` before performing a request.
+    You can also perform the authorization before the first request after your app became active again.
+    Or you can always intercept 401s in your requests and call authorize again before re-attempting the request.
 
 
 Flows
@@ -181,6 +191,33 @@ The framework deals with those deviations by creating site-specific subclasses.
     This means that you **must** specify a client_secret; if there is none (like for [Reddit](https://github.com/reddit/reddit/wiki/OAuth2#token-retrieval-code-flow)) specify the empty string.
     There is a [RedditLoader](https://github.com/p2/OAuth2App/blob/master/OAuth2App/RedditLoader.swift) example in the [OAuth2App sample app][sample] for a basic usage example.
 - **Google**: If you authorize against Google with a `OAuth2CodeGrant`, the built-in iOS web view will intercept the `http://localhost` as well as the `urn:ietf:wg:oauth:2.0:oob` (with or without `:auto`) callbacks.
+
+
+Dynamic Client Registration
+---------------------------
+
+There is preliminary support for dynamic client registration.
+The `registerIfNeeded()` immediately calls the callback if there are client credentials in the keychain, otherwise a registration is attempted.
+
+> **Note**: currently only user-interaction-free registrations are supported.
+
+```
+let oauth2 = OAuth2...()
+let dynreg = OAuth2DynReg(settings: [
+    "client_name": "<# app-name #>",
+    "redirect_uris": ["<# redirect-uri #>"],
+    "registration_uri": "<# registration-url-string #>,
+])
+dynreg.registerIfNeeded() { json, error in
+    if let id = dynreg.clientId where !id.isEmpty {
+        oauth2.clientId = id
+        oauth2.clientSecret = dynreg.clientSecret
+    }
+    else {
+        // failed to register
+    }
+}
+```
 
 
 Keychain
