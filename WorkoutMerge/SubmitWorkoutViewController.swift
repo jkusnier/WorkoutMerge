@@ -150,7 +150,6 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 l.text = t
             }
         }
-//        (type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?)
         
         var row = indexPath.row
         
@@ -517,9 +516,6 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                             if let workoutType = self.resultWorkoutData.type {
                                 syncLog.setValue(workoutType, forKey: "workoutTypeStrava")
                             }
-//                            if let workoutOtherType = self.resultWorkoutData.otherType {
-//                                syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
-//                            }
                         } else {
                             let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
                             let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
@@ -530,9 +526,6 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                             if let workoutType = self.resultWorkoutData.type {
                                 syncLog.setValue(workoutType, forKey: "workoutTypeStrava")
                             }
-//                            if let workoutOtherType = self.resultWorkoutData.otherType {
-//                                syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
-//                            }
                         }
                         
                         var error: NSError?
