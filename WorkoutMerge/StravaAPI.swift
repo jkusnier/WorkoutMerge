@@ -78,9 +78,7 @@ class StravaAPI: WorkoutSyncAPI {
     }
     
     override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
-        let path = "api/v3/activities"
-        let url = baseURL.URLByAppendingPathComponent(path)
-        let req = oauth2.request(forURL: url)
+        let req = oauth2.request(forURL: NSURL(string: "https://www.strava.com/api/v3/activities")!)
         
         var postData = [String: String]()
         
@@ -122,43 +120,43 @@ class StravaAPI: WorkoutSyncAPI {
 //        }
         
         let urlParameters = "&".join( map(postData) { "\($0)=\($1)" } )
-        req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+//        req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         req.HTTPMethod = "POST"
-        req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+//        req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         
-        let queue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(req, queue: queue, completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                if let httpResponse = response as? NSHTTPURLResponse {
-                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
-                        println("success")
-                        
-                        var savedKey: String?
-                        var error: NSError?
-                        if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
-                            if let workoutId = jsonDict["id"] as? Int {
-                                savedKey = "\(workoutId)"
-                            }
-                        }
-                        succeed!(savedKey: savedKey)
-                    } else {
-                        println("failure")
-                        if let fail = fail {
-                            if let error = error {
-                                fail(error, "Status Code \(httpResponse.statusCode)")
-                            }
+        req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding)
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(req) {
+            data, response, error in
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                    println("success")
+
+                    var savedKey: String?
+                    var error: NSError?
+                    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
+                        if let workoutId = jsonDict["id"] as? Int {
+                            savedKey = "\(workoutId)"
                         }
                     }
+                    succeed!(savedKey: savedKey)
                 } else {
-                    println("fail")
+                    println("failure")
                     if let fail = fail {
-                        fail(error, "No Response")
+                        if let error = error {
+                            fail(error, "Status Code \(httpResponse.statusCode)")
+                        }
                     }
                 }
-            })
-        })
-
+            } else {
+                println("fail")
+                if let fail = fail {
+                    fail(error, "No Response")
+                }
+            }
+        }
+        task.resume()
+        
         //[
         //    name:	string required
         //    type:	string required, case insensitive
