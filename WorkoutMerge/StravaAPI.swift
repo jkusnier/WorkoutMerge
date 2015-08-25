@@ -120,11 +120,9 @@ class StravaAPI: WorkoutSyncAPI {
 //        }
         
         let urlParameters = "&".join( map(postData) { "\($0)=\($1)" } )
-//        req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         req.HTTPMethod = "POST"
-//        req.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        
         req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding)
+
         let task = NSURLSession.sharedSession().dataTaskWithRequest(req) {
             data, response, error in
             
