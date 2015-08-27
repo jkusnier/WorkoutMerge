@@ -78,82 +78,99 @@ class StravaAPI: WorkoutSyncAPI {
     }
     
     override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
-        let req = oauth2.request(forURL: NSURL(string: "https://www.strava.com/api/v3/activities")!)
         
-        var postData = [String: String]()
-        
-        if let type = workout.type {
-            postData["type"] = type
-        }
-        if let startTime = workout.startTime {
-            let startTimeString = startTime.ISOStringFromDate()
-            postData["start_date_local"] = startTimeString
-        }
-        if let duration = workout.duration {
-            postData["elapsed_time"] = "\(Int(duration))"
-        }
-        if let totalDistance = workout.totalDistance {
-            postData["distance"] = "\(totalDistance)"
-        }
-        if let activityName = workout.activityName {
-            postData["name"] = "\(activityName)"
-        } else {
-            if let type = workout.type, startTime = workout.startTime {
-                postData["name"] = "\(startTime.dayOfWeek()) - \(type)"
+        self.oauth2.onFailure = { error in
+            println("fail")
+            if let fail = fail {
+                fail(error, "No Response")
             } else {
-                postData["name"] = "unknown"
+                println(error)
             }
         }
-
-        // Strava doesn't accept heart rate or calories
-//        if let averageHeartRate = workout.averageHeartRate {
-//            jsonData.append("\"average_heart_rate\":\(averageHeartRate)")
-//        }
-//        if let totalCalories = workout.totalCalories {
-//            jsonData.append("\"total_calories\":\(totalCalories)")
-//        }
-        if let notes = workout.notes {
-            postData["description"] = notes
-        }
-//        if let type = workout.type, otherType = workout.otherType where type == "Other" {
-//            jsonData.append("\"secondary_type\":\"\(otherType)\"")
-//        }
         
-        let urlParameters = "&".join( map(postData) { "\($0)=\($1)" } )
-        req.HTTPMethod = "POST"
-        req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding)
-
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(req) {
-            data, response, error in
+        self.oauth2.onAuthorize = { parameters in
+            let req = self.oauth2.request(forURL: NSURL(string: "https://www.strava.com/api/v3/activities")!)
             
-            if let httpResponse = response as? NSHTTPURLResponse {
-                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
-                    println("success")
-
-                    var savedKey: String?
-                    var error: NSError?
-                    if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
-                        if let workoutId = jsonDict["id"] as? Int {
-                            savedKey = "\(workoutId)"
-                        }
-                    }
-                    succeed!(savedKey: savedKey)
-                } else {
-                    println("failure")
-                    if let fail = fail {
-                        if let error = error {
-                            fail(error, "Status Code \(httpResponse.statusCode)")
-                        }
-                    }
-                }
+            var postData = [String: String]()
+            
+            if let type = workout.type {
+                postData["type"] = type
+            }
+            if let startTime = workout.startTime {
+                let startTimeString = startTime.ISOStringFromDate()
+                postData["start_date_local"] = startTimeString
+            }
+            if let duration = workout.duration {
+                postData["elapsed_time"] = "\(Int(duration))"
+            }
+            if let totalDistance = workout.totalDistance {
+                postData["distance"] = "\(totalDistance)"
+            }
+            if let activityName = workout.activityName {
+                postData["name"] = "\(activityName)"
             } else {
-                println("fail")
-                if let fail = fail {
-                    fail(error, "No Response")
+                if let type = workout.type, startTime = workout.startTime {
+                    postData["name"] = "\(startTime.dayOfWeek()) - \(type)"
+                } else {
+                    postData["name"] = "unknown"
                 }
             }
+
+            // Strava doesn't accept heart rate or calories
+    //        if let averageHeartRate = workout.averageHeartRate {
+    //            jsonData.append("\"average_heart_rate\":\(averageHeartRate)")
+    //        }
+    //        if let totalCalories = workout.totalCalories {
+    //            jsonData.append("\"total_calories\":\(totalCalories)")
+    //        }
+            if let notes = workout.notes {
+                postData["description"] = notes
+            }
+    //        if let type = workout.type, otherType = workout.otherType where type == "Other" {
+    //            jsonData.append("\"secondary_type\":\"\(otherType)\"")
+    //        }
+            
+            let urlParameters = "&".join( map(postData) { "\($0)=\($1)" } )
+            req.HTTPMethod = "POST"
+            req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding)
+
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(req) {
+                data, response, error in
+                
+                if let httpResponse = response as? NSHTTPURLResponse {
+                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                        println("success")
+
+                        var savedKey: String?
+                        var error: NSError?
+                        if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
+                            if let workoutId = jsonDict["id"] as? Int {
+                                savedKey = "\(workoutId)"
+                            }
+                        }
+                        succeed!(savedKey: savedKey)
+                    } else {
+                        println("failure")
+                        if let fail = fail {
+                            if let error = error {
+                                fail(error, "Status Code \(httpResponse.statusCode)")
+                            }
+                        }
+                    }
+                } else {
+                    println("fail")
+                    if let fail = fail {
+                        fail(error, "No Response")
+                    }
+                }
+            }
+            task.resume()
         }
-        task.resume()
+        
+        self.oauth2.viewTitle = "Strava"
+        self.oauth2.authConfig.authorizeEmbedded = false
+        self.oauth2.authConfig.authorizeContext = self
+        self.oauth2.authorize()
         
         //[
         //    name:	string required
