@@ -157,6 +157,14 @@ class WorkoutDetailViewController: UITableViewController {
                 cell = tableView.dequeueReusableCellWithIdentifier("ActionCell", forIndexPath: indexPath) as! UITableViewCell
                 if let linkedService = self.linkedServices?[indexPath.row] {
                     cell.textLabel?.text = "Sync to \(linkedService)"
+                    switch linkedService {
+                    case "RunKeeper":
+                        cell.tag = 1
+                    case "Strava":
+                        cell.tag = 2
+                    default:
+                        cell.tag = 0
+                    }
                     
                     if let managedObject = self.managedObject() {
                         let propertiesByName = managedObject.entity.propertiesByName
@@ -195,14 +203,19 @@ class WorkoutDetailViewController: UITableViewController {
 
         // FIXME adjust this as more services are added
         if self.linkedServices?.last != nil {
-            if indexPath.section == 1 && indexPath.row == 0 {
-                println("Sync to RunKeeper")
-                self.workoutSyncAPI = RunKeeperAPI.sharedInstance
-                performSegueWithIdentifier("submitWorkout", sender: self)
-            } else if indexPath.section == 1 && indexPath.row == 1 {
-                println("Sync to Strava")
-                self.workoutSyncAPI = StravaAPI.sharedInstance
-                performSegueWithIdentifier("submitWorkout", sender: self)
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                switch cell.tag {
+                case 1:
+                    println("Sync to RunKeeper")
+                    self.workoutSyncAPI = RunKeeperAPI.sharedInstance
+                    performSegueWithIdentifier("submitWorkout", sender: self)
+                case 2:
+                    println("Sync to Strava")
+                    self.workoutSyncAPI = StravaAPI.sharedInstance
+                    performSegueWithIdentifier("submitWorkout", sender: self)
+                default:
+                    println("unknown service")
+                }
             }
         }
     }
