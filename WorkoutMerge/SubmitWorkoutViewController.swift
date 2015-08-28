@@ -487,7 +487,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     
                     vcu.hideActivityIndicator(self.view)
                     self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
-                }
+                }, controller: self, params: nil
             )
         } else if let strava = self.workoutSyncAPI as? StravaAPI {
             strava.postActivity(self.resultWorkoutData, failure: { (error, msg) in
@@ -536,7 +536,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     
                     vcu.hideActivityIndicator(self.view)
                     self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
-                }
+                }, controller: self, params: nil
             )
 
         }
