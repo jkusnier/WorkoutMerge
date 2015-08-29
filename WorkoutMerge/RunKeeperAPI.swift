@@ -175,33 +175,32 @@ class RunKeeperAPI: WorkoutSyncAPI {
         req.HTTPMethod = "POST"
         req.setValue("application/vnd.com.runkeeper.NewFitnessActivity+json", forHTTPHeaderField: "Content-Type")
         
-        let queue = NSOperationQueue()
-        NSURLConnection.sendAsynchronousRequest(req, queue: queue, completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                
-                if let httpResponse = response as? NSHTTPURLResponse {
-                    if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
-                        println("success")
-                        let allHeaders = httpResponse.allHeaderFields
-                        var savedKey: String?
-                        if let location = allHeaders["Location"] as? String {
-                            savedKey = location
-                        }
-                        succeed!(savedKey: savedKey)
-                    } else {
-                        println("failure")
-                        if let fail = fail {
-                            fail(error, "Status Code \(httpResponse.statusCode)")
-                        }
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(req) {
+            data, response, error in
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                    println("success")
+                    let allHeaders = httpResponse.allHeaderFields
+                    var savedKey: String?
+                    if let location = allHeaders["Location"] as? String {
+                        savedKey = location
                     }
+                    succeed!(savedKey: savedKey)
                 } else {
-                    println("fail")
+                    println("failure")
                     if let fail = fail {
-                        fail(error, "No Response")
+                        fail(error, "Status Code \(httpResponse.statusCode)")
                     }
                 }
-            })
-        })
+            } else {
+                println("fail")
+                if let fail = fail {
+                    fail(error, "No Response")
+                }
+            }
+        }
+        task.resume()
     }
     
     override func activityType(t: HKWorkoutActivityType) -> String {
