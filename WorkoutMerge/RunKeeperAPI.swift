@@ -131,7 +131,7 @@ class RunKeeperAPI: WorkoutSyncAPI {
     }
     
 //    func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : (NSError? -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
-    override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil, controller: UIViewController?, params: [String : String]?) {
+    override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
         let path = "/fitnessActivities"
         let url = baseURL.URLByAppendingPathComponent(path)
         let req = oauth2.request(forURL: url)

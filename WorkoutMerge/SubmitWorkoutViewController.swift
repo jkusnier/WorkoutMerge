@@ -436,16 +436,18 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         
         if let runKeeper = self.workoutSyncAPI as? RunKeeperAPI {
             runKeeper.postActivity(self.resultWorkoutData, failure: { (error, msg) in
-                    vcu.hideActivityIndicator(self.view)
-                    let errorMessage: String
-                    if let error = error {
-                        errorMessage = "\(error.localizedDescription) - \(msg)"
-                    } else {
-                        errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
+                    dispatch_async(dispatch_get_main_queue()) {
+                        vcu.hideActivityIndicator(self.view)
+                        let errorMessage: String
+                        if let error = error {
+                            errorMessage = "\(error.localizedDescription) - \(msg)"
+                        } else {
+                            errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
+                        }
+                        var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
-                    var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
                 },
                 success: { (savedKey) in
                     if let uuid = self.resultWorkoutData.UUID?.UUIDString {
@@ -485,22 +487,26 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         }
                     }
                     
-                    vcu.hideActivityIndicator(self.view)
-                    self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
-                }, controller: self, params: nil
+                    dispatch_async(dispatch_get_main_queue()) {
+                        vcu.hideActivityIndicator(self.view)
+                        self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
+                    }
+                }
             )
         } else if let strava = self.workoutSyncAPI as? StravaAPI {
             strava.postActivity(self.resultWorkoutData, failure: { (error, msg) in
-                vcu.hideActivityIndicator(self.view)
-                let errorMessage: String
-                if let error = error {
-                    errorMessage = "\(error.localizedDescription) - \(msg)"
-                } else {
-                    errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
-                }
-                var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                    dispatch_async(dispatch_get_main_queue()) {
+                        vcu.hideActivityIndicator(self.view)
+                        let errorMessage: String
+                        if let error = error {
+                            errorMessage = "\(error.localizedDescription) - \(msg)"
+                        } else {
+                            errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through Strava - \(msg)"
+                        }
+                        var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
                 },
                 success: { (savedKey) in
                     if let uuid = self.resultWorkoutData.UUID?.UUIDString {
@@ -534,9 +540,11 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         }
                     }
                     
-                    vcu.hideActivityIndicator(self.view)
-                    self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
-                }, controller: self, params: nil
+                    dispatch_async(dispatch_get_main_queue()) {
+                        vcu.hideActivityIndicator(self.view)
+                        self.performSegueWithIdentifier("closeSubmitWorkout", sender: self)
+                    }
+                }
             )
 
         }
