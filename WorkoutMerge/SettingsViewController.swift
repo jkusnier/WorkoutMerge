@@ -118,14 +118,33 @@ class SettingsViewController: UITableViewController {
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
                     
                     alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
-                        strava.disconnect()
-                        if let i = find(linkedServices, "Strava") {
-                            self.linkedServices?.removeAtIndex(i)
-                            self.defaults.setObject(self.linkedServices, forKey: "linkedServices")
-                            self.defaults.synchronize()
-                            self.stravaStatusLabel.text = "Connect"
+                        let dataRemoveAlertController = UIAlertController(title: "Remove Strava Data?", message: "Pressing YES will remove an linking data between WorkoutMerge and Strava.", preferredStyle: .Alert)
+                        
+                        // This way eliminates the "cannot reference a local function with captures from another local function" error.
+                        let disconnect:() -> () = {
+                            strava.disconnect()
+                            if let i = find(linkedServices, "Strava") {
+                                self.linkedServices?.removeAtIndex(i)
+                                self.defaults.setObject(self.linkedServices, forKey: "linkedServices")
+                                self.defaults.synchronize()
+                                self.stravaStatusLabel.text = "Connect"
+                            }
                         }
-                        })
+                        
+                        disconnect()
+                        
+//                        dataRemoveAlertController.addAction(UIAlertAction(title: "YES", style: .Default) { (action) in
+//                            // Remove Strava core data fields
+//                            
+//                            
+//                            disconnect()
+//                        })
+//                        
+//                        dataRemoveAlertController.addAction(UIAlertAction(title: "No", style: .Cancel) { (action) in
+//                            disconnect()
+//                        })
+//                        self.presentViewController(dataRemoveAlertController, animated: true, completion: nil)
+                    })
                     
                     self.presentViewController(alertController, animated: true, completion: nil)
                 } else {
