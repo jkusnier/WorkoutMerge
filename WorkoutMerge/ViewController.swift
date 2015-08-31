@@ -233,7 +233,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func managedObject(workout: HKWorkout) -> NSManagedObject? {
         if let uuid = workout.UUID?.UUIDString {
             let fetchRequest = NSFetchRequest(entityName: "SyncLog")
-            let predicate = NSPredicate(format: "uuid = %@", uuid)
+            let predicate = NSPredicate(format: "uuid = %@ AND (syncToRunKeeper != nil OR syncToStrava != nil)", uuid)
             fetchRequest.predicate = predicate
             
             let fetchedEntities = self.managedContext.executeFetchRequest(fetchRequest, error: nil)
