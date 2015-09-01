@@ -9,6 +9,7 @@
 import UIKit
 import HealthKit
 import p2_OAuth2
+import CoreData
 
 class SettingsViewController: UITableViewController {
     
@@ -131,19 +132,36 @@ class SettingsViewController: UITableViewController {
                             }
                         }
                         
-                        disconnect()
+                        dataRemoveAlertController.addAction(UIAlertAction(title: "YES", style: .Default) { (action) in
+                            // Remove Strava core data fields
+                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            let managedContext = appDelegate.managedObjectContext!
+                            
+                            let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+                            let predicate = NSPredicate(format: "syncToStrava != nil")
+                            fetchRequest.predicate = predicate
+                            
+                            if let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil) {
+                                for fetchedEntity in fetchedEntities {
+                                    if let fetchedEntity = fetchedEntity as? NSManagedObject {
+                                        fetchedEntity.setValue(nil, forKeyPath: "syncToStrava")
+                                        fetchedEntity.setValue(nil, forKeyPath: "savedKeyStrava")
+                                    }
+                                }
+                                
+                                var error: NSError?
+                                if !managedContext.save(&error) {
+                                    println("Could not save \(error)")
+                                }
+                            }
+                            
+                            disconnect()
+                        })
                         
-//                        dataRemoveAlertController.addAction(UIAlertAction(title: "YES", style: .Default) { (action) in
-//                            // Remove Strava core data fields
-//                            
-//                            
-//                            disconnect()
-//                        })
-//                        
-//                        dataRemoveAlertController.addAction(UIAlertAction(title: "No", style: .Cancel) { (action) in
-//                            disconnect()
-//                        })
-//                        self.presentViewController(dataRemoveAlertController, animated: true, completion: nil)
+                        dataRemoveAlertController.addAction(UIAlertAction(title: "No", style: .Cancel) { (action) in
+                            disconnect()
+                        })
+                        self.presentViewController(dataRemoveAlertController, animated: true, completion: nil)
                     })
                     
                     self.presentViewController(alertController, animated: true, completion: nil)
