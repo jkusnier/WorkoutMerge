@@ -70,13 +70,49 @@ class SettingsViewController: UITableViewController {
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
                     
                     alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
-                        rk.disconnect()
-                        if let i = find(linkedServices, "RunKeeper") {
-                            self.linkedServices?.removeAtIndex(i)
-                            self.defaults.setObject(self.linkedServices, forKey: "linkedServices")
-                            self.defaults.synchronize()
-                            self.runKeeperStatusLabel.text = "Connect"
+                        let dataRemoveAlertController = UIAlertController(title: "Remove RunKeeper Data?", message: "Pressing YES will remove any linking data between WorkoutMerge and RunKeeper.", preferredStyle: .Alert)
+                        
+                        // This way eliminates the "cannot reference a local function with captures from another local function" error.
+                        let disconnect:() -> () = {
+                            rk.disconnect()
+                            if let i = find(linkedServices, "RunKeeper") {
+                                self.linkedServices?.removeAtIndex(i)
+                                self.defaults.setObject(self.linkedServices, forKey: "linkedServices")
+                                self.defaults.synchronize()
+                                self.runKeeperStatusLabel.text = "Connect"
+                            }
                         }
+                        
+                        dataRemoveAlertController.addAction(UIAlertAction(title: "YES", style: .Default) { (action) in
+                            // Remove RunKeeper core data fields
+                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                            let managedContext = appDelegate.managedObjectContext!
+                            
+                            let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+                            let predicate = NSPredicate(format: "syncToRunKeeper != nil")
+                            fetchRequest.predicate = predicate
+                            
+                            if let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil) {
+                                for fetchedEntity in fetchedEntities {
+                                    if let fetchedEntity = fetchedEntity as? NSManagedObject {
+                                        fetchedEntity.setValue(nil, forKeyPath: "syncToRunKeeper")
+                                        fetchedEntity.setValue(nil, forKeyPath: "savedKeyRunKeeper")
+                                    }
+                                }
+                                
+                                var error: NSError?
+                                if !managedContext.save(&error) {
+                                    println("Could not save \(error)")
+                                }
+                            }
+                            
+                            disconnect()
+                        })
+                        
+                        dataRemoveAlertController.addAction(UIAlertAction(title: "No", style: .Cancel) { (action) in
+                            disconnect()
+                        })
+                        self.presentViewController(dataRemoveAlertController, animated: true, completion: nil)
                     })
                     
                     self.presentViewController(alertController, animated: true, completion: nil)
