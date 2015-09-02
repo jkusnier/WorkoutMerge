@@ -119,7 +119,7 @@ class SettingsViewController: UITableViewController {
                     alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
                     
                     alertController.addAction(UIAlertAction(title: "OK", style: .Default) { (action) in
-                        let dataRemoveAlertController = UIAlertController(title: "Remove Strava Data?", message: "Pressing YES will remove an linking data between WorkoutMerge and Strava.", preferredStyle: .Alert)
+                        let dataRemoveAlertController = UIAlertController(title: "Remove Strava Data?", message: "Pressing YES will remove any linking data between WorkoutMerge and Strava.", preferredStyle: .Alert)
                         
                         // This way eliminates the "cannot reference a local function with captures from another local function" error.
                         let disconnect:() -> () = {
