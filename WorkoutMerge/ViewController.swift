@@ -28,6 +28,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var initialAppearance = true
     
     var dataLoaded = false
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    var linkedServices: [String]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             HKObjectType.workoutType(),
             HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
         ])
+        
+        if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
+            self.linkedServices = linkedServices.sorted() {$0 < $1}
+        }
         
         if !HKHealthStore.isHealthDataAvailable() {
             println("HealthKit Not Available")
@@ -83,6 +90,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if !self.initialAppearance {
+            if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
+                self.linkedServices = linkedServices.sorted() {$0 < $1}
+            }
+            
             // Refresh for tableview accessories
             self.tableView.reloadData()
         } else {
