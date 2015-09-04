@@ -243,8 +243,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func managedObject(workout: HKWorkout) -> NSManagedObject? {
         if let uuid = workout.UUID?.UUIDString {
+            let servicesPredicate: String
+            if let linkedServices = self.linkedServices {
+                if linkedServices.count < 1 {
+                    return nil
+                }
+                
+                var syncKeys = [String]()
+                for linkedService in linkedServices {
+                    switch linkedService {
+                    case "RunKeeper":
+                        syncKeys.append("syncToRunKeeper != nil")
+                    case "Strava":
+                        syncKeys.append("syncToStrava != nil")
+                    default:
+                        break
+                    }
+                }
+                
+                let syncKeysJoin = " OR ".join(syncKeys)
+                servicesPredicate = "uuid = %@ AND (\(syncKeysJoin))"
+            } else {
+                return nil
+            }
+            
             let fetchRequest = NSFetchRequest(entityName: "SyncLog")
-            let predicate = NSPredicate(format: "uuid = %@ AND (syncToRunKeeper != nil OR syncToStrava != nil)", uuid)
+            let predicate = NSPredicate(format: servicesPredicate, uuid)
             fetchRequest.predicate = predicate
             
             let fetchedEntities = self.managedContext.executeFetchRequest(fetchRequest, error: nil)
