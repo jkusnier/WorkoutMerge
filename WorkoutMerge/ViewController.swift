@@ -280,5 +280,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return nil
     }
+    
+    @IBAction func syncAllPressed(sender: AnyObject) {
+        println("Sync All Pressed")
+    }
 }
 
