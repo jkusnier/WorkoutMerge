@@ -10,7 +10,7 @@ import UIKit
 import HealthKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -283,6 +283,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction func syncAllPressed(sender: AnyObject) {
         println("Sync All Pressed")
+        
+        let actionSheet = UIActionSheet(title: "Sync All", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
+        
+        actionSheet.actionSheetStyle = .Default
+        actionSheet.showInView(self.view)
+        
+
     }
 }
 
