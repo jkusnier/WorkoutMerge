@@ -372,6 +372,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             alert.addAction(doneAction)
             alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
                 textField.placeholder = "Enter notes:"
+                textField.autocorrectionType = UITextAutocorrectionType.Default
                 if let notes = self.resultWorkoutData.notes {
                     textField.text = notes
                 }
@@ -388,6 +389,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             alert.addAction(doneAction)
             alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
                 textField.placeholder = "Enter name:"
+                textField.autocorrectionType = UITextAutocorrectionType.Default
                 if let activityName = self.resultWorkoutData.activityName {
                     textField.text = activityName
                 }
