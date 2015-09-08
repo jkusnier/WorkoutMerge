@@ -139,6 +139,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="syncAllButton" destination="3es-hz-gmn" id="odd-gD-9f9"/>
                         <outlet property="tableView" destination="2CN-Ln-yCk" id="qpI-dL-Kar"/>
                         <segue destination="olr-Mi-ZKl" kind="show" identifier="workoutDetail" id="pQD-1H-FqA"/>
                     </connections>

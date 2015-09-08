@@ -13,6 +13,7 @@ import CoreData
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var syncAllButton: UIBarButtonItem!
     
     let hkStore = HKHealthStore()
     var workouts = [HKWorkout]()
@@ -47,6 +48,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
             self.linkedServices = linkedServices.sorted() {$0 < $1}
+            self.syncAllButton.enabled = linkedServices.count > 0
         }
         
         if !HKHealthStore.isHealthDataAvailable() {
@@ -92,6 +94,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if !self.initialAppearance {
             if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
                 self.linkedServices = linkedServices.sorted() {$0 < $1}
+                self.syncAllButton.enabled = linkedServices.count > 0
             }
             
             // Refresh for tableview accessories
