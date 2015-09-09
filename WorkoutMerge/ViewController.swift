@@ -287,12 +287,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func syncAllPressed(sender: AnyObject) {
         println("Sync All Pressed")
         
-        let actionSheet = UIActionSheet(title: "Sync All", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
+        let alertController = UIAlertController(title: "Sync All", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        actionSheet.actionSheetStyle = .Default
-        actionSheet.showInView(self.view)
-        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
+        alertController.addAction(cancelAction)
 
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 
