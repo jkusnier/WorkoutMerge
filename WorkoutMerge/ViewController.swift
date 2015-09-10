@@ -291,6 +291,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
         alertController.addAction(cancelAction)
+        
+        if let linkedServices = linkedServices where linkedServices.count > 0 {
+            for linkedService in linkedServices {
+                let action = UIAlertAction(title: linkedService, style: .Default) { (_) in }
+                alertController.addAction(action)
+            }
+        }
 
         self.presentViewController(alertController, animated: true, completion: nil)
     }
