@@ -287,19 +287,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func syncAllPressed(sender: AnyObject) {
         println("Sync All Pressed")
         
-        let alertController = UIAlertController(title: "Sync All", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
-        alertController.addAction(cancelAction)
-        
-        if let linkedServices = linkedServices where linkedServices.count > 0 {
-            for linkedService in linkedServices {
-                let action = UIAlertAction(title: linkedService, style: .Default) { (_) in }
-                alertController.addAction(action)
-            }
-        }
+        if let linkedServices = linkedServices where linkedServices.count > 1 {
+            println("More than one service, user must select")
+            
+            let alertController = UIAlertController(title: "Sync All", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
+            alertController.addAction(cancelAction)
+            
 
-        self.presentViewController(alertController, animated: true, completion: nil)
+                for linkedService in linkedServices {
+                    let action = UIAlertAction(title: linkedService, style: .Default) { (_) in }
+                    alertController.addAction(action)
+                }
+
+
+            self.presentViewController(alertController, animated: true, completion: nil)
+        } else {
+            println("Only one service, segue automatically")
+        }
     }
 }
 
