@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		961434EB1BA4467300F3D12F /* SyncAllTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961434EA1BA4467300F3D12F /* SyncAllTableViewController.swift */; };
 		962490041B21188C005A0FA1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 962490031B21188C005A0FA1 /* Settings.bundle */; };
 		9635A0571B1690A300512FE8 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9635A0561B1690A300512FE8 /* ApiKeys.plist */; };
 		9635A05A1B169DBA00512FE8 /* RunKeeperAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		03689D073C32DD36AFB085C1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		26C994F2D7AA506F67A50CA2 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		961434EA1BA4467300F3D12F /* SyncAllTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAllTableViewController.swift; sourceTree = "<group>"; };
 		962490031B21188C005A0FA1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		9635A0561B1690A300512FE8 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		9635A0591B169DBA00512FE8 /* RunKeeperAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunKeeperAPI.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				96A6D9EA1B108DDD0056ECDA /* WorkoutMerge.entitlements */,
 				96A6D9C71B108DB80056ECDA /* WorkoutMerge.xcdatamodeld */,
 				964A757B1B5474C7000D8EF2 /* WorkoutTableViewCell.swift */,
+				961434EA1BA4467300F3D12F /* SyncAllTableViewController.swift */,
 			);
 			path = WorkoutMerge;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				961434EB1BA4467300F3D12F /* SyncAllTableViewController.swift in Sources */,
 				964D1F9E1B1A52670050204F /* SubmitWorkoutTableViewCell.swift in Sources */,
 				9635A05A1B169DBA00512FE8 /* RunKeeperAPI.swift in Sources */,
 				969284071B6C1FE800E7247F /* WorkoutSyncAPI.swift in Sources */,

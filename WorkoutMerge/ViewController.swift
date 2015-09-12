@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let hkStore = HKHealthStore()
     var workouts = [HKWorkout]()
     var selectedWorkout: HKWorkout?
+    var selectedSyncAllService: String?
     
     let refreshControl = UIRefreshControl()
     var lastRefreshDate: NSDate?
@@ -113,6 +114,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let selection = selectedWorkout {
                 workoutDetail.workout = selection
                 workoutDetail.hkStore = hkStore
+            }
+        } else if let destinationViewController = segue.destinationViewController as? SyncAllTableViewController {
+            if let selectedSyncAllService = selectedSyncAllService {
+                switch selectedSyncAllService {
+                case "RunKeeper":
+                    destinationViewController.workoutSyncAPI = RunKeeperAPI.sharedInstance
+                case "Strava":
+                    destinationViewController.workoutSyncAPI = StravaAPI.sharedInstance
+                default:
+                    destinationViewController.workoutSyncAPI = nil
+                }
             }
         }
         
@@ -297,7 +309,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
 
                 for linkedService in linkedServices {
-                    let action = UIAlertAction(title: linkedService, style: .Default) { (_) in }
+                    let action = UIAlertAction(title: linkedService, style: .Default) { (action) in
+                        self.selectedSyncAllService = linkedService
+                        self.performSegueWithIdentifier("showSyncAll", sender: self)
+                    }
                     alertController.addAction(action)
                 }
 
@@ -305,6 +320,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.presentViewController(alertController, animated: true, completion: nil)
         } else {
             println("Only one service, segue automatically")
+            self.selectedSyncAllService = linkedServices?.first
+            performSegueWithIdentifier("showSyncAll", sender: self)
         }
     }
 }
