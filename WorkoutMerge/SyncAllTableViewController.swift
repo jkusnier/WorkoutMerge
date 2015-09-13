@@ -7,13 +7,53 @@
 //
 
 import UIKit
+import HealthKit
 
 class SyncAllTableViewController: UITableViewController {
 
     var workoutSyncAPI: WorkoutSyncAPI?
     
+    let hkStore = HKHealthStore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !HKHealthStore.isHealthDataAvailable() {
+            println("HealthKit Not Available")
+        } else {
+            let readTypes = Set([
+                HKObjectType.workoutType(),
+                HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+            ])
+            
+            hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError!) -> () in
+                //                println("okay: \(success) error: \(err)")
+                
+                var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
+                actInd.center = self.view.center
+                actInd.hidesWhenStopped = true
+                actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+                self.view.addSubview(actInd)
+                actInd.startAnimating()
+                
+                if success {
+                    self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
+                        println("Found \(results.count) workouts")
+                        if let workouts = results as? [HKWorkout] {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                println("\(workouts)")
+                            }
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            actInd.stopAnimating()
+                        }
+                    })
+                } else {
+                    actInd.stopAnimating()
+                }
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,4 +125,17 @@ class SyncAllTableViewController: UITableViewController {
     }
     */
 
+    func readWorkOuts(completion: (([AnyObject]!, NSError!) -> Void)!) {
+        let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
+        
+        let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: nil, limit: 50, sortDescriptors: [sortDescriptor])
+            { (sampleQuery, results, error ) -> Void in
+                if let queryError = error {
+                    println( "There was an error while reading the samples: \(queryError.localizedDescription)")
+                }
+                completion(results, error)
+        }
+        
+        hkStore.executeQuery(sampleQuery)
+    }
 }
