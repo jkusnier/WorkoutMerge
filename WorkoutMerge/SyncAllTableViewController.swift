@@ -14,6 +14,7 @@ class SyncAllTableViewController: UITableViewController {
     var workoutSyncAPI: WorkoutSyncAPI?
     
     let hkStore = HKHealthStore()
+    var workouts: [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +40,14 @@ class SyncAllTableViewController: UITableViewController {
                 if success {
                     self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
                         println("Found \(results.count) workouts")
-                        if let workouts = results as? [HKWorkout] {
+                        if let results = results as? [HKWorkout] {
                             dispatch_async(dispatch_get_main_queue()) {
-                                println("\(workouts)")
+                                self.workouts = []
+                                for workout in results {
+                                    self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType)) as (startDate: NSDate, durationLabel: String, workoutTypeLabel: String))
+                                }
+                                println("\(self.workouts)")
+                                self.tableView.reloadData()
                             }
                         }
                         
@@ -63,22 +69,19 @@ class SyncAllTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.workouts.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCellWithIdentifier("syncAllCell", forIndexPath: indexPath) as! UITableViewCell
+        cell.textLabel?.text = self.workouts[indexPath.row].startDate.relativeDateFormat()
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -128,7 +131,7 @@ class SyncAllTableViewController: UITableViewController {
     func readWorkOuts(completion: (([AnyObject]!, NSError!) -> Void)!) {
         let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending: false)
         
-        let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: nil, limit: 50, sortDescriptors: [sortDescriptor])
+        let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: nil, limit: 0, sortDescriptors: [sortDescriptor])
             { (sampleQuery, results, error ) -> Void in
                 if let queryError = error {
                     println( "There was an error while reading the samples: \(queryError.localizedDescription)")
@@ -137,5 +140,16 @@ class SyncAllTableViewController: UITableViewController {
         }
         
         hkStore.executeQuery(sampleQuery)
+    }
+    
+    func stringFromTimeInterval(interval:NSTimeInterval) -> String {
+        
+        var ti = NSInteger(interval)
+        
+        var seconds = ti % 60
+        var minutes = (ti / 60) % 60
+        var hours = (ti / 3600)
+        
+        return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
     }
 }
