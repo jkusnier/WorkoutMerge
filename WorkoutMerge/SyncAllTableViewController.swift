@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import CoreData
 
 class SyncAllTableViewController: UITableViewController {
 
@@ -15,6 +16,8 @@ class SyncAllTableViewController: UITableViewController {
     
     let hkStore = HKHealthStore()
     var workouts: [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String)] = []
+    
+    let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,6 +143,31 @@ class SyncAllTableViewController: UITableViewController {
         }
         
         hkStore.executeQuery(sampleQuery)
+    }
+    
+    func managedObject(workout: HKWorkout) -> NSManagedObject? {
+        if let uuid = workout.UUID?.UUIDString {
+            let servicesPredicate: String
+            if let workoutSyncAPI = self.workoutSyncAPI as? RunKeeperAPI {
+                servicesPredicate = "uuid = %@ AND syncToRunKeeper != nil"
+            } else if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
+                servicesPredicate = "uuid = %@ AND syncToStrava != nil"
+            } else {
+                return nil
+            }
+            
+            let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+            let predicate = NSPredicate(format: servicesPredicate, uuid)
+            fetchRequest.predicate = predicate
+            
+            let fetchedEntities = self.managedContext.executeFetchRequest(fetchRequest, error: nil)
+            
+            if let syncLog = fetchedEntities?.first as? NSManagedObject {
+                return syncLog
+            }
+        }
+        
+        return nil
     }
     
     func stringFromTimeInterval(interval:NSTimeInterval) -> String {
