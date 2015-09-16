@@ -31,7 +31,6 @@ class SyncAllTableViewController: UITableViewController {
             ])
             
             hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError!) -> () in
-                //                println("okay: \(success) error: \(err)")
                 
                 var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
                 actInd.center = self.view.center
@@ -42,14 +41,16 @@ class SyncAllTableViewController: UITableViewController {
                 
                 if success {
                     self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
-                        println("Found \(results.count) workouts")
                         if let results = results as? [HKWorkout] {
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.workouts = []
                                 for workout in results {
-                                    self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType)) as (startDate: NSDate, durationLabel: String, workoutTypeLabel: String))
+                                    if let managedObject = self.managedObject(workout) {
+                                    } else {
+                                        self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType)) as (startDate: NSDate, durationLabel: String, workoutTypeLabel: String))
+                                    }
                                 }
-                                println("\(self.workouts)")
+
                                 self.tableView.reloadData()
                             }
                         }
