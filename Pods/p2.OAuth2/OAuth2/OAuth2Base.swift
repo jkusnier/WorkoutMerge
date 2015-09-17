@@ -3,7 +3,19 @@
 //  OAuth2
 //
 //  Created by Pascal Pfiffner on 6/2/15.
-//  Copyright (c) 2015 Pascal Pfiffner. All rights reserved.
+//  Copyright 2015 Pascal Pfiffner
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 import Foundation
@@ -38,9 +50,6 @@ public class OAuth2Base
 	
 	/// Set to `true` to log all the things. `false` by default. Use `"verbose": bool` in settings.
 	public var verbose = false
-	
-	/// An optional title that will propagate to views handled by OAuth2, such as OAuth2WebViewController. TODO: remove with Swift 2.0 release in favor of OAuth2Config.
-	public var viewTitle: String?
 	
 	/// If set to `true` (the default) will use system keychain to store tokens. Use `"keychain": bool` in settings.
 	public var useKeychain = true {
@@ -100,14 +109,13 @@ public class OAuth2Base
 	
 	/** Stores our current token(s) in the keychain. */
 	internal func storeToKeychain() {
-		if let items = storableKeychainItems() where !items.isEmpty {
-			logIfVerbose("Storing items to keychain")
-			
-			let keychain = Keychain(serviceName: keychainServiceName())
-			let key = ArchiveKey(keyName: keychainKeyName(), object: items)
-			if let error = keychain.update(key) {
-				NSLog("Failed to store to keychain: \(error.localizedDescription)")
-			}
+		guard let items = storableKeychainItems() else { return }
+		logIfVerbose("Storing tokens to keychain")
+		
+		let keychain = Keychain(serviceName: keychainServiceName())
+		let key = ArchiveKey(keyName: keychainKeyName(), object: items)
+		if let error = keychain.update(key) {
+			NSLog("Failed to store to keychain: \(error.localizedDescription)")
 		}
 	}
 	
@@ -128,14 +136,14 @@ public class OAuth2Base
 	}
 	
 	/**
-	    Perform the supplied request and call the callback with the response JSON dict or an error.
+	Perform the supplied request and call the callback with the response JSON dict or an error.
 	
-	    This implementation uses the shared `NSURLSession` and executes a data task. If the server responds with an error, this will be
-	    converted into an NSError instance with information supplied in the response JSON (if availale), using `errorForErrorResponse`.
+	This implementation uses the shared `NSURLSession` and executes a data task. If the server responds with an error, this will be
+	converted into an NSError instance with information supplied in the response JSON (if availale), using `errorForErrorResponse`.
 	
-	    :param: request The request to execute
-	    :param: callback The callback to call when the request completes/fails; data and error are mutually exclusive
-	 */
+	- parameter request: The request to execute
+	- parameter callback: The callback to call when the request completes/fails; data and error are mutually exclusive
+	*/
 	public func performRequest(request: NSURLRequest, callback: ((data: NSData?, status: Int?, error: NSError?) -> Void)) {
 		let task = URLSession().dataTaskWithRequest(request) { sessData, sessResponse, error in
 			if let error = error {
@@ -145,7 +153,7 @@ public class OAuth2Base
 				callback(data: data, status: http.statusCode, error: nil)
 			}
 			else {
-				let error = genOAuth2Error("Unknown response \(sessResponse) with data “\(NSString(data: sessData, encoding: NSUTF8StringEncoding))”", .NetworkError)
+				let error = genOAuth2Error("Unknown response \(sessResponse) with data “\(NSString(data: sessData!, encoding: NSUTF8StringEncoding))”", .NetworkError)
 				callback(data: nil, status: nil, error: error)
 			}
 		}
@@ -179,7 +187,7 @@ public class OAuth2Base
 		for (key, val) in params {
 			arr.append("\(key)=\(val.wwwFormURLEncodedString)")
 		}
-		return "&".join(arr)
+		return arr.joinWithSeparator("&")
 	}
 	
 	/**
@@ -189,10 +197,10 @@ public class OAuth2Base
 	    automatically perform percent decoding, potentially messing with your query string.
 	 */
 	public final class func paramsFromQuery(query: String) -> [String: String] {
-		let parts = split(query, maxSplit: .max, allowEmptySlices: false) { $0 == "&" }
+		let parts = query.characters.split() { $0 == "&" }.map() { String($0) }
 		var params = [String: String](minimumCapacity: parts.count)
 		for part in parts {
-			let subparts = split(part, maxSplit: .max, allowEmptySlices: false) { $0 == "=" }
+			let subparts = part.characters.split() { $0 == "=" }.map() { String($0) }
 			if 2 == subparts.count {
 				params[subparts[0]] = subparts[1].wwwFormURLDecodedString
 			}
@@ -202,13 +210,13 @@ public class OAuth2Base
 	}
 	
 	/**
-	    Handles access token error response.
+	Handles access token error response.
 	
-	    :param: params The URL parameters passed into the redirect URL upon error
-	    :param: fallback The message string to use in case no error description is found in the parameters
-	    :returns: An NSError instance with the "best" localized error key and all parameters in the userInfo dictionary;
-	    domain "OAuth2ErrorDomain", code 600
-	 */
+	- parameter params: The URL parameters passed into the redirect URL upon error
+	- parameter fallback: The message string to use in case no error description is found in the parameters
+	- returns: An NSError instance with the "best" localized error key and all parameters in the userInfo dictionary;
+	domain "OAuth2ErrorDomain", code 600
+	*/
 	public func errorForErrorResponse(params: OAuth2JSON, fallback: String? = nil) -> NSError {
 		var message = ""
 		
@@ -254,7 +262,7 @@ public class OAuth2Base
 	 */
 	public func logIfVerbose(log: String) {
 		if verbose {
-			println("OAuth2: \(log)")
+			print("OAuth2: \(log)")
 		}
 	}
 }

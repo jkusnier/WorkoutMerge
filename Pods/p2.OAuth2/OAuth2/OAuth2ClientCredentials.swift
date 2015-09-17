@@ -26,7 +26,7 @@ import Foundation
  */
 public class OAuth2ClientCredentials: OAuth2
 {
-	public override func authorize(# params: [String : String]?, autoDismiss: Bool) {
+	public override func authorize(params params: [String : String]?, autoDismiss: Bool) {
 		if hasUnexpiredAccessToken() {
 			self.didAuthorize([String: String]())
 		}
@@ -46,35 +46,44 @@ public class OAuth2ClientCredentials: OAuth2
 	/**
 	    If there is a refresh token, use it to receive a fresh access token.
 	
-	    :param: callback The callback to call after the refresh token exchange has finished
+	    - parameter callback: The callback to call after the refresh token exchange has finished
 	 */
 	func obtainAccessToken(callback: ((error: NSError?) -> Void)) {
-		let post = tokenRequest()
-		logIfVerbose("Requesting new access token from \(post.URL!)")
-		
-		performRequest(post) { data, status, error in
-			var myError = error
-			if let data = data, let json = self.parseAccessTokenResponse(data, error: &myError) {
-				self.logIfVerbose("Did get access token [\(nil != self.accessToken)]")
-				callback(error: nil)
+		do {
+			let post = try tokenRequest()
+			logIfVerbose("Requesting new access token from \(post.URL?.description)")
+			
+			performRequest(post) { data, status, error in
+				if let data = data {
+					do {
+						try self.parseAccessTokenResponse(data)
+						self.logIfVerbose("Did get access token [\(nil != self.accessToken)]")
+						callback(error: nil)
+					}
+					catch let err {
+						callback(error: err as NSError)
+					}
+				}
+				else {
+					callback(error: error ?? genOAuth2Error("Error when requesting access token: no data received"))
+				}
 			}
-			else {
-				callback(error: myError ?? genOAuth2Error("Unknown error when requesting access token"))
-			}
+		}
+		catch let err {
+			callback(error: err as NSError)
+			return
 		}
 	}
 	
 	/**
 	    Creates a POST request with x-www-form-urlencoded body created from the supplied URL's query part.
-	
-	    Made public to enable unit testing.
 	 */
-	public func tokenRequest() -> NSMutableURLRequest {
+	func tokenRequest() throws -> NSMutableURLRequest {
 		if clientId.isEmpty {
-			NSException(name: "OAuth2IncompleteSetup", reason: "I do not yet have a client id, cannot request a token", userInfo: nil).raise()
+			throw OAuth2IncompleteSetup.NoClientId
 		}
 		if nil == clientSecret {
-			NSException(name: "OAuth2IncompleteSetup", reason: "I do not yet have a client secret, cannot request a token", userInfo: nil).raise()
+			throw OAuth2IncompleteSetup.NoClientSecret
 		}
 		
 		let req = NSMutableURLRequest(URL: authURL)
@@ -93,7 +102,7 @@ public class OAuth2ClientCredentials: OAuth2
 		logIfVerbose("Adding “Authorization” header as “Basic client-key:client-secret”")
 		let pw = "\(clientId.wwwFormURLEncodedString):\(clientSecret!.wwwFormURLEncodedString)"
 		if let utf8 = pw.dataUsingEncoding(NSUTF8StringEncoding) {
-			req.setValue("Basic \(utf8.base64EncodedStringWithOptions(nil))", forHTTPHeaderField: "Authorization")
+			req.setValue("Basic \(utf8.base64EncodedStringWithOptions([]))", forHTTPHeaderField: "Authorization")
 		}
 		else {
 			logIfVerbose("ERROR: for some reason failed to base-64 encode the client-key:client-secret combo")
@@ -102,14 +111,12 @@ public class OAuth2ClientCredentials: OAuth2
 		return req
 	}
 	
-	override func parseAccessTokenResponse(data: NSData, error: NSErrorPointer) -> OAuth2JSON? {
-		if let json = super.parseAccessTokenResponse(data, error: error) {
-			if let type = json["token_type"] as? String where "bearer" != type {
-				logIfVerbose("WARNING: expecting “bearer” token type but got “\(type)”")
-			}
-			return json
+	override func parseAccessTokenResponse(data: NSData) throws -> OAuth2JSON {
+		let json = try super.parseAccessTokenResponse(data)
+		if let type = json["token_type"] as? String where "bearer" != type {
+			logIfVerbose("WARNING: expecting “bearer” token type but got “\(type)”")
 		}
-		return nil
+		return json
 	}
 }
 

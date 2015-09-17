@@ -26,41 +26,37 @@ import Foundation
  */
 public class OAuth2ImplicitGrant: OAuth2
 {
-	public override func authorizeURLWithRedirect(redirect: String?, scope: String?, params: [String: String]?) -> NSURL {
-		return authorizeURLWithBase(authURL, redirect: redirect, scope: scope, responseType: "token", params: params)
+	public override func authorizeURLWithRedirect(redirect: String?, scope: String?, params: [String: String]?) throws -> NSURL {
+		return try authorizeURLWithBase(authURL, redirect: redirect, scope: scope, responseType: "token", params: params)
 	}
 	
 	public override func handleRedirectURL(redirect: NSURL) {
 		logIfVerbose("Handling redirect URL \(redirect.description)")
 		
 		var error: NSError?
-		var comp = NSURLComponents(URL: redirect, resolvingAgainstBaseURL: true)
+		let comp = NSURLComponents(URL: redirect, resolvingAgainstBaseURL: true)
 		
 		// token should be in the URL fragment
-		if let fragment = comp?.percentEncodedFragment where count(fragment) > 0 {
+		if let fragment = comp?.percentEncodedFragment where fragment.characters.count > 0 {
 			let params = OAuth2ImplicitGrant.paramsFromQuery(fragment)
 			if let token = params["access_token"] where !token.isEmpty {
 				if let tokType = params["token_type"] {
 					if "bearer" == tokType.lowercaseString {
 						
 						// got a "bearer" token, use it if state checks out
-						if let tokState = params["state"] {
-							if tokState == state {
-								accessToken = token
-								accessTokenExpiry = nil
-								if let expires = params["expires_in"]?.toInt() {
-									accessTokenExpiry = NSDate(timeIntervalSinceNow: NSTimeInterval(expires))
-								}
-								logIfVerbose("Successfully extracted access token")
-								didAuthorize(params)
-								return
+						if context.matchesState(params["state"]) {
+							accessToken = token
+							accessTokenExpiry = nil
+							if let expiresStr = params["expires_in"], let expires = NSTimeInterval(expiresStr) {
+								accessTokenExpiry = NSDate(timeIntervalSinceNow: expires)
 							}
-							
-							error = genOAuth2Error("Invalid state \(tokState), will not use the token", .InvalidState)
+							context.resetState()
+							logIfVerbose("Successfully extracted access token")
+							didAuthorize(params)
+							return
 						}
-						else {
-							error = genOAuth2Error("No state returned, will not use the token", .InvalidState)
-						}
+						
+						error = genOAuth2Error("Invalid state, will not use the token", .InvalidState)
 					}
 					else {
 						error = genOAuth2Error("Only \"bearer\" token is supported, but received \"\(tokType)\"", .Unsupported)

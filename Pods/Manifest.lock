@@ -1,5 +1,5 @@
 PODS:
-  - p2.OAuth2 (1.2.7)
+  - p2.OAuth2 (2.0.0)
 
 DEPENDENCIES:
   - p2.OAuth2 (from `https://github.com/p2/OAuth2.git`, branch `master`)
@@ -12,10 +12,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   p2.OAuth2:
-    :commit: f1365c8cf78f3bb8a8aeaf349c29d12807ff8430
+    :commit: 7558c7b947f53386eee56efd74798002fcfebe11
     :git: https://github.com/p2/OAuth2.git
 
 SPEC CHECKSUMS:
-  p2.OAuth2: 12027311ccf2125109b5274c6954496f1d479e0c
+  p2.OAuth2: 15cdd26cc56d229eca1f0a82398cf38290afff51
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

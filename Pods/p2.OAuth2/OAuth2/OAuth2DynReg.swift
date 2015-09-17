@@ -3,7 +3,19 @@
 //  c3-pro
 //
 //  Created by Pascal Pfiffner on 6/1/15.
-//  Copyright (c) 2015 Boston Children's Hospital. All rights reserved.
+//  Copyright 2015 Pascal Pfiffner
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 import Foundation
@@ -125,15 +137,18 @@ public class OAuth2DynReg: OAuth2Base
 	
 	/**
 	Attempts to register for client credentials **unless** the given client (1st priority) or the receiver (2nd priority) already have a
-	client id.
+	client id. If `onlyIfNeeded` is false will try to register anyway.
 	
-	:param: callback The callback to call when done. Any combination of json and error is possible (in regards to nil-ness)
+	- parameter client: The OAuth2 client to update credentials on.
+	- parameter onlyIfNeeded: If set to false will register even when the receiver and the client already have a client-id
+	- parameter callback: The callback to call when done. Any combination of json and error is possible (in regards to nil-ness)
 	*/
-	public func registerIfNeededAndUpdateClient(client: OAuth2, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
+	public func registerAndUpdateClient(client: OAuth2, onlyIfNeeded: Bool = true, callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
 		clientId = client.clientId.isEmpty ? clientId : client.clientId
 		clientSecret = client.clientSecret ?? clientSecret
 		
-		registerIfNeeded { json, error in
+		// update the client in the callback
+		let cb: ((json: OAuth2JSON?, error: NSError?) -> Void) = { json, error in
 			if let id = self.clientId {
 				client.clientId = id
 			}
@@ -142,12 +157,19 @@ public class OAuth2DynReg: OAuth2Base
 			}
 			callback(json: json, error: error)
 		}
+		
+		if onlyIfNeeded {
+			registerIfNeeded(cb)
+		}
+		else {
+			register(cb)
+		}
 	}
 	
 	/**
-	Attempts to register the client **unless** the receiver already has a client id.
+	Attempts to register the client **unless** the given client (1st priority) or the receiver (2nd priority) already have a client id.
 	
-	:param: callback The callback to call when done. Any combination of json and error is possible (in regards to nil-ness)
+	- parameter callback: The callback to call when done. Any combination of json and error is possible (in regards to nil-ness)
 	*/
 	public func registerIfNeeded(callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
 		if nil == clientId {
@@ -163,7 +185,7 @@ public class OAuth2DynReg: OAuth2Base
 	/**
 	Register using the receiver's current setup.
 	
-	:param: callback The callback to call when done with the registration response (JSON) and/or an error
+	- parameter callback: The callback to call when done with the registration response (JSON) and/or an error
 	*/
 	public func register(callback: ((json: OAuth2JSON?, error: NSError?) -> Void)) {
 		let req = registrationRequest()
@@ -189,8 +211,11 @@ public class OAuth2DynReg: OAuth2Base
 	
 	/** Returns a mutable URL request, set up to be used for registration: POST method, JSON body data. */
 	public func registrationRequest() -> NSMutableURLRequest {
-		var error: NSError?
-		let body = NSJSONSerialization.dataWithJSONObject(registrationBody(), options: nil, error: &error)
+		var body: NSData? = nil
+		do {
+			body = try NSJSONSerialization.dataWithJSONObject(registrationBody(), options: [])
+		}
+		catch {}
 		if nil == body {
 			logIfVerbose("WARNING: the registration body is empty, which will likely cause registration to fail")
 		}
@@ -226,8 +251,11 @@ public class OAuth2DynReg: OAuth2Base
 	}
 	
 	public func parseRegistrationResponse(data: NSData, error: NSErrorPointer) -> OAuth2JSON? {
-		if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: error) as? OAuth2JSON {
-			return json
+		do {
+			return try NSJSONSerialization.JSONObjectWithData(data, options: []) as? OAuth2JSON
+		}
+		catch let error {
+			logIfVerbose("Failed to parse registration response data: \((error as NSError).localizedDescription)")
 		}
 		return nil
 	}
