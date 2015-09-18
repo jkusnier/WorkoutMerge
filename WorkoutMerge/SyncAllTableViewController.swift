@@ -23,14 +23,16 @@ class SyncAllTableViewController: UITableViewController {
         super.viewDidLoad()
         
         if !HKHealthStore.isHealthDataAvailable() {
-            println("HealthKit Not Available")
+            print("HealthKit Not Available")
+//            self.healthKitAvailable = false
+//            self.refreshControl.removeFromSuperview()
         } else {
-            let readTypes = Set([
+            let readTypes = Set(arrayLiteral:
                 HKObjectType.workoutType(),
-                HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
-            ])
+                HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!
+            )
             
-            hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError!) -> () in
+            hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError?) -> () in
                 
                 var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
                 actInd.center = self.view.center
@@ -81,7 +83,7 @@ class SyncAllTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("syncAllCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("syncAllCell", forIndexPath: indexPath) 
         cell.textLabel?.text = self.workouts[indexPath.row].startDate.relativeDateFormat()
 
         return cell
@@ -138,7 +140,7 @@ class SyncAllTableViewController: UITableViewController {
         let sampleQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: nil, limit: 0, sortDescriptors: [sortDescriptor])
             { (sampleQuery, results, error ) -> Void in
                 if let queryError = error {
-                    println( "There was an error while reading the samples: \(queryError.localizedDescription)")
+                    print( "There was an error while reading the samples: \(queryError.localizedDescription)")
                 }
                 completion(results, error)
         }
@@ -147,25 +149,24 @@ class SyncAllTableViewController: UITableViewController {
     }
     
     func managedObject(workout: HKWorkout) -> NSManagedObject? {
-        if let uuid = workout.UUID?.UUIDString {
-            let servicesPredicate: String
-            if let workoutSyncAPI = self.workoutSyncAPI as? RunKeeperAPI {
-                servicesPredicate = "uuid = %@ AND syncToRunKeeper != nil"
-            } else if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
-                servicesPredicate = "uuid = %@ AND syncToStrava != nil"
-            } else {
-                return nil
-            }
-            
-            let fetchRequest = NSFetchRequest(entityName: "SyncLog")
-            let predicate = NSPredicate(format: servicesPredicate, uuid)
-            fetchRequest.predicate = predicate
-            
-            let fetchedEntities = self.managedContext.executeFetchRequest(fetchRequest, error: nil)
-            
-            if let syncLog = fetchedEntities?.first as? NSManagedObject {
-                return syncLog
-            }
+        let uuid = workout.UUID.UUIDString
+        let servicesPredicate: String
+        if let _ = self.workoutSyncAPI as? RunKeeperAPI {
+            servicesPredicate = "uuid = %@ AND syncToRunKeeper != nil"
+        } else if let _ = self.workoutSyncAPI as? StravaAPI {
+            servicesPredicate = "uuid = %@ AND syncToStrava != nil"
+        } else {
+            return nil
+        }
+        
+        let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+        let predicate = NSPredicate(format: servicesPredicate, uuid)
+        fetchRequest.predicate = predicate
+        
+        let fetchedEntities = try? self.managedContext.executeFetchRequest(fetchRequest)
+        
+        if let syncLog = fetchedEntities?.first as? NSManagedObject {
+            return syncLog
         }
         
         return nil
@@ -173,11 +174,11 @@ class SyncAllTableViewController: UITableViewController {
     
     func stringFromTimeInterval(interval:NSTimeInterval) -> String {
         
-        var ti = NSInteger(interval)
+        let ti = NSInteger(interval)
         
-        var seconds = ti % 60
-        var minutes = (ti / 60) % 60
-        var hours = (ti / 3600)
+        let seconds = ti % 60
+        let minutes = (ti / 60) % 60
+        let hours = (ti / 3600)
         
         return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
     }

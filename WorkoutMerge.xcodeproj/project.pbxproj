@@ -242,7 +242,9 @@
 		96A6D9B81B108DB80056ECDA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Jason Kusnier";
 				TargetAttributes = {
 					96A6D9BF1B108DB80056ECDA = {
@@ -445,6 +447,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -516,6 +519,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WorkoutMerge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.weecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = WorkoutMerge;
 				PROVISIONING_PROFILE = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -533,6 +537,7 @@
 				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WorkoutMerge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.weecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = WorkoutMerge;
 				PROVISIONING_PROFILE = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -553,6 +558,7 @@
 				);
 				INFOPLIST_FILE = WorkoutMergeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.weecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = WorkoutMergeTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutMerge.app/WorkoutMerge";
 			};
@@ -568,6 +574,7 @@
 				);
 				INFOPLIST_FILE = WorkoutMergeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.weecode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = WorkoutMergeTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutMerge.app/WorkoutMerge";
 			};

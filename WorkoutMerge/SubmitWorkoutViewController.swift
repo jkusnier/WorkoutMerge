@@ -74,7 +74,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     }
     
     override func viewDidAppear(animated: Bool) {
-        println("workoutData: \(workoutData)")
+        print("workoutData: \(workoutData)")
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -119,15 +119,15 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         let cell:UITableViewCell
         
         func staticCell() -> UITableViewCell {
-            return tableView.dequeueReusableCellWithIdentifier("submitStaticCell", forIndexPath: indexPath) as! UITableViewCell
+            return tableView.dequeueReusableCellWithIdentifier("submitStaticCell", forIndexPath: indexPath) 
         }
         
         func dynamicCell() -> UITableViewCell {
-            return tableView.dequeueReusableCellWithIdentifier("submitDynamicCell", forIndexPath: indexPath) as! UITableViewCell
+            return tableView.dequeueReusableCellWithIdentifier("submitDynamicCell", forIndexPath: indexPath) 
         }
         
         func staticInputCell() -> UITableViewCell {
-            return tableView.dequeueReusableCellWithIdentifier("submitStaticInputCell", forIndexPath: indexPath) as! UITableViewCell
+            return tableView.dequeueReusableCellWithIdentifier("submitStaticInputCell", forIndexPath: indexPath) 
         }
         
         func disabledCell() -> UITableViewCell {
@@ -135,7 +135,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 cell.setDisabled(true)
                 return cell
             } else {
-                return tableView.dequeueReusableCellWithIdentifier("submitStaticCell", forIndexPath: indexPath) as! UITableViewCell
+                return tableView.dequeueReusableCellWithIdentifier("submitStaticCell", forIndexPath: indexPath) 
             }
         }
         
@@ -164,8 +164,8 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 cell = staticInputCell()
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
                 cell.selectionStyle = UITableViewCellSelectionStyle.Default
-                setTitle("Other", cell as? SubmitWorkoutTableViewCell)
-                setSubtitle(self.resultWorkoutData.otherType == nil ? "" : self.resultWorkoutData.otherType, cell as? SubmitWorkoutTableViewCell)
+                setTitle("Other", cell: cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(self.resultWorkoutData.otherType == nil ? "" : self.resultWorkoutData.otherType, cell: cell as? SubmitWorkoutTableViewCell)
                 return cell
             }
         }
@@ -175,13 +175,13 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             cell = staticInputCell()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
-            setTitle("Workout Type", cell as? SubmitWorkoutTableViewCell)
-            setSubtitle(self.resultWorkoutData.type, cell as? SubmitWorkoutTableViewCell)
+            setTitle("Workout Type", cell: cell as? SubmitWorkoutTableViewCell)
+            setSubtitle(self.resultWorkoutData.type, cell: cell as? SubmitWorkoutTableViewCell)
         case 1:
             cell = staticCell()
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-            setTitle("Duration", cell as? SubmitWorkoutTableViewCell)
-            setSubtitle(stringFromTimeInterval(self.resultWorkoutData.duration), cell as? SubmitWorkoutTableViewCell)
+            setTitle("Duration", cell: cell as? SubmitWorkoutTableViewCell)
+            setSubtitle(stringFromTimeInterval(self.resultWorkoutData.duration), cell: cell as? SubmitWorkoutTableViewCell)
         case 2:
             if let strava = self.workoutSyncAPI as? StravaAPI {
                 cell = disabledCell()
@@ -189,9 +189,9 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 cell = dynamicCell()
             }
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-            setTitle("Calories Burned", cell as? SubmitWorkoutTableViewCell)
+            setTitle("Calories Burned", cell: cell as? SubmitWorkoutTableViewCell)
             if let totalCalories = self.workoutData.totalCalories {
-                setSubtitle(totalCalories.intString(), cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(totalCalories.intString(), cell: cell as? SubmitWorkoutTableViewCell)
             }
             if let cell = cell as? SubmitWorkoutTableViewCell {
                 cell.switchChangedCallback = { isOn in
@@ -207,13 +207,13 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         case 3:
             cell = dynamicCell()
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-            setTitle("Distance", cell as? SubmitWorkoutTableViewCell)
+            setTitle("Distance", cell: cell as? SubmitWorkoutTableViewCell)
             if let totalDistance = self.workoutData.totalDistance {
                 if self.useMetric {
-                    setSubtitle(totalDistance.intString()! + " meters", cell as? SubmitWorkoutTableViewCell)
+                    setSubtitle(totalDistance.intString()! + " meters", cell: cell as? SubmitWorkoutTableViewCell)
                 } else {
                     let miles = totalDistance * 0.00062137
-                    setSubtitle(miles.shortDecimalString()! + " miles", cell as? SubmitWorkoutTableViewCell)
+                    setSubtitle(miles.shortDecimalString()! + " miles", cell: cell as? SubmitWorkoutTableViewCell)
                 }
             }
             if let cell = cell as? SubmitWorkoutTableViewCell {
@@ -232,9 +232,9 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 cell = dynamicCell()
             }
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-            setTitle("Avg Heart Rate", cell as? SubmitWorkoutTableViewCell)
+            setTitle("Avg Heart Rate", cell: cell as? SubmitWorkoutTableViewCell)
             if let averageHeartRate = self.workoutData.averageHeartRate {
-                setSubtitle(averageHeartRate.intString()! + " BPM", cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(averageHeartRate.intString()! + " BPM", cell: cell as? SubmitWorkoutTableViewCell)
             }
             if let cell = cell as? SubmitWorkoutTableViewCell {
                 cell.switchChangedCallback = { isOn in
@@ -250,31 +250,31 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         case 5:
             cell = staticCell()
             cell.selectionStyle = UITableViewCellSelectionStyle.None
-            setTitle("Date", cell as? SubmitWorkoutTableViewCell)
+            setTitle("Date", cell: cell as? SubmitWorkoutTableViewCell)
             if let startTime = self.workoutData.startTime {
-                setSubtitle(startTime.shortDateString(), cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(startTime.shortDateString(), cell: cell as? SubmitWorkoutTableViewCell)
             }
         case 6:
             cell = staticCell()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
-            setTitle("Notes", cell as? SubmitWorkoutTableViewCell)
+            setTitle("Notes", cell: cell as? SubmitWorkoutTableViewCell)
             if let notes = self.resultWorkoutData.notes {
-                setSubtitle(notes, cell as? SubmitWorkoutTableViewCell)
+                setSubtitle(notes, cell: cell as? SubmitWorkoutTableViewCell)
             } else {
-                setSubtitle("", cell as? SubmitWorkoutTableViewCell)
+                setSubtitle("", cell: cell as? SubmitWorkoutTableViewCell)
             }
         case 7:
             cell = staticCell()
             cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
-            setTitle("Name", cell as? SubmitWorkoutTableViewCell)
+            setTitle("Name", cell: cell as? SubmitWorkoutTableViewCell)
 
             if let activityName = self.resultWorkoutData.activityName {
-                setSubtitle("\(activityName)", cell as? SubmitWorkoutTableViewCell)
+                setSubtitle("\(activityName)", cell: cell as? SubmitWorkoutTableViewCell)
             } else {
                 if let startTime = self.workoutData.startTime, type = self.resultWorkoutData.type {
-                    setSubtitle("\(startTime.dayOfWeek()) - \(type)", cell as? SubmitWorkoutTableViewCell)
+                    setSubtitle("\(startTime.dayOfWeek()) - \(type)", cell: cell as? SubmitWorkoutTableViewCell)
                 }
             }
         default:
@@ -295,7 +295,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         
         switch row {
         case 0:
-            println("workout selection")
+            print("workout selection")
             self.picker = 0
             var workoutPicker = UIPickerView()
             workoutPicker.delegate = self
@@ -316,7 +316,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                     cell.textField.inputView = workoutPicker
                     cell.textField.inputAccessoryView = toolBar
                     
-                    if let type = self.resultWorkoutData.type, idx = find(self.workoutSyncAPI.activityTypes, type) {
+                    if let type = self.resultWorkoutData.type, idx = self.workoutSyncAPI.activityTypes.indexOf(type) {
                         self.pickerSelection = idx
                         workoutPicker.selectRow(idx, inComponent: 0, animated: false)
                     }
@@ -326,7 +326,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             }
         case 1:
             if resultWorkoutData.type == "Other" {
-                println("workout other selection")
+                print("workout other selection")
                 self.picker = 1
                 
                 var workoutPicker = UIPickerView()
@@ -348,7 +348,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         cell.textField.inputView = workoutPicker
                         cell.textField.inputAccessoryView = toolBar
                         
-                        if let otherType = self.resultWorkoutData.otherType, idx = find(self.workoutSyncAPI.otherTypes, otherType) {
+                        if let otherType = self.resultWorkoutData.otherType, idx = self.workoutSyncAPI.otherTypes.indexOf(otherType) {
                             self.pickerSelection = idx
                             workoutPicker.selectRow(idx, inComponent: 0, animated: false)
                         } else {
@@ -364,13 +364,13 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         case 6:
             var alert = UIAlertController(title: "Notes", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let doneAction = UIAlertAction(title: "Done", style: .Default) { (action) in
-                let notesTextField = alert.textFields![0] as! UITextField
+                let notesTextField = alert.textFields![0] 
                 self.resultWorkoutData.notes = notesTextField.text
                 self.tableView.reloadData()
             }
             
             alert.addAction(doneAction)
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
                 textField.placeholder = "Enter notes:"
                 textField.autocorrectionType = UITextAutocorrectionType.Default
                 if let notes = self.resultWorkoutData.notes {
@@ -381,13 +381,13 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         case 7:
             var alert = UIAlertController(title: "Name", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let doneAction = UIAlertAction(title: "Done", style: .Default) { (action) in
-                let nameTextField = alert.textFields![0] as! UITextField
-                self.resultWorkoutData.activityName = nameTextField.text.isEmpty ? nil : nameTextField.text
+                let nameTextField = alert.textFields![0] 
+                self.resultWorkoutData.activityName = nameTextField.text!.isEmpty ? nil : nameTextField.text
                 self.tableView.reloadData()
             }
             
             alert.addAction(doneAction)
-            alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
                 textField.placeholder = "Enter name:"
                 textField.autocorrectionType = UITextAutocorrectionType.Default
                 if let activityName = self.resultWorkoutData.activityName {
@@ -419,11 +419,11 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     
     func stringFromTimeInterval(interval:NSTimeInterval?) -> String {
         if let i = interval {
-            var ti = NSInteger(i)
+            let ti = NSInteger(i)
             
-            var seconds = ti % 60
-            var minutes = (ti / 60) % 60
-            var hours = (ti / 3600)
+            let seconds = ti % 60
+            let minutes = (ti / 60) % 60
+            let hours = (ti / 3600)
             
             return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
         } else {
@@ -446,7 +446,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         } else {
                             errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
                         }
-                        var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+                        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
@@ -484,8 +484,13 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         }
                         
                         var error: NSError?
-                        if !managedContext.save(&error) {
-                            println("Could not save \(error)")
+                        do {
+                            try managedContext.save()
+                        } catch let error1 as NSError {
+                            error = error1
+                            print("Could not save \(error)")
+                        } catch {
+                            fatalError()
                         }
                     }
                     
@@ -505,7 +510,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         } else {
                             errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through Strava - \(msg)"
                         }
-                        var alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+                        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
                     }
@@ -537,8 +542,13 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                         }
                         
                         var error: NSError?
-                        if !managedContext.save(&error) {
-                            println("Could not save \(error)")
+                        do {
+                            try managedContext.save()
+                        } catch let error1 as NSError {
+                            error = error1
+                            print("Could not save \(error)")
+                        } catch {
+                            fatalError()
                         }
                     }
                     
@@ -618,7 +628,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         let predicate = NSPredicate(format: "uuid = %@", uuid)
         fetchRequest.predicate = predicate
         
-        let fetchedEntities = managedContext.executeFetchRequest(fetchRequest, error: nil)
+        let fetchedEntities = try? managedContext.executeFetchRequest(fetchRequest)
         
         if let syncLog = fetchedEntities?.first as? NSManagedObject {
             return syncLog

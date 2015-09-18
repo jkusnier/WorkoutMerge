@@ -38,13 +38,13 @@ class StravaAPI: WorkoutSyncAPI {
         }
         
         self.oauth2 = OAuth2CodeGrant(settings: settings)
-        self.oauth2.viewTitle = "Strava"
+//        self.oauth2.viewTitle = "Strava"
         self.oauth2.onAuthorize = { parameters in
-            println("Did authorize with parameters: \(parameters)")
+            print("Did authorize with parameters: \(parameters)")
         }
         self.oauth2.onFailure = { error in
             if nil != error {
-                println("Authorization went wrong: \(error!.localizedDescription)")
+                print("Authorization went wrong: \(error!.localizedDescription)")
             }
         }
         
@@ -63,7 +63,9 @@ class StravaAPI: WorkoutSyncAPI {
         
         self.oauth2.afterAuthorizeOrFailure = { wasFailure, error in
             if !wasFailure {
-                web.dismissViewControllerAnimated(true, completion: nil)
+                if let web = web {
+                    web.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
             afterAuthorizeOrFailure(wasFailure: wasFailure, error: error)
         }
@@ -77,14 +79,14 @@ class StravaAPI: WorkoutSyncAPI {
         sharedInstance.oauth2.handleRedirectURL(url)
     }
     
-    override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
+    override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in print(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
         
         self.oauth2.onFailure = { error in
-            println("fail")
+            print("fail")
             if let fail = fail {
                 fail(error, "No Response")
             } else {
-                println(error)
+                print(error)
             }
         }
         
@@ -130,7 +132,7 @@ class StravaAPI: WorkoutSyncAPI {
     //            jsonData.append("\"secondary_type\":\"\(otherType)\"")
     //        }
             
-            let urlParameters = "&".join( map(postData) { "\($0)=\($1)" } )
+            let urlParameters = postData.map { "\($0)=\($1)" }.joinWithSeparator("&")
             req.HTTPMethod = "POST"
             req.HTTPBody = urlParameters.dataUsingEncoding(NSUTF8StringEncoding)
 
@@ -139,24 +141,28 @@ class StravaAPI: WorkoutSyncAPI {
                 
                 if let httpResponse = response as? NSHTTPURLResponse {
                     if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
-                        println("success")
+                        print("success")
 
                         var savedKey: String?
-                        var error: NSError?
-                        if let jsonDict = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? NSDictionary {
-                            if let workoutId = jsonDict["id"] as? Int {
-                                savedKey = "\(workoutId)"
+//                        var error: NSError?
+                        do {
+                            if let jsonDict = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? NSDictionary {
+                                if let workoutId = jsonDict["id"] as? Int {
+                                    savedKey = "\(workoutId)"
+                                }
                             }
+                        } catch let error {
                         }
+                        
                         succeed!(savedKey: savedKey)
                     } else {
-                        println("failure")
+                        print("failure")
                         if let fail = fail {
                             fail(error, "Status Code \(httpResponse.statusCode)")
                         }
                     }
                 } else {
-                    println("fail")
+                    print("fail")
                     if let fail = fail {
                         fail(error, "No Response")
                     }
@@ -165,7 +171,7 @@ class StravaAPI: WorkoutSyncAPI {
             task.resume()
         }
         
-        self.oauth2.viewTitle = "Strava"
+//        self.oauth2.viewTitle = "Strava"
         self.oauth2.authConfig.authorizeEmbedded = false
         self.oauth2.authConfig.authorizeContext = self
         self.oauth2.authorize()

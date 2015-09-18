@@ -37,13 +37,13 @@ class RunKeeperAPI: WorkoutSyncAPI {
         }
                 
         self.oauth2 = OAuth2CodeGrant(settings: settings)
-        self.oauth2.viewTitle = "RunKeeper"
+//        self.oauth2.viewTitle = "RunKeeper"
         self.oauth2.onAuthorize = { parameters in
-            println("Did authorize with parameters: \(parameters)")
+            print("Did authorize with parameters: \(parameters)")
         }
         self.oauth2.onFailure = { error in
             if nil != error {
-                println("Authorization went wrong: \(error!.localizedDescription)")
+                print("Authorization went wrong: \(error!.localizedDescription)")
             }
         }
         
@@ -115,7 +115,9 @@ class RunKeeperAPI: WorkoutSyncAPI {
         
         self.oauth2.afterAuthorizeOrFailure = { wasFailure, error in
             if !wasFailure {
-                web.dismissViewControllerAnimated(true, completion: nil)
+                if let web = web {
+                    web.dismissViewControllerAnimated(true, completion: nil)
+                }
             }
             afterAuthorizeOrFailure(wasFailure: wasFailure, error: error)
         }
@@ -131,7 +133,7 @@ class RunKeeperAPI: WorkoutSyncAPI {
     }
     
 //    func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?), failure fail : (NSError? -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
-    override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in println(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
+    override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in print(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
         let path = "/fitnessActivities"
         let url = baseURL.URLByAppendingPathComponent(path)
         let req = oauth2.request(forURL: url)
@@ -168,8 +170,8 @@ class RunKeeperAPI: WorkoutSyncAPI {
             jsonData.append("\"secondary_type\":\"\(otherType)\"")
         }
         
-        var joiner = ","
-        var jsonString = "{" + joiner.join(jsonData) + "}"
+        let joiner = ","
+        let jsonString = "{" + jsonData.joinWithSeparator(joiner) + "}"
         
         req.HTTPBody = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         req.HTTPMethod = "POST"
@@ -180,7 +182,7 @@ class RunKeeperAPI: WorkoutSyncAPI {
             
             if let httpResponse = response as? NSHTTPURLResponse {
                 if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
-                    println("success")
+                    print("success")
                     let allHeaders = httpResponse.allHeaderFields
                     var savedKey: String?
                     if let location = allHeaders["Location"] as? String {
@@ -188,13 +190,13 @@ class RunKeeperAPI: WorkoutSyncAPI {
                     }
                     succeed!(savedKey: savedKey)
                 } else {
-                    println("failure")
+                    print("failure")
                     if let fail = fail {
                         fail(error, "Status Code \(httpResponse.statusCode)")
                     }
                 }
             } else {
-                println("fail")
+                print("fail")
                 if let fail = fail {
                     fail(error, "No Response")
                 }
