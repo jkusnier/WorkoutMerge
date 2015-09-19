@@ -34,7 +34,7 @@ class SyncAllTableViewController: UITableViewController {
             
             hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError?) -> () in
                 
-                var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
+                let actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
                 actInd.center = self.view.center
                 actInd.hidesWhenStopped = true
                 actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
@@ -47,7 +47,7 @@ class SyncAllTableViewController: UITableViewController {
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.workouts = []
                                 for workout in results {
-                                    if let managedObject = self.managedObject(workout) {
+                                    if let _ = self.managedObject(workout) {
                                     } else {
                                         self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType)) as (startDate: NSDate, durationLabel: String, workoutTypeLabel: String))
                                     }

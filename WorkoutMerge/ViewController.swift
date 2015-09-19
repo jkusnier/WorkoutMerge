@@ -62,7 +62,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 
                 dispatch_async(dispatch_get_main_queue(), {
                 
-                    var actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
+                    let actInd : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 50, 50)) as UIActivityIndicatorView
                     actInd.center = self.view.center
                     actInd.hidesWhenStopped = true
                     actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
@@ -231,7 +231,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 self.readWorkOuts({(results: [AnyObject]!, error: NSError!) -> () in
                     if (error != nil) {
                         print(error.localizedDescription)
-                        var alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
+                        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
                     }

@@ -10,8 +10,6 @@ import UIKit
 
 class CloseModalSegue: UIStoryboardSegue {
     override func perform() {
-        if let source = self.sourceViewController as? UIViewController {
-            source.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-        }
+        self.sourceViewController.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }

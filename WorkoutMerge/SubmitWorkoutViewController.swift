@@ -54,7 +54,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             }
             
             // FIXME find a better way
-            if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
+            if let _ = self.workoutSyncAPI as? StravaAPI {
                 // Strava Workout Types
                 if let workoutType = syncLog.valueForKey("workoutTypeStrava") as? String {
                     self.resultWorkoutData.type = workoutType
@@ -94,7 +94,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 7
         
-        if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
+        if let _ = self.workoutSyncAPI as? StravaAPI {
             // Add 1 for workout Name
             rows++
         }
@@ -183,7 +183,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             setTitle("Duration", cell: cell as? SubmitWorkoutTableViewCell)
             setSubtitle(stringFromTimeInterval(self.resultWorkoutData.duration), cell: cell as? SubmitWorkoutTableViewCell)
         case 2:
-            if let strava = self.workoutSyncAPI as? StravaAPI {
+            if let _ = self.workoutSyncAPI as? StravaAPI {
                 cell = disabledCell()
             } else {
                 cell = dynamicCell()
@@ -226,7 +226,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 }
             }
         case 4:
-            if let strava = self.workoutSyncAPI as? StravaAPI {
+            if let _ = self.workoutSyncAPI as? StravaAPI {
                 cell = disabledCell()
             } else {
                 cell = dynamicCell()
@@ -297,16 +297,16 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         case 0:
             print("workout selection")
             self.picker = 0
-            var workoutPicker = UIPickerView()
+            let workoutPicker = UIPickerView()
             workoutPicker.delegate = self
             workoutPicker.dataSource = self
             
-            var toolBar = UIToolbar()
+            let toolBar = UIToolbar()
             toolBar.sizeToFit()
             
-            var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
-            var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-            var cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "canclePicker")
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "canclePicker")
 
             toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
             toolBar.userInteractionEnabled = true
@@ -329,16 +329,16 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
                 print("workout other selection")
                 self.picker = 1
                 
-                var workoutPicker = UIPickerView()
+                let workoutPicker = UIPickerView()
                 workoutPicker.delegate = self
                 workoutPicker.dataSource = self
                 
-                var toolBar = UIToolbar()
+                let toolBar = UIToolbar()
                 toolBar.sizeToFit()
                 
-                var doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
-                var spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-                var cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "canclePicker")
+                let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
+                let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+                let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "canclePicker")
                 
                 toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
                 toolBar.userInteractionEnabled = true
@@ -362,7 +362,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
 
             }
         case 6:
-            var alert = UIAlertController(title: "Notes", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Notes", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let doneAction = UIAlertAction(title: "Done", style: .Default) { (action) in
                 let notesTextField = alert.textFields![0] 
                 self.resultWorkoutData.notes = notesTextField.text
@@ -379,7 +379,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
             })
             self.presentViewController(alert, animated: true, completion: nil)
         case 7:
-            var alert = UIAlertController(title: "Name", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Name", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let doneAction = UIAlertAction(title: "Done", style: .Default) { (action) in
                 let nameTextField = alert.textFields![0] 
                 self.resultWorkoutData.activityName = nameTextField.text!.isEmpty ? nil : nameTextField.text
@@ -566,12 +566,12 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         if let uuid = self.resultWorkoutData.UUID?.UUIDString, syncLog = self.syncLog(uuid) {
             var showError = false
             
-            if let workoutSyncAPI = self.workoutSyncAPI as? StravaAPI {
-                if let workoutType = syncLog.valueForKey("savedKeyStrava") as? String {
+            if let _ = self.workoutSyncAPI as? StravaAPI {
+                if let _ = syncLog.valueForKey("savedKeyStrava") as? String {
                     showError = true
                 }
-            } else if let workoutSyncAPI = self.workoutSyncAPI as? RunKeeperAPI {
-                if let workoutType = syncLog.valueForKey("savedKeyRunKeeper") as? String {
+            } else if let _ = self.workoutSyncAPI as? RunKeeperAPI {
+                if let _ = syncLog.valueForKey("savedKeyRunKeeper") as? String {
                     showError = true
                 }
             }
@@ -606,7 +606,7 @@ class SubmitWorkoutViewController: UITableViewController, UIPickerViewDelegate, 
         return 0
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if self.picker == 0 {
             return self.workoutSyncAPI.activityTypes[row]
         } else if self.picker == 1 {

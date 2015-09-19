@@ -235,7 +235,7 @@ class WorkoutDetailViewController: UITableViewController {
         if let hkStore = hkStore {
             let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
             let workoutPredicate = HKQuery.predicateForSamplesWithStartDate(workout.startDate, endDate: workout.endDate, options: .None)
-            let startDateSort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+//            let startDateSort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
 
             let query = HKStatisticsQuery(quantityType: quantityType!, quantitySamplePredicate: workoutPredicate, options: .DiscreteAverage) {
                 (query, results, error) -> Void in
