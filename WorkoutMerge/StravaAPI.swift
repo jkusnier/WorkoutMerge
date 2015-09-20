@@ -151,7 +151,7 @@ class StravaAPI: WorkoutSyncAPI {
                                     savedKey = "\(workoutId)"
                                 }
                             }
-                        } catch let error {
+                        } catch _ {
                         }
                         
                         succeed!(savedKey: savedKey)
