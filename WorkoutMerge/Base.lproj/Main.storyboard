@@ -109,7 +109,7 @@
                                 <items>
                                     <barButtonItem enabled="NO" title="Sync All" id="3es-hz-gmn">
                                         <connections>
-                                            <action selector="syncAllPressed:" destination="vXZ-lx-hvc" id="SpN-oW-IeL"/>
+                                            <action selector="syncAllPressed:" destination="vXZ-lx-hvc" id="jYo-tm-jFc"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1zs-d0-iIU"/>
@@ -399,22 +399,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="syncAllCell" textLabel="vR0-kx-6Aq" style="IBUITableViewCellStyleDefault" id="2Ff-ks-x3u">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="syncAllCell" id="zbZ-ie-gzN" customClass="WorkoutTableViewCell" customModule="WorkoutMerge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ff-ks-x3u" id="5ef-nZ-dco">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zbZ-ie-gzN" id="uwL-oO-TBD">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vR0-kx-6Aq">
-                                            <rect key="frame" x="15" y="0.0" width="384" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ner-E6-Ies">
+                                            <rect key="frame" x="8" y="29.5" width="26" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-5i-yMM">
+                                            <rect key="frame" x="331" y="11" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L40-60-iZx">
+                                            <rect key="frame" x="8" y="8" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ner-E6-Ies" secondAttribute="bottom" constant="-6" id="1Sb-mE-oQC"/>
+                                        <constraint firstAttribute="centerY" secondItem="bXY-5i-yMM" secondAttribute="centerY" constant="0.25" id="2Hk-km-8Mg"/>
+                                        <constraint firstItem="ner-E6-Ies" firstAttribute="leading" secondItem="uwL-oO-TBD" secondAttribute="leadingMargin" id="A0h-Om-XvV"/>
+                                        <constraint firstItem="bXY-5i-yMM" firstAttribute="trailing" secondItem="uwL-oO-TBD" secondAttribute="trailingMargin" id="G5j-gb-88Z"/>
+                                        <constraint firstItem="L40-60-iZx" firstAttribute="top" secondItem="uwL-oO-TBD" secondAttribute="topMargin" id="dWH-1R-lAa"/>
+                                        <constraint firstItem="L40-60-iZx" firstAttribute="leading" secondItem="uwL-oO-TBD" secondAttribute="leadingMargin" id="qNJ-bC-NYw"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="durationLabel" destination="bXY-5i-yMM" id="HTU-AF-gTf"/>
+                                    <outlet property="startTimeLabel" destination="L40-60-iZx" id="kGg-8m-1Px"/>
+                                    <outlet property="workoutTypeLabel" destination="ner-E6-Ies" id="G9r-ke-FTE"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -15,7 +15,7 @@ class SyncAllTableViewController: UITableViewController {
     var workoutSyncAPI: WorkoutSyncAPI?
     
     let hkStore = HKHealthStore()
-    var workouts: [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String)] = []
+    var workouts: [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool)] = []
     
     let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     
@@ -49,7 +49,7 @@ class SyncAllTableViewController: UITableViewController {
                                 for workout in results {
                                     if let _ = self.managedObject(workout) {
                                     } else {
-                                        self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType)) as (startDate: NSDate, durationLabel: String, workoutTypeLabel: String))
+                                        self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), checked: false) as (startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool))
                                     }
                                 }
 
@@ -83,10 +83,24 @@ class SyncAllTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("syncAllCell", forIndexPath: indexPath) 
-        cell.textLabel?.text = self.workouts[indexPath.row].startDate.relativeDateFormat()
-
-        return cell
+        if let cell = tableView.dequeueReusableCellWithIdentifier("syncAllCell") as? WorkoutTableViewCell {
+            let workout  = self.workouts[indexPath.row]
+            let startDate = workout.startDate.relativeDateFormat()
+            
+            if workout.checked {
+                cell.accessoryType = .Checkmark
+            } else {
+                cell.accessoryType = .None
+            }
+            
+            cell.startTimeLabel?.text = startDate
+            cell.durationLabel?.text = workout.durationLabel
+            cell.workoutTypeLabel?.text = workout.workoutTypeLabel
+            
+            return cell
+        } else {
+            return tableView.dequeueReusableCellWithIdentifier("syncAllCell")!
+        }
     }
 
     /*
