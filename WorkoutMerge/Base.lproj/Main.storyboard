@@ -412,7 +412,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-5i-yMM">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXY-5i-yMM">
                                             <rect key="frame" x="331" y="11" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -433,7 +433,15 @@
                                         <constraint firstItem="L40-60-iZx" firstAttribute="top" secondItem="uwL-oO-TBD" secondAttribute="topMargin" id="dWH-1R-lAa"/>
                                         <constraint firstItem="L40-60-iZx" firstAttribute="leading" secondItem="uwL-oO-TBD" secondAttribute="leadingMargin" id="qNJ-bC-NYw"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="G5j-gb-88Z"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="bXY-5i-yMM" secondAttribute="trailing" constant="41" id="6kB-TG-XgZ"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="durationLabel" destination="bXY-5i-yMM" id="HTU-AF-gTf"/>
                                     <outlet property="startTimeLabel" destination="L40-60-iZx" id="kGg-8m-1Px"/>

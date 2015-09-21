@@ -103,6 +103,15 @@ class SyncAllTableViewController: UITableViewController {
         }
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var workout  = self.workouts[indexPath.row]
+        workout.checked = !workout.checked
+        self.workouts[indexPath.row] = workout
+
+        self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
