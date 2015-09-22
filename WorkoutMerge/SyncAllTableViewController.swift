@@ -19,8 +19,14 @@ class SyncAllTableViewController: UITableViewController {
     
     let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     
+    var syncButton: UIBarButtonItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.syncButton = UIBarButtonItem(title: "Sync All", style: .Plain, target: self, action: "syncItems")
+        self.syncButton?.possibleTitles = ["Sync All", "Sync Selected"];
+        navigationItem.rightBarButtonItem = self.syncButton
         
         if !HKHealthStore.isHealthDataAvailable() {
             print("HealthKit Not Available")
@@ -110,6 +116,16 @@ class SyncAllTableViewController: UITableViewController {
 
         self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let anyTrue = self.workouts
+            .map { return $0.checked }
+            .reduce(false) { (sum, next) in return sum || next }
+        
+        if anyTrue {
+            self.navigationItem.rightBarButtonItem?.title = "Sync Selected"
+        } else {
+            self.navigationItem.rightBarButtonItem?.title = "Sync All"
+        }
     }
 
     func readWorkOuts(completion: (([AnyObject]!, NSError!) -> Void)!) {
@@ -159,5 +175,8 @@ class SyncAllTableViewController: UITableViewController {
         let hours = (ti / 3600)
         
         return String(format: "%0.2d:%0.2d:%0.2d",hours,minutes,seconds)
+    }
+    
+    func syncItems() {
     }
 }
