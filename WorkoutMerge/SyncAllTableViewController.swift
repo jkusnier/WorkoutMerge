@@ -178,5 +178,16 @@ class SyncAllTableViewController: UITableViewController {
     }
     
     func syncItems() {
+        let workoutsToSync: [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool)]
+        
+        let anyTrue = self.workouts
+            .map { return $0.checked }
+            .reduce(false) { (sum, next) in return sum || next }
+        
+        if anyTrue {
+            workoutsToSync = self.workouts.filter({$0.checked})
+        } else {
+            workoutsToSync = self.workouts
+        }
     }
 }
