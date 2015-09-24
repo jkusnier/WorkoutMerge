@@ -15,7 +15,8 @@ class SyncAllTableViewController: UITableViewController {
     var workoutSyncAPI: WorkoutSyncAPI?
     
     let hkStore = HKHealthStore()
-    var workouts: [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool)] = []
+    typealias Workout = [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool)]
+    var workouts: Workout  = []
     
     let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
     
@@ -178,7 +179,7 @@ class SyncAllTableViewController: UITableViewController {
     }
     
     func syncItems() {
-        let workoutsToSync: [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool)]
+        let workoutsToSync: Workout
         
         let anyTrue = self.workouts
             .map { return $0.checked }
