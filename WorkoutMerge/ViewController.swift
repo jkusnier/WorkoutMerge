@@ -13,7 +13,7 @@ import CoreData
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var syncAllButton: UIBarButtonItem!
+//    @IBOutlet weak var syncAllButton: UIBarButtonItem!
     
     let hkStore = HKHealthStore()
     var workouts = [HKWorkout]()
@@ -49,13 +49,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
             self.linkedServices = linkedServices.sort() {$0 < $1}
-            self.syncAllButton.enabled = linkedServices.count > 0
+//            self.syncAllButton.enabled = linkedServices.count > 0
         }
         
         if !HKHealthStore.isHealthDataAvailable() {
             print("HealthKit Not Available")
             self.healthKitAvailable = false
-            self.refreshControl.removeFromSuperview()
+//            self.refreshControl.removeFromSuperview()
         } else {
             hkStore.requestAuthorizationToShareTypes(nil, readTypes: readTypes, completion: { (success: Bool, err: NSError?) -> () in
 //                println("okay: \(success) error: \(err)")
@@ -98,7 +98,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if !self.initialAppearance {
             if let linkedServices = self.defaults.arrayForKey("linkedServices") as? [String] {
                 self.linkedServices = linkedServices.sort() {$0 < $1}
-                self.syncAllButton.enabled = linkedServices.count > 0
+//                self.syncAllButton.enabled = linkedServices.count > 0
             }
             
             // Refresh for tableview accessories
