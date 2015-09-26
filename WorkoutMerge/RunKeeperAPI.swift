@@ -20,7 +20,7 @@ class RunKeeperAPI: WorkoutSyncAPI {
         var settings = [
             "authorize_uri": "https://runkeeper.com/apps/authorize",
             "token_uri": "https://runkeeper.com/apps/token",
-            "redirect_uris": ["workoutmerge://oauth.runkeeper/callback"],
+            "redirect_uris": ["http://www.workoutmerge.com/callback"],
             "secret_in_body": true,
             "verbose": true,
         ] as OAuth2JSON
