@@ -190,5 +190,10 @@ class SyncAllTableViewController: UITableViewController {
         } else {
             workoutsToSync = self.workouts
         }
+        if let runKeeper = self.workoutSyncAPI as? RunKeeperAPI {
+            // Loop over workoutsToSync
+        } else if let strava = self.workoutSyncAPI as? StravaAPI {
+            // Loop over workoutsToSync
+        }
     }
 }
