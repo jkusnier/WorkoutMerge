@@ -192,8 +192,16 @@ class SyncAllTableViewController: UITableViewController {
         }
         if let runKeeper = self.workoutSyncAPI as? RunKeeperAPI {
             // Loop over workoutsToSync
+            workoutsToSync.forEach { workout in
+//                runKeeper.postActivity
+            }
+            
         } else if let strava = self.workoutSyncAPI as? StravaAPI {
             // Loop over workoutsToSync
+            workoutsToSync.forEach { workout in
+//                strava
+            }
+            
         }
     }
 }
