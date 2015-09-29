@@ -79,7 +79,7 @@ class StravaAPI: WorkoutSyncAPI {
         sharedInstance.oauth2.handleRedirectURL(url)
     }
     
-    override func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())? = { error in print(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
+    override func postActivity(workout: WorkoutDetails, failure fail : ((NSError?, String) -> ())? = { error in print(error) }, success succeed: ((savedKey: String?) -> ())? = nil) {
         
         self.oauth2.onFailure = { error in
             print("fail")

@@ -14,6 +14,8 @@ class WorkoutSyncAPI {
     let activityTypes: [String]
     let otherTypes: [String]
     
+    typealias WorkoutDetails = (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?)
+    
     init() {
         self.activityTypes = [String]()
         self.otherTypes = [String]()
@@ -33,7 +35,7 @@ class WorkoutSyncAPI {
     class func handleRedirectURL(url: NSURL) {
     }
     
-    func postActivity(workout: (UUID: NSUUID?, type: String?, startTime: NSDate?, totalDistance: Double?, duration: Double?, averageHeartRate: Int?, totalCalories: Double?, notes: String?, otherType: String?, activityName: String?), failure fail : ((NSError?, String) -> ())?, success succeed: ((savedKey: String?) -> ())?) {
+    func postActivity(workout: WorkoutDetails, failure fail : ((NSError?, String) -> ())?, success succeed: ((savedKey: String?) -> ())?) {
     }
     
     func activityType(t: HKWorkoutActivityType) -> String {
