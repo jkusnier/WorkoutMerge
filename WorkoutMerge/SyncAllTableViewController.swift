@@ -15,7 +15,8 @@ class SyncAllTableViewController: UITableViewController {
     var workoutSyncAPI: WorkoutSyncAPI?
     
     let hkStore = HKHealthStore()
-    typealias Workout = [(startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool)]
+    typealias WorkoutRecord = (startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool, workoutDetails: WorkoutSyncAPI.WorkoutDetails?)
+    typealias Workout = [WorkoutRecord]
     var workouts: Workout  = []
     
     let managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
@@ -56,7 +57,7 @@ class SyncAllTableViewController: UITableViewController {
                                 for workout in results {
                                     if let _ = self.managedObject(workout) {
                                     } else {
-                                        self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), checked: false) as (startDate: NSDate, durationLabel: String, workoutTypeLabel: String, checked: Bool))
+                                        self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), checked: false, workoutDetails: nil) as WorkoutRecord)
                                     }
                                 }
 
