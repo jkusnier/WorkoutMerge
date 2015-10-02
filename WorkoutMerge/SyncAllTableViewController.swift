@@ -57,6 +57,12 @@ class SyncAllTableViewController: UITableViewController {
                                 for workout in results {
                                     if let _ = self.managedObject(workout) {
                                     } else {
+                                        let totalDistance: Double? = (workout.totalDistance != nil) ? workout.totalDistance!.doubleValueForUnit(HKUnit.meterUnit()) : nil
+                                        let totalEnergyBurned: Double? = workout.totalEnergyBurned != nil ? workout.totalEnergyBurned!.doubleValueForUnit(HKUnit.kilocalorieUnit()) : nil
+                                        let activityType = self.workoutSyncAPI?.activityType(workout.workoutActivityType)
+                                        
+                                        let workoutRecord = (workout.UUID, type: activityType, startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: nil, totalCalories: totalEnergyBurned, notes: nil, otherType: nil, activityName: nil) as WorkoutSyncAPI.WorkoutDetails
+                                        
                                         self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), checked: false, workoutDetails: nil) as WorkoutRecord)
                                     }
                                 }
