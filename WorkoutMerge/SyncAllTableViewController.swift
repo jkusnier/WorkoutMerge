@@ -209,6 +209,38 @@ class SyncAllTableViewController: UITableViewController {
 //                strava
             }
             
+    func averageHeartRateForWorkout(workout: HKWorkout, success: (Double?) -> (), tryAgain: Bool) {
+
+        let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
+        let workoutPredicate = HKQuery.predicateForSamplesWithStartDate(workout.startDate, endDate: workout.endDate, options: .None)
+        //            let startDateSort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        
+        let query = HKStatisticsQuery(quantityType: quantityType!, quantitySamplePredicate: workoutPredicate, options: .DiscreteAverage) {
+            (query, results, error) -> Void in
+            
+            if error != nil {
+                print("\(error)")
+                if tryAgain {
+                    self.averageHeartRateForWorkout(workout, success: success, tryAgain: false)
+                } else {
+                    print("failed to retrieve heart rate data")
+                    success(nil)
+                }
+            } else {
+                if results!.averageQuantity() != nil {
+                    let avgHeartRate = results!.averageQuantity()!.doubleValueForUnit(HKUnit(fromString: "count/min"));
+                    
+                    success(avgHeartRate)
+                } else if tryAgain {
+                    print("averageQuantity unexpectedly found nil")
+                    self.averageHeartRateForWorkout(workout, success: success, tryAgain: false)
+                } else {
+                    print("failed to retrieve heart rate data")
+                    success(nil)
+                }
+            }
         }
+        
+        hkStore.executeQuery(query)
     }
 }
