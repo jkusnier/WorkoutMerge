@@ -54,7 +54,10 @@ class SyncAllTableViewController: UITableViewController {
                         if let results = results as? [HKWorkout] {
                             dispatch_async(dispatch_get_main_queue()) {
                                 self.workouts = []
+                                var queue = results.count
                                 for workout in results {
+                                    queue--
+                                    
                                     if let _ = self.managedObject(workout) {
                                     } else {
                                         let totalDistance: Double? = (workout.totalDistance != nil) ? workout.totalDistance!.doubleValueForUnit(HKUnit.meterUnit()) : nil
@@ -63,22 +66,23 @@ class SyncAllTableViewController: UITableViewController {
                                         
                                         var workoutRecord = (workout.UUID, type: activityType, startTime: workout.startDate, totalDistance: totalDistance, duration: workout.duration, averageHeartRate: nil, totalCalories: totalEnergyBurned, notes: nil, otherType: nil, activityName: nil) as WorkoutSyncAPI.WorkoutDetails
                                         
+                                        let queue = queue
                                         self.averageHeartRateForWorkout(workout, success: { d in
                                             if let d = d {
                                                 workoutRecord.averageHeartRate = Int(d)
                                             }
+                                            self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), checked: false, workoutDetails: workoutRecord) as WorkoutRecord)
+                                       
+                                            if queue == 0 {
+                                                dispatch_async(dispatch_get_main_queue()) {
+                                                    self.tableView.reloadData()
+                                                    actInd.stopAnimating()
+                                                }
+                                            }
                                         }, tryAgain: true)
-                                        
-                                        self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), checked: false, workoutDetails: workoutRecord) as WorkoutRecord)
                                     }
                                 }
-
-                                self.tableView.reloadData()
                             }
-                        }
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            actInd.stopAnimating()
                         }
                     })
                 } else {
