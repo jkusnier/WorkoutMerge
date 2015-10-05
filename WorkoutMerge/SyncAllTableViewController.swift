@@ -59,6 +59,15 @@ class SyncAllTableViewController: UITableViewController {
                                     queue--
                                     
                                     if let _ = self.managedObject(workout) {
+                                        // Verify the workout hasn't already been synced
+                                        
+                                        // If the last item was already synced, we will stop the progress
+                                        if queue == 0 {
+                                            dispatch_async(dispatch_get_main_queue()) {
+                                                self.tableView.reloadData()
+                                                actInd.stopAnimating()
+                                            }
+                                        }
                                     } else {
                                         let totalDistance: Double? = (workout.totalDistance != nil) ? workout.totalDistance!.doubleValueForUnit(HKUnit.meterUnit()) : nil
                                         let totalEnergyBurned: Double? = workout.totalEnergyBurned != nil ? workout.totalEnergyBurned!.doubleValueForUnit(HKUnit.kilocalorieUnit()) : nil
