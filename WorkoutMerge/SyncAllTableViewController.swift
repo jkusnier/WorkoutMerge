@@ -222,7 +222,13 @@ class SyncAllTableViewController: UITableViewController {
         if let runKeeper = self.workoutSyncAPI as? RunKeeperAPI {
             // Loop over workoutsToSync
             workoutsToSync.forEach { workout in
-//                runKeeper.postActivity
+//                if let workoutDetail = workout.workoutDetails {
+//                    runKeeper.postActivity(workoutDetail, failure: { (error, msg) in
+//                    },
+//                    success: { (savedKey) in
+//                    })
+//                    
+//                }
             }
             
         } else if let strava = self.workoutSyncAPI as? StravaAPI {
