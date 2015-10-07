@@ -226,6 +226,49 @@ class SyncAllTableViewController: UITableViewController {
 //                    runKeeper.postActivity(workoutDetail, failure: { (error, msg) in
 //                    },
 //                    success: { (savedKey) in
+//                
+//                        if let uuid = self.resultWorkoutData.UUID?.UUIDString {
+//                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                            let managedContext = appDelegate.managedObjectContext!
+//
+//                            let note = self.resultWorkoutData.notes
+//
+//                            if let syncLog = self.syncLog(uuid) {
+//                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+//                                syncLog.setValue(note, forKey: "note")
+//                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
+//                                if let workoutType = self.resultWorkoutData.type {
+//                                    syncLog.setValue(workoutType, forKey: "workoutType")
+//                                }
+//                                if let workoutOtherType = self.resultWorkoutData.otherType {
+//                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
+//                                }
+//                            } else {
+//                                let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
+//                                let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+//                                syncLog.setValue(uuid, forKey: "uuid")
+//                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+//                                syncLog.setValue(note, forKey: "note")
+//                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
+//                                if let workoutType = self.resultWorkoutData.type {
+//                                    syncLog.setValue(workoutType, forKey: "workoutType")
+//                                }
+//                                if let workoutOtherType = self.resultWorkoutData.otherType {
+//                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
+//                                }
+//                            }
+//                            
+//                            var error: NSError?
+//                            do {
+//                                try managedContext.save()
+//                            } catch let error1 as NSError {
+//                                error = error1
+//                                print("Could not save \(error)")
+//                            } catch {
+//                                fatalError()
+//                            }
+//                        }
+//                
 //                    })
 //                    
 //                }
