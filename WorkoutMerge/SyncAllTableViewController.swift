@@ -62,7 +62,9 @@ class SyncAllTableViewController: UITableViewController {
                                         // Verify the workout hasn't already been synced
                                         
                                         // If the last item was already synced, we will stop the progress
+                                        // FIXME this should be done with a timer
                                         if queue == 0 {
+                                            // TODO Check the timer status, cancel if needed
                                             dispatch_async(dispatch_get_main_queue()) {
                                                 self.tableView.reloadData()
                                                 actInd.stopAnimating()
@@ -83,6 +85,7 @@ class SyncAllTableViewController: UITableViewController {
                                             self.workouts.append((startDate: workout.startDate, durationLabel: self.stringFromTimeInterval(workout.duration), workoutTypeLabel: HKWorkoutActivityType.hkDescription(workout.workoutActivityType), checked: false, workoutDetails: workoutRecord) as WorkoutRecord)
                                        
                                             if queue == 0 {
+                                                // TODO Check timer, cancel and reset
                                                 dispatch_async(dispatch_get_main_queue()) {
                                                     self.tableView.reloadData()
                                                     actInd.stopAnimating()
