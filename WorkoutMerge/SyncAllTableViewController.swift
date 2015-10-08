@@ -278,6 +278,8 @@ class SyncAllTableViewController: UITableViewController {
             // Loop over workoutsToSync
             workoutsToSync.forEach { workout in
 //                strava
+//                if let workoutDetail = workout.workoutDetails {
+//                }
             }
             
     func averageHeartRateForWorkout(workout: HKWorkout, success: (Double?) -> (), tryAgain: Bool) {
