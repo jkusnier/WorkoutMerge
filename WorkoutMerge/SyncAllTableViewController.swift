@@ -279,6 +279,10 @@ class SyncAllTableViewController: UITableViewController {
             workoutsToSync.forEach { workout in
 //                strava
 //                if let workoutDetail = workout.workoutDetails {
+//                    strava.postActivity(workoutDetail, failure: { (error, msg) in
+//                    },
+//                    success: { (savedKey) in
+//                    })
 //                }
             }
             
