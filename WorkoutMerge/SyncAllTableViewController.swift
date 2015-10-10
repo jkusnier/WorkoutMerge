@@ -224,6 +224,18 @@ class SyncAllTableViewController: UITableViewController {
             workoutsToSync.forEach { workout in
 //                if let workoutDetail = workout.workoutDetails {
 //                    runKeeper.postActivity(workoutDetail, failure: { (error, msg) in
+//                        dispatch_async(dispatch_get_main_queue()) {
+//                            vcu.hideActivityIndicator(self.view)
+//                            let errorMessage: String
+//                            if let error = error {
+//                                errorMessage = "\(error.localizedDescription) - \(msg)"
+//                            } else {
+//                                errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through RunKeeper - \(msg)"
+//                            }
+//                            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+//                            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//                            self.presentViewController(alert, animated: true, completion: nil)
+//                        }
 //                    },
 //                    success: { (savedKey) in
 //                
@@ -280,6 +292,19 @@ class SyncAllTableViewController: UITableViewController {
 //                strava
 //                if let workoutDetail = workout.workoutDetails {
 //                    strava.postActivity(workoutDetail, failure: { (error, msg) in
+//                                dispatch_async(dispatch_get_main_queue()) {
+//                                    vcu.hideActivityIndicator(self.view)
+//                                    let errorMessage: String
+//                                    if let error = error {
+//                                        errorMessage = "\(error.localizedDescription) - \(msg)"
+//                                    } else {
+//                                        errorMessage = "An error occurred while saving workout. Please verify that WorkoutMerge is still authorized through Strava - \(msg)"
+//                                    }
+//                                    let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+//                                    alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//                                    self.presentViewController(alert, animated: true, completion: nil)
+//                                }
+
 //                    },
 //                    success: { (savedKey) in
 //                    })
