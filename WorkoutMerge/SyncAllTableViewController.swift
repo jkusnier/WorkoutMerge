@@ -232,7 +232,7 @@ class SyncAllTableViewController: UITableViewController {
         if let runKeeper = self.workoutSyncAPI as? RunKeeperAPI {
             // Loop over workoutsToSync
             workoutsToSync.forEach { workout in
-//                if let workoutDetail = workout.workoutDetails {
+                if let workoutDetail = workout.workoutDetails {
 //                    runKeeper.postActivity(workoutDetail, failure: { (error, msg) in
 //                        dispatch_async(dispatch_get_main_queue()) {
 //                            vcu.hideActivityIndicator(self.view)
@@ -292,15 +292,14 @@ class SyncAllTableViewController: UITableViewController {
 //                        }
 //                
 //                    })
-//                    
-//                }
+                }
             }
-            
         } else if let strava = self.workoutSyncAPI as? StravaAPI {
             // Loop over workoutsToSync
             workoutsToSync.forEach { workout in
 //                strava
-//                if let workoutDetail = workout.workoutDetails {
+                
+                if let workoutDetail = workout.workoutDetails {
 //                    strava.postActivity(workoutDetail, failure: { (error, msg) in
 //                                dispatch_async(dispatch_get_main_queue()) {
 //                                    vcu.hideActivityIndicator(self.view)
@@ -361,9 +360,7 @@ class SyncAllTableViewController: UITableViewController {
 //                        }
 //                
 //                    })
-//                    
-//                }
-
+                }
             }
     func averageHeartRateForWorkout(workout: HKWorkout, success: (Double?) -> (), tryAgain: Bool) {
 
