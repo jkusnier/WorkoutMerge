@@ -233,7 +233,8 @@ class SyncAllTableViewController: UITableViewController {
             // Loop over workoutsToSync
             workoutsToSync.forEach { workout in
                 if let workoutDetail = workout.workoutDetails {
-//                    runKeeper.postActivity(workoutDetail, failure: { (error, msg) in
+                    runKeeper.postActivity(workoutDetail, failure: { (error, msg) in
+                        print("FAILED")
 //                        dispatch_async(dispatch_get_main_queue()) {
 //                            vcu.hideActivityIndicator(self.view)
 //                            let errorMessage: String
@@ -246,9 +247,10 @@ class SyncAllTableViewController: UITableViewController {
 //                            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
 //                            self.presentViewController(alert, animated: true, completion: nil)
 //                        }
-//                    },
-//                    success: { (savedKey) in
-//                
+                    },
+                    success: { (savedKey) in
+                        print("SUCCESS")
+//
 //                        if let uuid = self.resultWorkoutData.UUID?.UUIDString {
 //                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //                            let managedContext = appDelegate.managedObjectContext!
@@ -291,7 +293,7 @@ class SyncAllTableViewController: UITableViewController {
 //                            }
 //                        }
 //                
-//                    })
+                    })
                 }
             }
         } else if let strava = self.workoutSyncAPI as? StravaAPI {
