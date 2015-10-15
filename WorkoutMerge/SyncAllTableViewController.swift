@@ -250,8 +250,8 @@ class SyncAllTableViewController: UITableViewController {
                     },
                     success: { (savedKey) in
                         print("SUCCESS")
-//
-//                        if let uuid = self.resultWorkoutData.UUID?.UUIDString {
+
+                        if let uuid = workout?.workoutDetails?.UUID?.UUIDString {
 //                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //                            let managedContext = appDelegate.managedObjectContext!
 //
@@ -291,8 +291,8 @@ class SyncAllTableViewController: UITableViewController {
 //                            } catch {
 //                                fatalError()
 //                            }
-//                        }
-//                
+                        }
+                
                     })
                 }
             }
