@@ -302,7 +302,7 @@ class SyncAllTableViewController: UITableViewController {
 //                strava
                 
                 if let workoutDetail = workout.workoutDetails {
-//                    strava.postActivity(workoutDetail, failure: { (error, msg) in
+                    strava.postActivity(workoutDetail, failure: { (error, msg) in
 //                                dispatch_async(dispatch_get_main_queue()) {
 //                                    vcu.hideActivityIndicator(self.view)
 //                                    let errorMessage: String
@@ -316,8 +316,8 @@ class SyncAllTableViewController: UITableViewController {
 //                                    self.presentViewController(alert, animated: true, completion: nil)
 //                                }
 
-//                    },
-//                    success: { (savedKey) in
+                    },
+                    success: { (savedKey) in
 //
 //                        if let uuid = self.resultWorkoutData.UUID?.UUIDString {
 //                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -361,7 +361,7 @@ class SyncAllTableViewController: UITableViewController {
 //                            }
 //                        }
 //                
-//                    })
+                    })
                 }
             }
     func averageHeartRateForWorkout(workout: HKWorkout, success: (Double?) -> (), tryAgain: Bool) {
