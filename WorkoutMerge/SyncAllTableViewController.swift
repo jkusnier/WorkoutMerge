@@ -229,6 +229,9 @@ class SyncAllTableViewController: UITableViewController {
         
         vcu.showActivityIndicator(self.view)
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
         if let runKeeper = self.workoutSyncAPI as? RunKeeperAPI {
             // Loop over workoutsToSync
             workoutsToSync.forEach { workout in
