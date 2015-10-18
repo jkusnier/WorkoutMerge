@@ -401,4 +401,21 @@ class SyncAllTableViewController: UITableViewController {
         
         hkStore.executeQuery(query)
     }
+    
+    func syncLog(uuid: String) -> NSManagedObject? {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName: "SyncLog")
+        let predicate = NSPredicate(format: "uuid = %@", uuid)
+        fetchRequest.predicate = predicate
+        
+        let fetchedEntities = try? managedContext.executeFetchRequest(fetchRequest)
+        
+        if let syncLog = fetchedEntities?.first as? NSManagedObject {
+            return syncLog
+        }
+        
+        return nil
+    }
 }
