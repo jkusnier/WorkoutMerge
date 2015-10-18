@@ -254,13 +254,13 @@ class SyncAllTableViewController: UITableViewController {
                     success: { (savedKey) in
                         print("SUCCESS")
 
-                        if let uuid = workout?.workoutDetails?.UUID?.UUIDString {
+                        if let uuid = workout.workoutDetails?.UUID?.UUIDString {
 //                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //                            let managedContext = appDelegate.managedObjectContext!
 //
 //                            let note = self.resultWorkoutData.notes
 //
-//                            if let syncLog = self.syncLog(uuid) {
+                            if let syncLog = self.syncLog(uuid) {
 //                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
 //                                syncLog.setValue(note, forKey: "note")
 //                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
@@ -270,7 +270,7 @@ class SyncAllTableViewController: UITableViewController {
 //                                if let workoutOtherType = self.resultWorkoutData.otherType {
 //                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
 //                                }
-//                            } else {
+                            } else {
 //                                let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
 //                                let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
 //                                syncLog.setValue(uuid, forKey: "uuid")
@@ -283,8 +283,8 @@ class SyncAllTableViewController: UITableViewController {
 //                                if let workoutOtherType = self.resultWorkoutData.otherType {
 //                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
 //                                }
-//                            }
-//                            
+                            }
+//
 //                            var error: NSError?
 //                            do {
 //                                try managedContext.save()
@@ -367,6 +367,9 @@ class SyncAllTableViewController: UITableViewController {
                     })
                 }
             }
+        }
+    }
+    
     func averageHeartRateForWorkout(workout: HKWorkout, success: (Double?) -> (), tryAgain: Bool) {
 
         let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)
