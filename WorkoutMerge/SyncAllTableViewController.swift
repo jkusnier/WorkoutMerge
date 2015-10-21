@@ -272,16 +272,16 @@ class SyncAllTableViewController: UITableViewController {
                                     syncLog.setValue(workoutType, forKey: "workoutType")
                                 }
                             }
-//
-//                            var error: NSError?
-//                            do {
-//                                try managedContext.save()
-//                            } catch let error1 as NSError {
-//                                error = error1
-//                                print("Could not save \(error)")
-//                            } catch {
-//                                fatalError()
-//                            }
+
+                            var error: NSError?
+                            do {
+                                try managedContext.save()
+                            } catch let error1 as NSError {
+                                error = error1
+                                print("Could not save \(error)")
+                            } catch {
+                                fatalError()
+                            }
                         }
                 
                     })
