@@ -237,7 +237,6 @@ class SyncAllTableViewController: UITableViewController {
             workoutsToSync.forEach { workout in
                 if let workoutDetail = workout.workoutDetails {
                     runKeeper.postActivity(workoutDetail, failure: { (error, msg) in
-                        print("FAILED")
                         dispatch_async(dispatch_get_main_queue()) {
                             vcu.hideActivityIndicator(self.view)
                             let errorMessage: String
@@ -252,8 +251,6 @@ class SyncAllTableViewController: UITableViewController {
                         }
                     },
                     success: { (savedKey) in
-                        print("SUCCESS")
-
                         if let uuid = workout.workoutDetails?.UUID?.UUIDString {
 
                             if let syncLog = self.syncLog(uuid) {
@@ -283,7 +280,6 @@ class SyncAllTableViewController: UITableViewController {
                                 fatalError()
                             }
                         }
-                
                     })
                 }
             }
