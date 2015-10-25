@@ -312,7 +312,7 @@ class SyncAllTableViewController: UITableViewController {
 //
 //                            let note = self.resultWorkoutData.notes
 //
-//                            if let syncLog = self.syncLog(uuid) {
+                            if let syncLog = self.syncLog(uuid) {
 //                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
 //                                syncLog.setValue(note, forKey: "note")
 //                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
@@ -336,18 +336,17 @@ class SyncAllTableViewController: UITableViewController {
 //                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
 //                                }
                             }
-//
-//                            var error: NSError?
-//                            do {
-//                                try managedContext.save()
-//                            } catch let error1 as NSError {
-//                                error = error1
-//                                print("Could not save \(error)")
-//                            } catch {
-//                                fatalError()
-//                            }
-//                        }
-//                
+
+                            var error: NSError?
+                            do {
+                                try managedContext.save()
+                            } catch let error1 as NSError {
+                                error = error1
+                                print("Could not save \(error)")
+                            } catch {
+                                fatalError()
+                            }
+                        }
                     })
                 }
             }
