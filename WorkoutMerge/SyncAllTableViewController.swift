@@ -306,7 +306,7 @@ class SyncAllTableViewController: UITableViewController {
                     },
                     success: { (savedKey) in
 //
-//                        if let uuid = self.resultWorkoutData.UUID?.UUIDString {
+                        if let uuid = workout.workoutDetails?.UUID?.UUIDString {
 //                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //                            let managedContext = appDelegate.managedObjectContext!
 //
@@ -322,7 +322,7 @@ class SyncAllTableViewController: UITableViewController {
 //                                if let workoutOtherType = self.resultWorkoutData.otherType {
 //                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
 //                                }
-//                            } else {
+                            } else {
 //                                let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
 //                                let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
 //                                syncLog.setValue(uuid, forKey: "uuid")
@@ -335,7 +335,7 @@ class SyncAllTableViewController: UITableViewController {
 //                                if let workoutOtherType = self.resultWorkoutData.otherType {
 //                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
 //                                }
-//                            }
+                            }
 //
 //                            var error: NSError?
 //                            do {
