@@ -307,11 +307,7 @@ class SyncAllTableViewController: UITableViewController {
                     success: { (savedKey) in
 //
                         if let uuid = workout.workoutDetails?.UUID?.UUIDString {
-//                            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                            let managedContext = appDelegate.managedObjectContext!
-//
-//                            let note = self.resultWorkoutData.notes
-//
+
                             if let syncLog = self.syncLog(uuid) {
 //                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
 //                                syncLog.setValue(note, forKey: "note")
