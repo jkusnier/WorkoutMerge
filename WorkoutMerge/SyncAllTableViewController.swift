@@ -309,15 +309,12 @@ class SyncAllTableViewController: UITableViewController {
                         if let uuid = workout.workoutDetails?.UUID?.UUIDString {
 
                             if let syncLog = self.syncLog(uuid) {
-//                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
 //                                syncLog.setValue(note, forKey: "note")
-//                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
-//                                if let workoutType = self.resultWorkoutData.type {
-//                                    syncLog.setValue(workoutType, forKey: "workoutType")
-//                                }
-//                                if let workoutOtherType = self.resultWorkoutData.otherType {
-//                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
-//                                }
+                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
+                                if let workoutType = workout.workoutDetails?.type {
+                                    syncLog.setValue(workoutType, forKey: "workoutType")
+                                }
                             } else {
 //                                let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
 //                                let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
