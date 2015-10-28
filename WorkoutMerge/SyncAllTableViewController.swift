@@ -316,18 +316,14 @@ class SyncAllTableViewController: UITableViewController {
                                     syncLog.setValue(workoutType, forKey: "workoutType")
                                 }
                             } else {
-//                                let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
-//                                let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
-//                                syncLog.setValue(uuid, forKey: "uuid")
-//                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
-//                                syncLog.setValue(note, forKey: "note")
-//                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
-//                                if let workoutType = self.resultWorkoutData.type {
-//                                    syncLog.setValue(workoutType, forKey: "workoutType")
-//                                }
-//                                if let workoutOtherType = self.resultWorkoutData.otherType {
-//                                    syncLog.setValue(workoutOtherType, forKey: "workoutOtherType")
-//                                }
+                                let entity =  NSEntityDescription.entityForName("SyncLog", inManagedObjectContext: managedContext)
+                                let syncLog = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+                                syncLog.setValue(uuid, forKey: "uuid")
+                                syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
+                                syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
+                                if let workoutType = workout.workoutDetails?.type {
+                                    syncLog.setValue(workoutType, forKey: "workoutType")
+                                }
                             }
 
                             var error: NSError?
