@@ -220,11 +220,6 @@ class SyncAllTableViewController: UITableViewController {
             workoutsToSync = self.workouts
         }
         
-        let f = workoutsToSync.filter({ $0.workoutDetails?.averageHeartRate != nil })
-        
-        print("\(workoutsToSync)")
-
-        
         let vcu = ViewControllerUtils()
         
         vcu.showActivityIndicator(self.view)
@@ -279,6 +274,11 @@ class SyncAllTableViewController: UITableViewController {
                             } catch {
                                 fatalError()
                             }
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            // TODO reload data in table - remove workouts synced
+                            vcu.hideActivityIndicator(self.view)
                         }
                     })
                 }
