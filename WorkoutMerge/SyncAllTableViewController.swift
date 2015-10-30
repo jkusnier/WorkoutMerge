@@ -305,12 +305,10 @@ class SyncAllTableViewController: UITableViewController {
 
                     },
                     success: { (savedKey) in
-//
                         if let uuid = workout.workoutDetails?.UUID?.UUIDString {
 
                             if let syncLog = self.syncLog(uuid) {
                                 syncLog.setValue(NSDate(), forKey: "syncToRunKeeper")
-//                                syncLog.setValue(note, forKey: "note")
                                 syncLog.setValue(savedKey, forKey: "savedKeyRunKeeper")
                                 if let workoutType = workout.workoutDetails?.type {
                                     syncLog.setValue(workoutType, forKey: "workoutType")
@@ -335,6 +333,11 @@ class SyncAllTableViewController: UITableViewController {
                             } catch {
                                 fatalError()
                             }
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            // TODO reload data in table - remove workouts synced
+                            vcu.hideActivityIndicator(self.view)
                         }
                     })
                 }
